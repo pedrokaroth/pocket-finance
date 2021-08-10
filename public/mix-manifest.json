@@ -1,4 +1,8 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/auth/assets/css/reset.css": "/auth/assets/css/reset.css?id=cd298d5c2113cde71883",
+    "/auth/assets/css/login.css": "/auth/assets/css/login.css?id=0b6a34e1448a4d994476",
+    "/auth/assets/css/boot.css": "/auth/assets/css/boot.css?id=b81a12d78e89540b5a12",
+    "/auth/assets/images/auth-login-grey.svg": "/auth/assets/images/auth-login-grey.svg?id=a600415dcabc99a7e9e5",
+    "/auth/assets/images/auth-login-image.jpg": "/auth/assets/images/auth-login-image.jpg?id=c143539d978350612655",
+    "/auth/assets/images/auth-login-orange.svg": "/auth/assets/images/auth-login-orange.svg?id=491dccc03f649c46f37d"
 }
