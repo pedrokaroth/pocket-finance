@@ -20,7 +20,10 @@
         </label>
 
         <label>
-            <span class="field">Senha:</span>
+            <div class="password-login">
+                <span class="field">Senha:</span>
+                <span class="forget"><a href="{{ route('password.update') }}">Esqueceu a senha?</a></span>
+            </div>
             <input type="password" name="password" placeholder="Informe sua senha" required/>
             @error('password')
             <span class="invalid-feedback" role="alert">

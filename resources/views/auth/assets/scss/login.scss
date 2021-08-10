@@ -46,6 +46,10 @@ html, body {
         color: #D94352;
         text-decoration: none;
     }
+    a:hover {
+        color: #F4645F;
+        transition: 0.2s;
+    }
 }
 
 .dash-login-left-box form {
@@ -59,6 +63,27 @@ html, body {
 
         label {
             flex-basis: 48%;
+        }
+    }
+
+    .password-login {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        width: 100%;
+
+        .forget {
+            flex-basis: 50%;
+            text-align: end;
+
+            a {
+                color: #D94352;
+                text-decoration: none;
+            }
+            a:hover {
+                color: #F4645F;
+                transition: 0.2s;
+            }
         }
     }
 }

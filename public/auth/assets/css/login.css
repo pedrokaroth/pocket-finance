@@ -45,6 +45,10 @@ html, body {
   color: #D94352;
   text-decoration: none;
 }
+.dash-login-left-box .dash-login-box-header a:hover {
+  color: #F4645F;
+  transition: 0.2s;
+}
 
 .dash-login-left-box form {
   display: block;
@@ -57,6 +61,24 @@ html, body {
 }
 .dash-login-left-box form .password label {
   flex-basis: 48%;
+}
+.dash-login-left-box form .password-login {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  width: 100%;
+}
+.dash-login-left-box form .password-login .forget {
+  flex-basis: 50%;
+  text-align: end;
+}
+.dash-login-left-box form .password-login .forget a {
+  color: #D94352;
+  text-decoration: none;
+}
+.dash-login-left-box form .password-login .forget a:hover {
+  color: #F4645F;
+  transition: 0.2s;
 }
 
 .dash-login-left-box label {
