@@ -28,14 +28,30 @@ html, body {
     align-items: center;
 }
 
-.dash-login-left-box .dash-login-box-header h1 {
-    font-size: 2em;
-    text-align: center;
+.dash-login-left-box .dash-login-box-header {
+    margin-bottom: 50px!important;
+}
+
+.dash-login-left-box .dash-login-box-header {
+    h1 {
+        font-size: 2em;
+        text-align: center;
+    }
+    p {
+        margin-top: 25px;
+        font-size: 1.2em;
+        text-align: center;
+    }
+    a {
+        color: #D94352;
+        text-decoration: none;
+    }
+
 }
 
 .dash-login-left-box form {
     display: block;
-    margin: 30px 0;
+    margin: 50px 0 30px;
 }
 
 .dash-login-left-box label {
@@ -91,6 +107,15 @@ html, body {
     flex-basis: 60%;
     padding: 30px 0;
     background-size: 70%;
+}
+
+.dash-login-left form {
+    input {
+        margin-bottom: 10px;
+    }
+    span.invalid-feedback {
+        color: #D94352;
+    }
 }
 
 @media (max-width: 66em) {

@@ -1,9 +1,7 @@
 {
-    "/js/app.js": "/js/app.js?id=dc6a403ab7834851bc3d",
-    "/css/app.css": "/css/app.css?id=0f5b0450bb793655a09d",
-    "/auth/assets/css/reset.css": "/auth/assets/css/reset.css?id=dbb5fd9c8f6fe7c18648",
-    "/auth/assets/css/login.css": "/auth/assets/css/login.css?id=5b1c9eebe7ba0a4864b8",
-    "/auth/assets/css/boot.css": "/auth/assets/css/boot.css?id=bfd5bf6494957e9a13e6",
+    "/auth/assets/css/reset.css": "/auth/assets/css/reset.css?id=cd298d5c2113cde71883",
+    "/auth/assets/css/login.css": "/auth/assets/css/login.css?id=3597c11b4f9b31b707be",
+    "/auth/assets/css/boot.css": "/auth/assets/css/boot.css?id=ef45b068afc5112a60dc",
     "/auth/assets/images/auth-login-grey.svg": "/auth/assets/images/auth-login-grey.svg?id=a600415dcabc99a7e9e5",
     "/auth/assets/images/auth-login-image.jpg": "/auth/assets/images/auth-login-image.jpg?id=c143539d978350612655",
     "/auth/assets/images/auth-login-orange.svg": "/auth/assets/images/auth-login-orange.svg?id=491dccc03f649c46f37d"

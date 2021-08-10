@@ -1,1 +1,42 @@
-.radius{border-radius:4px}.rounded{border-radius:50%}.gradient{background-size:200% auto;transition-duration:.5s}.gradient:hover{background-position:100%}.gradient-green{background-image:linear-gradient(90deg,#36ba9b 0,#2d9a81 50%,#36ba9b)}.gradient-blue{background-image:linear-gradient(90deg,#39aed9 0,#2699c4 50%,#39aed9)}.gradient-yellow{background-image:linear-gradient(90deg,#f5b946 0,#f3aa1f 50%,#f5b946)}.gradient-red{background-image:linear-gradient(90deg,#d94352 0,#ca2939 50%,#d94352)}.gradient-orange{background-image:linear-gradient(90deg,#f4645f 0,#f13f39 50%,#f4645f)}
+/**
+RADIUS SYSTEM
+ */
+/**
+COLOR SYSTEM
+ */
+/** Auto generate buttons, gradients */
+.radius {
+  border-radius: 4px;
+}
+
+.rounded {
+  border-radius: 50%;
+}
+
+.gradient {
+  background-size: 200% auto;
+  transition-duration: 0.5s;
+}
+.gradient:hover {
+  background-position: right center;
+}
+
+.gradient-green {
+  background-image: linear-gradient(to right, #36BA9B 0%, #2d9a81 50%, #36BA9B 100%);
+}
+
+.gradient-blue {
+  background-image: linear-gradient(to right, #39AED9 0%, #2699c4 50%, #39AED9 100%);
+}
+
+.gradient-yellow {
+  background-image: linear-gradient(to right, #F5B946 0%, #f3aa1f 50%, #F5B946 100%);
+}
+
+.gradient-red {
+  background-image: linear-gradient(to right, #D94352 0%, #ca2939 50%, #D94352 100%);
+}
+
+.gradient-orange {
+  background-image: linear-gradient(to right, #F4645F 0%, #f13f39 50%, #F4645F 100%);
+}
