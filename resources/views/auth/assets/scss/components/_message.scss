@@ -1,0 +1,26 @@
+.message {
+    width: 100%;
+    padding: 15px;
+    text-align: center;
+    border-radius: $radius-normal;
+}
+
+.message-success {
+    border: 1px solid $color-green;
+    color: $color-green
+}
+
+.message-alert {
+    border: 1px solid $color-yellow;
+    color: $color-yellow;
+}
+
+.message-error {
+    border: 1px solid $color-red;
+    color: $color-red;
+}
+
+.message-info {
+    border: 1px solid $color-blue;
+    color: $color-blue;
+}

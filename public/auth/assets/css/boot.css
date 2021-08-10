@@ -40,3 +40,30 @@ COLOR SYSTEM
 .gradient-orange {
   background-image: linear-gradient(to right, #F4645F 0%, #f13f39 50%, #F4645F 100%);
 }
+
+.message {
+  width: 100%;
+  padding: 15px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.message-success {
+  border: 1px solid #36BA9B;
+  color: #36BA9B;
+}
+
+.message-alert {
+  border: 1px solid #F5B946;
+  color: #F5B946;
+}
+
+.message-error {
+  border: 1px solid #D94352;
+  color: #D94352;
+}
+
+.message-info {
+  border: 1px solid #39AED9;
+  color: #39AED9;
+}

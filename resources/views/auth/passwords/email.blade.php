@@ -5,6 +5,12 @@
         <h1>Recuperar Senha</h1>
         <p>Ainda não tem conta? <a href="{{ route('register') }}">Cadastre-se</a></p>
     </header>
+    @if (session('status'))
+        <div class="message message-success">
+            {{ session('status') }}
+        </div>
+    @endif
+
     <form action="{{ route('password.email') }}" method="post" autocomplete="off">
         @method('POST')
         @csrf
