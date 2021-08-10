@@ -1,6 +1,6 @@
 html, body {
     min-height: 100vh;
-    background: #F5F9FA;
+    background: rgba(47, 46, 65, 0.29);
 }
 
 .dash-login {
@@ -15,7 +15,7 @@ html, body {
     color: #ffffff;
     background-size: cover;
     padding: 30px 0;
-    box-shadow: 3px 0 10px 5px #CCC;
+    box-shadow: 3px 0 10px 5px rgba(47, 46, 65, 0.29);
     display: flex;
     flex-wrap: nowrap;
 }
@@ -114,8 +114,9 @@ html, body {
 
 .dash-login-right {
     flex-basis: 60%;
+    background: url('../images/auth-login-grey.svg') center/cover no-repeat;
     padding: 30px 0;
-    background-size: 70%;
+    background-size: 60%;
 }
 
 .dash-login-left form {

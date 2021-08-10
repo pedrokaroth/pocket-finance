@@ -55,6 +55,6 @@
             </label>
         </div>
 
-        <button class="gradient gradient-orange radius">Entrar</button>
+        <button class="gradient gradient-orange radius">Registrar</button>
     </form>
 @endsection
