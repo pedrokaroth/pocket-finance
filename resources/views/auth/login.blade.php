@@ -14,8 +14,8 @@
             <input type="email" name="email" placeholder="Informe seu e-mail" required/>
             @error('email')
             <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
+                <strong>{{ $message }}</strong>
+            </span>
             @enderror
         </label>
 
@@ -24,8 +24,8 @@
             <input type="password" name="password" placeholder="Informe sua senha" required/>
             @error('password')
             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                <strong>{{ $message }}</strong>
+            </span>
             @enderror
         </label>
 

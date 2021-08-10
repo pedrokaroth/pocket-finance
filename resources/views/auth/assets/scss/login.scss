@@ -46,12 +46,21 @@ html, body {
         color: #D94352;
         text-decoration: none;
     }
-
 }
 
 .dash-login-left-box form {
     display: block;
     margin: 50px 0 30px;
+
+    .password {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+
+        label {
+            flex-basis: 48%;
+        }
+    }
 }
 
 .dash-login-left-box label {

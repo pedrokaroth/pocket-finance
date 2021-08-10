@@ -1,138 +1,145 @@
 html, body {
-    min-height: 100vh;
-    background: #F5F9FA;
+  min-height: 100vh;
+  background: #F5F9FA;
 }
 
 .dash-login {
-    display: flex;
-    flex-wrap: nowrap;
-    min-height: 100vh;
+  display: flex;
+  flex-wrap: nowrap;
+  min-height: 100vh;
 }
 
 .dash-login-left {
-    flex-basis: 40%;
-    background-color: #272E41;
-    color: #ffffff;
-    background-size: cover;
-    padding: 30px 0;
-    box-shadow: 3px 0 10px 5px #CCC;
-    display: flex;
-    flex-wrap: nowrap;
+  flex-basis: 40%;
+  background-color: #272E41;
+  color: #ffffff;
+  background-size: cover;
+  padding: 30px 0;
+  box-shadow: 3px 0 10px 5px #CCC;
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 .dash-login-left-box {
-    width: 500px;
-    max-width: 90%;
-    margin: auto;
-    padding: 30px;
-    align-items: center;
+  width: 500px;
+  max-width: 90%;
+  margin: auto;
+  padding: 30px;
+  align-items: center;
 }
 
 .dash-login-left-box .dash-login-box-header {
-    margin-bottom: 50px !important;
+  margin-bottom: 50px !important;
 }
 
 .dash-login-left-box .dash-login-box-header h1 {
-    font-size: 2em;
-    text-align: center;
+  font-size: 2em;
+  text-align: center;
 }
 .dash-login-left-box .dash-login-box-header p {
-    margin-top: 25px;
-    font-size: 1.2em;
-    text-align: center;
+  margin-top: 25px;
+  font-size: 1.2em;
+  text-align: center;
 }
 .dash-login-left-box .dash-login-box-header a {
-    color: #D94352;
-    text-decoration: none;
+  color: #D94352;
+  text-decoration: none;
 }
 
 .dash-login-left-box form {
-    display: block;
-    margin: 50px 0 30px;
+  display: block;
+  margin: 50px 0 30px;
+}
+.dash-login-left-box form .password {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+.dash-login-left-box form .password label {
+  flex-basis: 48%;
 }
 
 .dash-login-left-box label {
-    display: block;
-    margin-bottom: 30px;
+  display: block;
+  margin-bottom: 30px;
 }
 
 .dash-login-left-box label .field {
-    font-size: 0.875em;
-    display: block;
-    font-weight: bold;
+  font-size: 0.875em;
+  display: block;
+  font-weight: bold;
 }
 
 .dash-login-left-box input {
-    border: none;
-    border-bottom: 1px solid #FFFFFF;
-    font-size: 1em;
-    background: #272E41 !important;
-    color: #FFFFFF;
-    outline: none;
-    display: block;
-    width: 100%;
-    padding: 10px 0;
-    margin-top: 4px;
-    font-weight: 300;
+  border: none;
+  border-bottom: 1px solid #FFFFFF;
+  font-size: 1em;
+  background: #272E41 !important;
+  color: #FFFFFF;
+  outline: none;
+  display: block;
+  width: 100%;
+  padding: 10px 0;
+  margin-top: 4px;
+  font-weight: 300;
 }
 
 .dash-login-left-box input::-moz-placeholder {
-    color: #FFFFFF;
+  color: #FFFFFF;
 }
 
 .dash-login-left-box input:-ms-input-placeholder {
-    color: #FFFFFF;
+  color: #FFFFFF;
 }
 
 .dash-login-left-box input::placeholder {
-    color: #FFFFFF;
+  color: #FFFFFF;
 }
 
 .dash-login-left-box input:not([type=radio]):not([type=checkbox]) {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border-radius: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0;
 }
 
 .dash-login-left-box button {
-    font-size: 0.875em;
-    display: block;
-    cursor: pointer;
-    width: 100%;
-    padding: 15px;
-    border: none;
-    color: #ffffff;
-    font-weight: bold;
-    text-transform: uppercase;
-    text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+  font-size: 0.875em;
+  display: block;
+  cursor: pointer;
+  width: 100%;
+  padding: 15px;
+  border: none;
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 .dash-login-right {
-    flex-basis: 60%;
-    background: url('../images/auth-login-grey.svg') center/cover no-repeat;;
-    padding: 30px 0;
-    background-size: 60%;
+  flex-basis: 60%;
+  padding: 30px 0;
+  background-size: 70%;
 }
 
 .dash-login-left form input {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 .dash-login-left form span.invalid-feedback {
-    color: #D94352;
+  color: #D94352;
 }
 
 @media (max-width: 66em) {
-    .dash-login-right {
-        display: none;
-    }
+  .dash-login-right {
+    display: none;
+  }
 
-    .dash-login-left {
-        flex-basis: 100%;
-    }
+  .dash-login-left {
+    flex-basis: 100%;
+  }
 }
 @media (max-width: 40em) {
-    .dash-login-left-box {
-        width: 100%;
-    }
+  .dash-login-left-box {
+    width: 100%;
+  }
 }
