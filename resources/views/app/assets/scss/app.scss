@@ -1,0 +1,102 @@
+@import "variables";
+
+@import "bootstrap";
+
+@import "components/radius";
+
+
+body {
+    background-color: $body-bg;
+    font-family: 'Open Sans',sans-serif;
+}
+
+.app {
+    width: 90%;
+    padding: 5% 0;
+    margin: 0 auto;
+    max-width: 1200px;
+
+    .app-header {
+        display: flex;
+        align-content: space-between;
+        width: 100%;
+        margin-bottom: $area-box;
+
+        h1 {
+            color: #888;
+            padding: 0;
+            font-size: $font-large;
+            font-weight: $weight-bold;
+
+            a {
+                color: #888;
+                text-decoration: none;
+            }
+        }
+    }
+
+    .app-box {
+        display: flex;
+        justify-content: flex-start;
+
+        .sidebar {
+            flex-basis: 20%;
+            background-color: #FFFFFF;
+            padding: $area-normal;
+            box-shadow: 0 0 4px 0 rgb(0 0 0 / 30%);
+
+            .sidebar-title {
+                color: #888;
+                padding-bottom: $area-small;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .sidebar-user {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                font-size: $font-small;
+
+                .user {
+                    display: flex;
+                    align-items: center;
+
+                    img {
+                        width: 18%;
+                        margin-right: $area-small;
+                        padding: 2px;
+                        background-color: $color-green;
+                    }
+                }
+            }
+
+            .sidebar-nav {
+                a {
+                    display: block;
+                    padding: $area-small $area-normal;
+                    background-color: $body-bg;
+                    margin-bottom: $area-small;
+                    font-size: $font-small;
+                    color: $body-color;
+                    font-weight: $weight-bold;
+                    text-decoration: none;
+                    cursor: pointer;
+                    transition: 0.3s;
+                }
+                a:hover {
+                    background-color: $body-color;
+                    color: #FFF;
+                }
+            }
+        }
+
+        .main {
+            flex-basis: 80%;
+            padding-left: $area-box;
+        }
+    }
+}
+
+
