@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AppController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -37,7 +38,12 @@ Route::post('/email/verification-notification', function (Request $request) {
     return back()->with('message', 'Verification link sent!');
 })->name('verification.resend')->middleware(['auth', 'throttle:6,1']);
 
+Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'app'], function() {
+    Route::get('/', [
+      AppController::class, 'home'
+    ])->name('app.home');
+});
 
-Route::get('/home',
-    [App\Http\Controllers\AppController::class, 'home']
-)->name('home');
+Route::get('/teste', function() {
+    return view('auth.login');
+});

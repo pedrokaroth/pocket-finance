@@ -12,9 +12,14 @@ const mix = require('laravel-mix');
  */
 
 mix
+    .copyDirectory('resources/img', 'public/img')
+
     .sass('resources/views/auth/assets/scss/boot.scss', 'public/auth/assets/css/boot.css')
     .sass('resources/views/auth/assets/scss/login.scss', 'public/auth/assets/css/login.css')
     .sass('resources/views/auth/assets/scss/reset.scss', 'public/auth/assets/css/reset.css')
+
+    .sass('resources/views/app/assets/scss/app.scss', 'public/front/assets/css/app.css')
+    .sass('resources/views/app/assets/scss/reset.scss', 'public/front/assets/css/reset.css')
 
     .copyDirectory('resources/views/auth/assets/images', 'public/auth/assets/images')
 

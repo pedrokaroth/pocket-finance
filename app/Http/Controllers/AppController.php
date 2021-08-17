@@ -24,6 +24,6 @@ class AppController extends Controller
      */
     public function home(): Renderable
     {
-        return view('home');
+        return view('app.home');
     }
 }
