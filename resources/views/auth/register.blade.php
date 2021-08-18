@@ -10,7 +10,7 @@
         @csrf
 
         <label>
-            <span>Nome: </span>
+            <span class="field">Nome: </span>
             <input type="text" name="first_name" placeholder="Informe seu Nome"  value="{{ old('first_name') }}"/>
             @error('first_name')
                 <span class="invalid-feedback" role="alert">
@@ -20,7 +20,7 @@
         </label>
 
         <label>
-            <span>Sobrenome: </span>
+            <span class="field">Sobrenome: </span>
             <input type="text" name="last_name" placeholder="Informe seu Sobrenome"  value="{{ old('last_name') }}"/>
             @error('last_name')
                 <span class="invalid-feedback" role="alert">
@@ -30,7 +30,7 @@
         </label>
 
         <label>
-            <span>Email: </span>
+            <span class="field">Email: </span>
             <input type="email" name="email" placeholder="Informe seu e-mail"  value="{{ old('email') }}"/>
             @error('email')
                 <span class="invalid-feedback" role="alert">
