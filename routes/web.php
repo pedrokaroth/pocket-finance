@@ -23,13 +23,8 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-
-Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'app'], function() {
+Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'app', 'as' => 'app.'], function() {
     Route::get('/', [
       AppController::class, 'home'
-    ])->name('app.home');
-});
-
-Route::get('/teste', function() {
-    return view('auth.verify');
+    ])->name('home');
 });
