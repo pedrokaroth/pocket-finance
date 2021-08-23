@@ -8,7 +8,7 @@
     <hr>
     <div class="sidebar-nav">
         <div class="logout">
-            <a href="{{ route('logout') }}" class="nav_link" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+            <a href="{{ route('logout') }}" class="nav_link radius" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                 <i class="fas fa-sign-out-alt"></i>
                 Sair
             </a>
