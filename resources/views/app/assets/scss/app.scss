@@ -88,13 +88,12 @@ body {
                     span {
                        margin-left: 8px;
                     }
-
                 }
+                a.active,
                 a:hover {
                     background-color: $body-color;
                     color: #FFF;
                 }
-
             }
         }
 
