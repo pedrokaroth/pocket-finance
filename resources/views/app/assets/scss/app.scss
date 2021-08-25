@@ -3,6 +3,7 @@
 @import "bootstrap";
 
 @import "components/radius";
+@import "components/gradient";
 
 
 body {
@@ -43,7 +44,8 @@ body {
             flex-basis: 20%;
             background-color: #FFFFFF;
             padding: $area-normal;
-            box-shadow: 0 0 4px 0 rgb(0 0 0 / 30%);
+            box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+            height: 1%;
 
             .sidebar-title {
                 color: #888;
@@ -106,6 +108,43 @@ body {
     .app-wallets {
         display: flex;
         flex-wrap: wrap;
+
+        .wallet {
+            flex-basis: calc(50% - 10px);
+            margin: 0 10px 20px 0;
+            background-size: 200%;
+            text-align: center;
+            padding: 30px;
+            color: #FFFFFF;
+            position: relative;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+            h1 {
+                font-size: calc(1.4em * 2);
+            }
+            h5 {
+                font-weight: bold;
+            }
+
+            p {
+                margin: 10px 0 20px 0!important;
+                font-size: $font-small;
+            }
+
+            .btn-create {
+                display: inline-block;
+                padding: 5px 10px;
+                background: rgba(0,0,0,.4);
+                cursor: pointer;
+                font-weight: 700;
+                transition-duration: 0.3s;
+            }
+            .btn-create:hover {
+                background: rgba(0,0,0,.7);
+            }
+        }
+
+
     }
 }
 

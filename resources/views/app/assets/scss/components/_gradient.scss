@@ -1,0 +1,27 @@
+.gradient {
+    background-size: 200% auto;
+    transition-duration: 0.5s;
+}
+.gradient:hover {
+    background-position: right center;
+}
+
+.gradient-green {
+    background-image: linear-gradient(to right, #36BA9B 0%, #2d9a81 50%, #36BA9B 100%);
+}
+
+.gradient-blue {
+    background-image: linear-gradient(to right,#17EAD9 0%,#6078EA 50%,#17EAD9 100%);
+}
+
+.gradient-yellow {
+    background-image: linear-gradient(to right, #F5B946 0%, #f3aa1f 50%, #F5B946 100%);
+}
+
+.gradient-red {
+    background-image: linear-gradient(to right, #D94352 0%, #ca2939 50%, #D94352 100%);
+}
+
+.gradient-orange {
+    background-image: linear-gradient(to right, #F4645F 0%, #f13f39 50%, #F4645F 100%);
+}

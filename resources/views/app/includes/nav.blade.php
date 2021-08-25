@@ -1,4 +1,4 @@
-<nav class="sidebar">
+<nav class="sidebar radius">
     <div class="sidebar-title sidebar-user">
         <span class="user">
             <img class="rounded-full" src="{{ asset('img/avatar.jpg') }}" alt="">
