@@ -84,11 +84,17 @@ body {
                     text-decoration: none;
                     cursor: pointer;
                     transition: 0.3s;
+
+                    span {
+                       margin-left: 8px;
+                    }
+
                 }
                 a:hover {
                     background-color: $body-color;
                     color: #FFF;
                 }
+
             }
         }
 
