@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\App;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class Wallet extends Model
 {
@@ -17,8 +19,9 @@ class Wallet extends Model
      * @var array
      */
     protected $fillable = [
-        'free',
+        'wallet',
         'user_id',
+        'free'
     ];
 
     /**

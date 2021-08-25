@@ -23,7 +23,7 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'app', 'as' => 'app.'], function() {
+Route::group(['middleware' => ['auth', 'verified', 'wallet'], 'prefix' => 'app', 'as' => 'app.'], function() {
     Route::get('/', [
       AppController::class, 'home'
     ])->name('home');

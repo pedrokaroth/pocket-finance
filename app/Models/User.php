@@ -2,12 +2,17 @@
 
 namespace App\Models;
 
+use App\Models\App\Wallet;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * Class User
+ * @package App\Models
+ */
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
@@ -51,5 +56,15 @@ class User extends Authenticatable implements MustVerifyEmail
     public function wallets(): HasMany
     {
         return $this->hasMany(Wallet::class);
+    }
+
+    /**
+     *  Returns if the user has at least one wallet
+     *
+     * @return bool
+     */
+    public function hasWallet(): bool
+    {
+        return $this->wallets()->exists();
     }
 }
