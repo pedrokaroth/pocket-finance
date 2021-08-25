@@ -27,4 +27,8 @@ Route::group(['middleware' => ['auth', 'verified', 'wallet'], 'prefix' => 'app',
     Route::get('/', [
       AppController::class, 'home'
     ])->name('home');
+
+    Route::get('/carteiras', [
+        AppController::class, 'wallets'
+    ])->name('wallets');
 });

@@ -7,7 +7,7 @@
     </div>
     <hr>
     <div class="sidebar-nav">
-        <a href="" class="nav_link radius">
+        <a href="{{ route('app.wallets') }}" class="nav_link radius">
             <i class="fas fa-wallet"></i>
             <span>Carteiras</span>
         </a>

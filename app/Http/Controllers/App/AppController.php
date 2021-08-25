@@ -17,4 +17,9 @@ class AppController extends Controller
     {
         return view('app.home');
     }
+
+    public function wallets()
+    {
+        return view('app.wallets');
+    }
 }

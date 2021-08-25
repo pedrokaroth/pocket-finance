@@ -8,8 +8,7 @@
 
     <link rel="stylesheet" href="{{ url(mix('/front/assets/css/reset.css')) }}">
     <link rel="stylesheet" href="{{ url(mix('/front/assets/css/app.css')) }}">
-    <link rel="shortcut icon" href="{{ \Illuminate\Support\Facades\Auth::check() ?
-        asset('/img/favicon/pocketfinance.png') : asset('/img/favicon/pocketfinance.png') }}" />
+    <link rel="shortcut icon" href="{{ asset('/img/favicon/pocketfinance.png') }}" />
 
     <script src="https://kit.fontawesome.com/e3c510ddaa.js" crossorigin="anonymous"></script>
 

@@ -103,6 +103,11 @@ body {
             padding-left: $area-box;
         }
     }
+
+    .app-wallets {
+        display: flex;
+        flex-wrap: wrap;
+    }
 }
 
 
