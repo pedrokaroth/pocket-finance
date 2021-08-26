@@ -8,6 +8,8 @@
 
         <link rel="stylesheet" href="{{ url(mix('/front/assets/css/reset.css')) }}">
         <link rel="stylesheet" href="{{ url(mix('/front/assets/css/app.css')) }}">
+        <link rel="stylesheet" href="{{ url(mix('/assets/css/vendor.css')) }}">
+
         <link rel="shortcut icon" href="{{ asset('/img/favicon/pocketfinance.png') }}" />
 
         <script src="https://kit.fontawesome.com/e3c510ddaa.js" crossorigin="anonymous"></script>
@@ -32,10 +34,11 @@
         </div>
 
         <script src="{{ url(mix('/assets/js/vendor.js')) }}"></script>
-        <script src="{{ url(mix('/app/assets/js/app.js')) }}"></script>
+        <script src="{{ url(mix('/assets/js/app.js')) }}"></script>
+        <script src="{{ url(mix('/front/assets/js/app.js')) }}"></script>
+
         @hasSection('script')
             @yield('script')
         @endif
-
     </body>
 </html>
