@@ -14,6 +14,15 @@ const mix = require('laravel-mix');
 mix
     .copyDirectory('resources/img', 'public/img')
 
+    .styles([
+        'resources/js/vendor/jquery.js',
+        'resources/js/vendor/popper.js',
+        'resources/js/vendor/bootstrap.js'
+    ], 'public/assets/js/vendor.js')
+
+    .scripts([
+        'resources/views/app/assets/js/app.js'
+    ], 'public/app/assets/js/app.js')
 
     .sass('resources/views/auth/assets/scss/boot.scss', 'public/auth/assets/css/boot.css')
     .sass('resources/views/auth/assets/scss/login.scss', 'public/auth/assets/css/login.css')
