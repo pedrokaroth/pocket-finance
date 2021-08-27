@@ -4,6 +4,7 @@
 
 @import "components/radius";
 @import "components/gradient";
+@import "components/transition";
 
 
 body {
@@ -114,6 +115,7 @@ body {
             margin: 0 10px 20px 0;
             background-size: 200%;
             text-align: center;
+            height: 270px;
             padding: 30px;
             color: #FFFFFF;
             position: relative;
@@ -129,6 +131,12 @@ body {
             p {
                 margin: 10px 0 20px 0!important;
                 font-size: $font-small;
+            }
+
+            p.wallet-income,
+            p.wallet-expense,
+            p.wallet-balance {
+                margin: 0!important;
             }
 
             input {
@@ -205,6 +213,23 @@ body {
                 .btn-save:hover {
                     background: #1C7430;
                 }
+            }
+
+            .wallet-remove {
+                position: absolute;
+                top: 10px;
+                right: 15px;
+                cursor: pointer;
+                font-size: $font-small;
+            }
+            .wallet-remove:hover {
+                color: #F4645F;
+            }
+
+            .wallet-balance {
+                font-size: $font-large;
+                font-weight: 700;
+                margin-bottom: 5px;
             }
         }
 

@@ -33,5 +33,20 @@
                 </div>
             </div>
         </article>
+
+        @foreach($wallets as $wallet)
+            <article class="wallet radius gradient-green">
+                <span class="wallet-remove transition">
+                    <i class="fas fa-trash-alt"></i>
+                </span>
+                <h1>
+                    <i class="fas fa-wallet"></i>
+                </h1>
+                <input type="text" value="{{ $wallet->wallet }}">
+                <p class="wallet-balance">R$ {{ $wallet->balance }}</p>
+                <p class="wallet-income">Receitas: R$ {{ $wallet->income }}</p>
+                <p class="wallet-expense">Despesa: R$ {{ $wallet->expense }}</p>
+            </article>
+        @endforeach
     </section>
 @endsection

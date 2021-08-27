@@ -45,4 +45,19 @@ class Wallet extends Model
     {
         $this->attributes['free'] = ($value === true ? 1 : 0);
     }
+
+    public function getBalanceAttribute()
+    {
+        return "14.56";
+    }
+
+    public function getIncomeAttribute()
+    {
+        return "14.56";
+    }
+
+    public function getExpenseAttribute()
+    {
+        return "14.56";
+    }
 }

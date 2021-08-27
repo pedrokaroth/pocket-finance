@@ -5,7 +5,13 @@ namespace App\Http\Controllers\App;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
+/**
+ * Class AppController
+ * @package App\Http\Controllers\App
+ */
 class AppController extends Controller
 {
     /**
@@ -18,8 +24,17 @@ class AppController extends Controller
         return view('app.home');
     }
 
-    public function wallets()
+    /**
+     *  Show the application wallets.
+     *
+     * @return View
+     */
+    public function wallets(): View
     {
-        return view('app.wallets');
+        $wallets = Auth::user()->wallets()->get();
+
+        return view('app.wallets', [
+            'wallets' => $wallets
+        ]);
     }
 }
