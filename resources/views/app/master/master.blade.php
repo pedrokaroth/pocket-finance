@@ -17,7 +17,7 @@
         <title>Pocket Finance</title>
     </head>
     <body>
-        <div class="app">
+        <div class="app" {!! message() !!}>
 
             @include('app.includes.header')
 

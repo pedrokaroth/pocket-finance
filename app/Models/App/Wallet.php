@@ -9,6 +9,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Class Wallet
+ * @package App\Models\App
+ */
 class Wallet extends Model
 {
     use HasFactory, SoftDeletes;
@@ -32,5 +36,13 @@ class Wallet extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * @param $value
+     */
+    public function setFreeAttribute($value)
+    {
+        $this->attributes['free'] = ($value === true ? 1 : 0);
     }
 }

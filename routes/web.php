@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\App\AppController;
+use App\Http\Controllers\App\WalletController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,6 +29,7 @@ Route::group(['middleware' => ['auth', 'verified', 'wallet'], 'prefix' => 'app',
       AppController::class, 'home'
     ])->name('home');
 
+    Route::resource('wallets', WalletController::class);
     Route::get('/carteiras', [
         AppController::class, 'wallets'
     ])->name('wallets');

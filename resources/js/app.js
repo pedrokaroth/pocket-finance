@@ -1,4 +1,6 @@
 $(function() {
+    const app = $('.app');
+
     /*
     *   TOASTR
     */
@@ -19,4 +21,50 @@ $(function() {
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
     }
+
+    /*
+    *   FLASH
+    */
+
+    if (app.data().hasOwnProperty('message')) {
+        let type = app.data('type');
+        let message = app.data('message');
+
+        switch (type){
+            case 'success':
+                toastr.success(message);
+                break;
+        }
+    }
+
+    /*
+    *   AJAX
+    */
+    $("form:not('.ajax-off')").submit(function(event) {
+        event.preventDefault();
+        const form = $(this);
+        const data = form.serialize();
+        const action = form.attr('action');
+
+        $.ajax({
+            url: action,
+            type: 'POST',
+            data: data,
+            dataType: 'json',
+
+            success: function(response) {
+                if(response.reload) {
+                    window.location.reload();
+                }
+            },
+
+            error: function(response) {
+                const errors = response.responseJSON.errors;
+
+                Object.keys(errors).forEach(key => {
+                    toastr.error(errors[key]);
+                });
+            }
+        })
+    })
 })

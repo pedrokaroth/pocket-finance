@@ -16,8 +16,11 @@
                 <div>
                     <p>Para começar, você pode escolher entre <b>Minha casa</b>,
                         <b>Minha empresa</b> ou até mesmo <b>cartão 5578</b>...</p>
-                    <form action="" method="post" autocomplete="off">
-                        <input type="text" name="wallet_name" placeholder="Ex: Casa, Empresa, Cartão 5546" required="">
+                    <form action="{{ route('app.wallets.store') }}" method="post" autocomplete="off">
+                        @method('POST')
+                        @csrf
+
+                        <input type="text" name="wallet" placeholder="Ex: Casa, Empresa, Cartão 5546" required="">
                         <button class="btn-save radius transition">
                             Abrir Carteira
                         </button>
