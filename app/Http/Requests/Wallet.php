@@ -29,9 +29,3 @@ class Wallet extends FormRequest
             'free' => 'in:0,1'
         ];
     }
-
-    public function setUserIdAttribute()
-    {
-        $this->attributes['first_name'] = Auth::id();
-    }
-}
