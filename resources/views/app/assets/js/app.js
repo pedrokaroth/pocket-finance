@@ -6,6 +6,9 @@ $(function() {
         $(".wallet-overlay").slideDown(400).css("display", "flex");
     });
     $('.btn-overlay-close').click(function() {
-        $(".wallet-overlay").slideUp(400)
+        console.log($(this).data('id'));
+    })
+    $('.wallet-remove').click(function() {
+        $("#" + $(this).data('id')).submit();
     })
 })

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class Wallet
@@ -39,6 +40,14 @@ class Wallet extends Model
     }
 
     /**
+     * @return int
+     */
+    public function userWallets(): int
+    {
+        return Wallet::all()->where('user_id', user()->id)->count();
+    }
+
+    /**
      * @param $value
      */
     public function setFreeAttribute($value)
@@ -46,16 +55,25 @@ class Wallet extends Model
         $this->attributes['free'] = ($value === true ? 1 : 0);
     }
 
+    /**
+     * @return string
+     */
     public function getBalanceAttribute()
     {
         return "14.56";
     }
 
+    /**
+     * @return string
+     */
     public function getIncomeAttribute()
     {
         return "14.56";
     }
 
+    /**
+     * @return string
+     */
     public function getExpenseAttribute()
     {
         return "14.56";

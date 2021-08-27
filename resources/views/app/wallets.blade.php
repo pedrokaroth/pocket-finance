@@ -36,13 +36,18 @@
 
         @foreach($wallets as $wallet)
             <article class="wallet radius gradient-green">
-                <span class="wallet-remove transition">
+                <span class="wallet-remove transition" data-id="{{ $wallet->id }}">
                     <i class="fas fa-trash-alt"></i>
                 </span>
                 <h1>
                     <i class="fas fa-wallet"></i>
                 </h1>
-                <input type="text" value="{{ $wallet->wallet }}">
+                <form id="{{ $wallet->id }}" action="{{ route('app.wallets.destroy', ['wallet' => $wallet]) }}" method="post">
+                    @method('DELETE')
+                    @csrf
+
+                    <input type="text" value="{{ $wallet->wallet }}">
+                </form>
                 <p class="wallet-balance">R$ {{ $wallet->balance }}</p>
                 <p class="wallet-income">Receitas: R$ {{ $wallet->income }}</p>
                 <p class="wallet-expense">Despesa: R$ {{ $wallet->expense }}</p>

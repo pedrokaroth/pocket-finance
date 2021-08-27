@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Class WalletController
+ * @package App\Http\Controllers\App
+ */
 class WalletController extends Controller
 {
     /**
@@ -18,7 +22,7 @@ class WalletController extends Controller
      * @param WalletRequest $request
      * @return JsonResponse
      */
-    public function store(WalletRequest $request)
+    public function store(WalletRequest $request): JsonResponse
     {
         Wallet::create([
             'wallet' => $request->get('wallet'),
@@ -26,12 +30,9 @@ class WalletController extends Controller
             'free' => !user()->hasWallet()
         ]);
 
-        $request->session()->flash('message', [
-            'type' => 'success',
-            'message' => 'Carteira criada com sucesso'
-        ]);
+        $this->flashMessage('success', 'Carteira criada com sucesso');
 
-        return \response()
+        return response()
             ->json([
                 'reload' => true
             ]);
@@ -53,11 +54,27 @@ class WalletController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return Response
+     * @param Wallet $wallet
+     * @return JsonResponse
      */
-    public function destroy($id)
+    public function destroy(Wallet $wallet)
     {
-        //
+        if($wallet->userWallets() == 1) {
+            return \response()
+                ->json(['errors' => ['wallet' => ['Não é possível remover sua única carteira']]])
+                ->setStatusCode(412);
+        }
+
+        $wallet->delete();
+
+        session()->flash('message', [
+            'type' => 'success',
+            'message' => 'Carteira removida com sucesso'
+        ]);
+
+        return \response()
+            ->json([
+                'reload' => true
+            ]);
     }
 }
