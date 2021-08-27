@@ -15,16 +15,4 @@ use Illuminate\Support\Facades\Session;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
-    /**
-     * @param string $type
-     * @param string $message
-     */
-    public function flashMessage(string $type, string $message): Void
-    {
-        Session::flash('message', [
-            'type' => $type,
-            'message' => $message
-        ]);
-    }
 }
