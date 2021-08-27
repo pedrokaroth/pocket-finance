@@ -11,4 +11,7 @@ $(function() {
     $('.wallet-remove').click(function() {
         $("#" + $(this).data('id')).submit();
     })
+    $('.wallet-name').change(function() {
+        $(this).parent().submit();
+    })
 })

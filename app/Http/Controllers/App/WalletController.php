@@ -6,9 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Wallet as WalletRequest;
 use App\Models\App\Wallet;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
 
 /**
  * Class WalletController
@@ -32,23 +29,24 @@ class WalletController extends Controller
 
         $this->flashMessage('success', 'Carteira criada com sucesso');
 
-        return response()
-            ->json([
-                'reload' => true
-            ]);
+        return response()->json(['reload' => true]);
     }
 
 
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param  int  $id
-     * @return Response
+     * @param WalletRequest $request
+     * @param Wallet $wallet
+     * @return JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(WalletRequest $request, Wallet $wallet): JsonResponse
     {
-        //
+        $wallet->update([
+            'wallet' => $request->get('wallet')
+        ]);
+
+        return response()->json(['success' => true]);
     }
 
     /**
@@ -73,6 +71,5 @@ class WalletController extends Controller
         ]);
 
         return response()->json(['reload' => true]);
-
     }
 }

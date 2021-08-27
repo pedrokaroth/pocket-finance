@@ -43,9 +43,14 @@
                 </h1>
                 <form id="{{ $wallet->id }}" action="{{ route('app.wallets.destroy', ['wallet' => $wallet]) }}" method="post">
                     @method('DELETE')
-
-                    <input type="text" value="{{ $wallet->wallet }}">
                 </form>
+
+                <form action="{{ route('app.wallets.update', ['wallet' => $wallet]) }}">
+                    @method('PUT')
+
+                    <input type="text" name="wallet" value="{{ $wallet->wallet }}" class="wallet-name">
+                </form>
+
                 <p class="wallet-balance">R$ {{ $wallet->balance }}</p>
                 <p class="wallet-income">Receitas: R$ {{ $wallet->income }}</p>
                 <p class="wallet-expense">Despesa: R$ {{ $wallet->expense }}</p>
