@@ -27,7 +27,7 @@ class WalletController extends Controller
             'free' => !user()->hasWallet()
         ]);
 
-        $this->flashMessage('success', 'Carteira criada com sucesso');
+        $this->message('success', 'Carteira criada com sucesso');
 
         return response()->json(['reload' => true]);
     }
@@ -65,10 +65,7 @@ class WalletController extends Controller
 
         $wallet->delete();
 
-        session()->flash('message', [
-            'type' => 'success',
-            'message' => 'Carteira removida com sucesso'
-        ]);
+        $this->message('success', 'Carteira removida com sucesso');
 
         return response()->json(['reload' => true]);
     }
