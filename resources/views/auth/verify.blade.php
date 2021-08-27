@@ -17,7 +17,7 @@
                     <article>
                         <p>A verificação em duas etapas requer um endereço de email válido. Enviamos um link de confirmação para o endereço abaixo para liberar o acesso a plataforma</p>
                         <p><strong>Endereço de email:</strong></p>
-                        <p>{{ User()->email }}</p>
+                        <p>{{ \Illuminate\Support\Facades\Auth::user()->email }}</p>
                     </article>
                     <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                         @csrf

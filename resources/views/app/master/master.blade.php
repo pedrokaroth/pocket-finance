@@ -1,35 +1,45 @@
 <!doctype html>
 <html lang="pt_BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="stylesheet" href="{{ url(mix('/front/assets/css/reset.css')) }}">
-    <link rel="stylesheet" href="{{ url(mix('/front/assets/css/app.css')) }}">
-    <link rel="shortcut icon" href="{{ \Illuminate\Support\Facades\Auth::check() ?
-        asset('/img/favicon/pocketfinance.png') : asset('/img/favicon/pocketfinance.png') }}" />
+        <link rel="stylesheet" href="{{ url(mix('/front/assets/css/reset.css')) }}">
+        <link rel="stylesheet" href="{{ url(mix('/front/assets/css/app.css')) }}">
+        <link rel="stylesheet" href="{{ url(mix('/assets/css/vendor.css')) }}">
 
-    <script src="https://kit.fontawesome.com/e3c510ddaa.js" crossorigin="anonymous"></script>
+        <link rel="shortcut icon" href="{{ asset('/img/favicon/pocketfinance.png') }}" />
 
-    <title>Pocket Finance</title>
-</head>
-<body>
-    <div class="app">
+        <script src="https://kit.fontawesome.com/e3c510ddaa.js" crossorigin="anonymous"></script>
 
-        @include('app.includes.header')
+        <title>Pocket Finance</title>
+    </head>
+    <body>
+        <div class="app" {!! message() !!}>
 
-        <div class="app-box">
+            @include('app.includes.header')
 
-            @include('app.includes.nav')
+            <div class="app-box">
 
-            <main class="main">
+                @include('app.includes.nav')
 
-                @yield('content')
+                <main class="main">
 
-            </main>
+                    @yield('content')
+
+                </main>
+            </div>
         </div>
-    </div>
-</body>
+
+        <script src="{{ url(mix('/assets/js/vendor.js')) }}"></script>
+        <script src="{{ url(mix('/assets/js/app.js')) }}"></script>
+        <script src="{{ url(mix('/front/assets/js/app.js')) }}"></script>
+
+        @hasSection('script')
+            @yield('script')
+        @endif
+    </body>
 </html>

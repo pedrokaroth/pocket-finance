@@ -1,0 +1,1 @@
+$((function(){$(".btn-overlay-open").click((function(){$(".wallet-overlay").slideDown(400).css("display","flex")})),$(".btn-overlay-close").click((function(){$(".wallet-overlay").slideUp(400)})),$(".wallet-remove").click((function(){$("#"+$(this).data("id")).submit()})),$(".wallet-name").change((function(){$(this).parent().submit()}))}));

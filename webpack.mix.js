@@ -12,8 +12,34 @@ const mix = require('laravel-mix');
  */
 
 mix
+    /*
+    *   APP
+    */
+
     .copyDirectory('resources/img', 'public/img')
 
+    .styles([
+        'resources/css/vendor/toastr.css'
+    ], 'public/assets/css/vendor.css')
+
+    .scripts([
+        'resources/js/app.js'
+    ], 'public/assets/js/app.js')
+
+    .scripts([
+        'resources/js/vendor/jquery.js',
+        'resources/js/vendor/popper.js',
+        'resources/js/vendor/bootstrap.js',
+        'resources/js/vendor/toastr.js'
+    ], 'public/assets/js/vendor.js')
+
+    /*
+    *   VIEWS
+    */
+
+    .scripts([
+        'resources/views/app/assets/js/app.js'
+    ], 'public/front/assets/js/app.js')
 
     .sass('resources/views/auth/assets/scss/boot.scss', 'public/auth/assets/css/boot.css')
     .sass('resources/views/auth/assets/scss/login.scss', 'public/auth/assets/css/login.css')

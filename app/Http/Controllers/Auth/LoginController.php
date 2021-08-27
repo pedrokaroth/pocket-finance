@@ -40,21 +40,4 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
-    public function login(Request $request): RedirectResponse
-    {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required']
-        ]);
-
-        if(Auth::attempt($credentials)) {
-            return redirect()->route('app.home');
-        }
-
-        return back()->withErrors([
-            'email' => 'Email ou senha inválido'
-        ]);
-
-    }
 }
