@@ -57,7 +57,7 @@ class WalletController extends Controller
      * @param Wallet $wallet
      * @return JsonResponse
      */
-    public function destroy(Wallet $wallet)
+    public function destroy(Wallet $wallet): JsonResponse
     {
         if($wallet->userWallets() == 1) {
             return \response()
@@ -72,9 +72,7 @@ class WalletController extends Controller
             'message' => 'Carteira removida com sucesso'
         ]);
 
-        return \response()
-            ->json([
-                'reload' => true
-            ]);
+        return response()->json(['reload' => true]);
+
     }
 }

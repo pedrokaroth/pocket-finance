@@ -6,7 +6,7 @@ $(function() {
         $(".wallet-overlay").slideDown(400).css("display", "flex");
     });
     $('.btn-overlay-close').click(function() {
-        console.log($(this).data('id'));
+        $(".wallet-overlay").slideUp(400);
     })
     $('.wallet-remove').click(function() {
         $("#" + $(this).data('id')).submit();
