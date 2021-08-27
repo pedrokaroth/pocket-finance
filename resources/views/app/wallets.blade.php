@@ -18,7 +18,6 @@
                         <b>Minha empresa</b> ou até mesmo <b>cartão 5578</b>...</p>
                     <form action="{{ route('app.wallets.store') }}" method="post" autocomplete="off">
                         @method('POST')
-                        @csrf
 
                         <input type="text" name="wallet" placeholder="Ex: Casa, Empresa, Cartão 5546" required="">
                         <button class="btn-save radius transition">
@@ -44,7 +43,6 @@
                 </h1>
                 <form id="{{ $wallet->id }}" action="{{ route('app.wallets.destroy', ['wallet' => $wallet]) }}" method="post">
                     @method('DELETE')
-                    @csrf
 
                     <input type="text" value="{{ $wallet->wallet }}">
                 </form>

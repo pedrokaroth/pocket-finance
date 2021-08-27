@@ -40,6 +40,12 @@ $(function() {
     /*
     *   AJAX
     */
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    })
+
     $("form:not('.ajax-off')").submit(function(event) {
         event.preventDefault();
         const form = $(this);
