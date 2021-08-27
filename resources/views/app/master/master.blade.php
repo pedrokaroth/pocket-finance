@@ -9,6 +9,7 @@
 
         <link rel="stylesheet" href="{{ url(mix('/front/assets/css/reset.css')) }}">
         <link rel="stylesheet" href="{{ url(mix('/front/assets/css/app.css')) }}">
+        <link rel="stylesheet" href="{{ url(mix('/assets/css/app.css')) }}">
         <link rel="stylesheet" href="{{ url(mix('/assets/css/vendor.css')) }}">
 
         <link rel="shortcut icon" href="{{ asset('/img/favicon/pocketfinance.png') }}" />

@@ -73,4 +73,11 @@ $(function() {
             }
         })
     })
+
+    $('.open-modal').click(function() {
+        if ($(".app-modal").length) {
+            let modal = $(this).data('modal');
+            $('#' + modal).modal('show');
+        }
+    })
 })

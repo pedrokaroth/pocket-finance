@@ -22,6 +22,10 @@ mix
         'resources/css/vendor/toastr.css'
     ], 'public/assets/css/vendor.css')
 
+    .styles([
+        'resources/scss/app.scss'
+    ], 'public/assets/css/app.css')
+
     .scripts([
         'resources/js/app.js'
     ], 'public/assets/js/app.js')

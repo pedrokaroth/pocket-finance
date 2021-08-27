@@ -2,8 +2,10 @@
     COLORS
  */
 $color-green: #36BA9B;
-$body-bg: #F7FBFC;
-$body-color: #6194A0;
+$color-background: #F7FBFC;
+$color-body: #6194A0;
+$color-default: #888;
+$color-red: #D94352;
 
 /**
     RADIUS SYSTEM
@@ -19,6 +21,7 @@ $font-small: .875em;
 $font-medium: 1.2em;
 $font-large: 1.4em;
 $weight-bold:700;
+$font-color: $color-default;
 
 /*
     AREA
