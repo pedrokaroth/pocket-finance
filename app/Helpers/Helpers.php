@@ -31,7 +31,7 @@ if (! function_exists('user')) {
     }
 }
 
-if (! function_exists('flash')) {
+if (! function_exists('message')) {
 
     /**
      * @return string
