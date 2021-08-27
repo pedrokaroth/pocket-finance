@@ -25,7 +25,8 @@ class Wallet extends FormRequest
     public function rules(): array
     {
         return [
-            'wallet' => 'required',
-            'free' => 'in:0,1'
+            'wallet'=>'required',
+            'free'=>'in:0,1'
         ];
     }
+}
