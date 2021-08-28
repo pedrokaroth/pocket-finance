@@ -1,15 +1,15 @@
 <section class="app-modal">
-    <div class="modal fade" id="invoice-expense" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="invoice-income" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <section class="expense">
-                    <p><i class="fas fa-funnel-dollar"></i>Nova Despesa</p>
+                <section class="income">
+                    <p><i class="fas fa-donate"></i>Nova Receita</p>
 
                     <form action="">
                         <div class="label-group">
                             <label class="display-full">
                                 <i class="fas fa-envelope-open-text"></i> Descrição
-                                <input type="text" placeholder="Ex: Faculdade" class="">
+                                <input type="text" placeholder="Ex: Salário" class="">
                             </label>
                         </div>
                         <div class="label-group">
@@ -48,10 +48,10 @@
                             </label>
                         </div>
                         <div class="label-group">
-                            <div class="app-checkbox-label  mb-2 ml-2">
+                            <div class="app-checkbox-label mb-2 ml-2">
                                 <i class="fas fa-undo"></i> Repetição
                             </div>
-                            <div class="app-checkbox red-checkbox">
+                            <div class="app-checkbox green-checkbox">
                                 <label>
                                     <input type="radio" name="radio" checked>
                                     <span>Única</span>
@@ -70,7 +70,7 @@
                             <div class="app-checkbox-label mb-2 ml-2">
                                 <i class="far fa-credit-card"></i> Status
                             </div>
-                            <div class="app-checkbox red-checkbox">
+                            <div class="app-checkbox green-checkbox">
                                 <label>
                                     <input type="checkbox" name="radio">
                                     <span>Pendente</span>
@@ -79,7 +79,7 @@
                         </div>
 
                         <button>
-                            Registrar Despesa
+                            Registrar Receita
                         </button>
                     </form>
                 </section>

@@ -303,7 +303,7 @@ body {
                     padding: 10px;
                     border: 2px solid #CCCCCC;
                     color: #888888;
-
+                    border-radius: $radius-normal;
                 }
 
                 select {
@@ -326,18 +326,18 @@ body {
             }
         }
 
-        .expense {
-            p {
-                font-size: $font-large;
-                color: #575757;
-                padding-bottom: 20px;
-                border-bottom: 1px solid #CCCCCC;
+        p {
+            font-size: $font-large;
+            color: #575757;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #CCCCCC;
 
-                i {
-                    margin-right: 20px;
-                }
+            i {
+                margin-right: 20px;
             }
+        }
 
+        .expense {
             button {
                 display: block;
                 width: 100%;
@@ -355,7 +355,25 @@ body {
                     background: #F76C82;
                 }
             }
+        }
+        .income {
+            button {
+                display: block;
+                width: 100%;
+                padding: 15px;
+                border: none;
+                cursor: pointer;
+                margin-top: $area-normal;
+                color: #FFFFFF;
+                font-weight: 400;
+                background: $color-green;
+                transition: 0.3s;
+                border-radius: 5px;
 
+                &:hover {
+                    background: #61DDBC;
+                }
+            }
         }
     }
 }

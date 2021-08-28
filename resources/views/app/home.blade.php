@@ -2,7 +2,9 @@
 
 @section('content')
 
-    @include('app.includes.modal')
+    @include('app.includes.modals.invoice-income')
+
+    @include('app.includes.modals.invoice-expense')
 
     <div class="app-home">
         <section class="left">
