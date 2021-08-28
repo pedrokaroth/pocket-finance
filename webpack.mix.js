@@ -34,7 +34,8 @@ mix
         'resources/js/vendor/jquery.js',
         'resources/js/vendor/popper.js',
         'resources/js/vendor/bootstrap.js',
-        'resources/js/vendor/toastr.js'
+        'resources/js/vendor/toastr.js',
+        'resources/js/vendor/jquery.mask.js'
     ], 'public/assets/js/vendor.js')
 
     /*

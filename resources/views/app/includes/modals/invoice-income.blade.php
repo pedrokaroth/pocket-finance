@@ -15,7 +15,7 @@
                         <div class="label-group">
                             <label class="display-flex">
                                 <i class="fas fa-money-bill"></i> Valor
-                                <input type="text" placeholder="0,00">
+                                <input type="text" placeholder="0,00" class="mask-money">
                             </label>
                             <label class="display-flex">
                                 <i class="fas fa-calendar-day"></i> Data
