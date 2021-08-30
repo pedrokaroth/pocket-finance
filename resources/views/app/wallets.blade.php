@@ -34,7 +34,7 @@
         </article>
 
         @foreach($wallets as $wallet)
-            <article class="wallet radius gradient-green">
+            <article class="wallet radius {{ $wallet->balance() >= 0 ? 'gradient-green' : 'gradient-red' }}">
                 <span class="wallet-remove transition" data-id="{{ $wallet->id }}">
                     <i class="fas fa-trash-alt"></i>
                 </span>
