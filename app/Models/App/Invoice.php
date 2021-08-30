@@ -16,7 +16,7 @@ class Invoice extends Model
      */
     protected $fillable = [
         'description', 'value', 'due_at', 'wallet_id', 'category', 'comments', 'user_id', 'category_id', 'comments',
-        'repeat_when', 'status'
+        'repeat_when', 'status', 'type'
     ];
 
     public function setValueAttribute($value)

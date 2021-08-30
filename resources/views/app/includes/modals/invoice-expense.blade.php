@@ -8,7 +8,7 @@
                     <form action="{{ route('app.invoices.store') }}" method="post">
                         @method('POST')
 
-                        <input type="hidden" value="expense" name="invoice">
+                        <input type="hidden" value="expense" name="type">
 
                         <div class="label-group">
                             <label class="display-full">

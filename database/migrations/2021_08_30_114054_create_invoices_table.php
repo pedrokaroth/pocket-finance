@@ -22,6 +22,7 @@ class CreateInvoicesTable extends Migration
             $table->string('description');
             $table->text('comments')->nullable();
             $table->double('value', 10, 2);
+            $table->string('type');
             $table->date('due_at');
             $table->string('repeat_when');
             $table->integer('enrollments')->nullable();

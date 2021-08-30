@@ -31,7 +31,7 @@ class Invoice extends FormRequest
             'wallet_id' => 'required|exists:wallets,id',
             'category_id' => 'required|exists:categories,id',
             'repeat_when' => 'required|in:single,enrollment',
-            'invoice' => 'required|in:income,expense',
+            'type' => 'required|in:income,expense',
             'comments' => 'max:191',
             'status' => 'in:unpaid'
         ];

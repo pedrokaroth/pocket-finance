@@ -4,6 +4,7 @@ namespace App\Http\Controllers\App;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Invoice as InvoiceRequest;
+use App\Models\App\Category;
 use App\Models\App\Invoice;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
