@@ -2,7 +2,7 @@
     "/front/assets/css/reset.css": "/front/assets/css/reset.css?id=dbb5fd9c8f6fe7c18648",
     "/front/assets/css/app.css": "/front/assets/css/app.css?id=4b7b084e23aec91f6ded",
     "/auth/assets/css/reset.css": "/auth/assets/css/reset.css?id=dbb5fd9c8f6fe7c18648",
-    "/auth/assets/css/login.css": "/auth/assets/css/login.css?id=5d0e4bde6c5bf87e7474",
+    "/auth/assets/css/login.css": "/auth/assets/css/login.css?id=acd6690d213eb9c0b283",
     "/auth/assets/css/boot.css": "/auth/assets/css/boot.css?id=eefd5f0cfd5afe284074",
     "/img/avatar.jpg": "/img/avatar.jpg?id=293f2d99c0e048a1c368",
     "/assets/css/vendor.css": "/assets/css/vendor.css?id=a3b714c8bfb9d5e2b99c",
@@ -12,5 +12,6 @@
     "/auth/assets/images/auth-login-grey.svg": "/auth/assets/images/auth-login-grey.svg?id=a600415dcabc99a7e9e5",
     "/auth/assets/images/auth-login-image.jpg": "/auth/assets/images/auth-login-image.jpg?id=c143539d978350612655",
     "/auth/assets/images/auth-login-orange.svg": "/auth/assets/images/auth-login-orange.svg?id=491dccc03f649c46f37d",
+    "/auth/assets/images/bg-login.png": "/auth/assets/images/bg-login.png?id=d00c11882fb9a4bac3bd",
     "/auth/assets/images/istockphoto-1128832382-170667a.jpg": "/auth/assets/images/istockphoto-1128832382-170667a.jpg?id=c29cc1df370cdb645aa4"
 }

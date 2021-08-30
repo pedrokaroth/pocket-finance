@@ -11,7 +11,7 @@ html, body {
 
 .dash-login-left {
     flex-basis: 40%;
-    background-color: #272E41;
+    background-color: #162838;
     color: #ffffff;
     background-size: cover;
     padding: 30px 0;
@@ -43,11 +43,11 @@ html, body {
         text-align: center;
     }
     a {
-        color: #38c172;
+        color: #3ac6a4;
         text-decoration: none;
     }
     a:hover {
-        color: #41ee8c;
+        color: #2a6f8f;
         transition: 0.2s;
     }
 }
@@ -77,11 +77,11 @@ html, body {
             text-align: end;
 
             a {
-                color: #38c172;
+                color: #3ac6a4;
                 text-decoration: none;
             }
             a:hover {
-                color: #41ee8c;
+                color: #2a6f8f;
                 transition: 0.2s;
             }
         }
@@ -103,7 +103,7 @@ html, body {
     border: none;
     border-bottom: 1px solid #FFFFFF;
     font-size: 1em;
-    background: #272E41 !important;
+    background: #162838 !important;
     color: #FFFFFF;
     outline: none;
     display: block;
@@ -140,9 +140,9 @@ html, body {
 
 .dash-login-right {
     flex-basis: 60%;
-    background: url('../images/auth-login-grey.svg') center/cover no-repeat;
+    background: url('../images/bg-login.png') center/cover no-repeat;
     padding: 30px 0;
-    background-size: 60%;
+    background-size: 100%;
 }
 
 .dash-login-left form {
