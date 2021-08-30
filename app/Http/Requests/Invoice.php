@@ -28,7 +28,7 @@ class Invoice extends FormRequest
             'description' => 'required|min:3|max:191',
             'due_at' => 'required',
             'value' => 'required',
-            'wallet' => 'required',
+            'wallet_id' => 'required|exists:wallets,id',
             'category' => 'required',
             'repeat_when' => 'required',
             'invoice' => 'required|in:income,expense'

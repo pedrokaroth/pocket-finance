@@ -4,6 +4,7 @@ namespace App\Http\Controllers\App;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Invoice as InvoiceRequest;
+use App\Models\App\Invoice;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
@@ -16,7 +17,7 @@ class InvoiceController extends Controller
      */
     public function store(InvoiceRequest $request)
     {
-        var_dump($request);
+        //Invoice::create($request->validated());
     }
 
     /**

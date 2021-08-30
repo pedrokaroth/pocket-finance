@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\App\Wallet;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -45,5 +47,16 @@ if (! function_exists('message')) {
         }
 
         return '';
+    }
+}
+
+if (! function_exists('wallets')) {
+
+    /**
+     * @return Collection
+     */
+    function wallets(): Collection
+    {
+        return Wallet::where('user_id', auth()->id())->get();
     }
 }

@@ -29,10 +29,10 @@
                         <div class="label-group">
                             <label class="display-flex">
                                 <i class="fas fa-wallet"></i> Carteira
-                                <select class="browser-default custom-select mt-2" name="wallet">
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                <select class="browser-default custom-select mt-2" name="wallet_id">
+                                    @foreach(wallets() as $wallet)
+                                        <option value="{{ $wallet->id }}">{{ $wallet->wallet }}</option>
+                                    @endforeach
                                 </select>
                             </label>
                             <label class="display-flex">
