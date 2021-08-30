@@ -62,6 +62,21 @@ if (! function_exists('wallets')) {
     }
 }
 
+if (! function_exists('walletactive')) {
+
+    /**
+     * @return Wallet
+     */
+    function walletactive(): Wallet
+    {
+        if(session()->has('walletfilter')) {
+            return Wallet::findById(session()->get('walletfilter'));
+        } else {
+            return Wallet::free();
+        }
+    }
+}
+
 if (! function_exists('categories')) {
 
     /**
@@ -85,4 +100,5 @@ if (! function_exists('str_price')) {
         return number_format((!empty($price) ? $price : 0), 2, ",", ".");
     }
 }
+
 

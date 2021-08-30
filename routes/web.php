@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth', 'verified', 'wallet'], 'prefix' => 'app',
     ])->name('home');
 
     Route::resource('wallets', WalletController::class);
+    Route::post('/wallets/filter/{id}', [WalletController::class, 'walletFilter'])->name('wallets.filter');
     Route::get('/carteiras', [
         AppController::class, 'wallets'
     ])->name('wallets');

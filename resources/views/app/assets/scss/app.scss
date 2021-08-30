@@ -21,7 +21,7 @@ body {
 
     .app-header {
         display: flex;
-        align-content: space-between;
+        justify-content: space-between;
         width: 100%;
         margin-bottom: $area-box;
 
@@ -34,6 +34,51 @@ body {
             a {
                 color: #888;
                 text-decoration: none;
+            }
+        }
+
+        .header-wallet {
+            display: flex;
+            font-size: $font-small;
+            text-align: center;
+
+            ul {
+                list-style: none;
+                box-shadow: rgb(0 0 0 / 35%) 0 5px 15px;
+            }
+
+            li {
+                position: relative;
+                width: 200px;
+                padding: $area-small $area-normal;
+                cursor: pointer;
+                color: $color-green;
+                font-weight: 700;
+                background: rgba(0,0,0,.03);
+                border-radius: 5px;
+                margin-bottom: 10px;
+
+                &:hover {
+                    color: #FFFFFF;
+                    background: linear-gradient(to right,#42E695 0%,#3BB2B8 50%,#42E695 100%);
+                }
+
+                ul {
+                    left: 0;
+                    top: 102.5%;
+                    width: 100%;
+                    position: absolute;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    z-index: 999;
+                    background: #F7FBFC;
+                    border-radius: 4px;
+
+                    li {
+                        margin-top: 10px;
+                        width: 180px;
+                    }
+                }
             }
         }
     }

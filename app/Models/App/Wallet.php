@@ -31,6 +31,23 @@ class Wallet extends Model
     ];
 
     /**
+     * @return mixed
+     */
+    public static function free()
+    {
+        return Wallet::where('free', 1)->first();
+    }
+
+    /**
+     * @param int $id
+     * @return mixed
+     */
+    public static function findById(int $id)
+    {
+        return Wallet::where('id', $id)->first();
+    }
+
+    /**
      * Get the user associated with the wallet.
      *
      * @return BelongsTo
