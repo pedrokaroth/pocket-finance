@@ -19,6 +19,7 @@ class CreateCategoriesTable extends Migration
             $table->string('type');
             $table->string('spent')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

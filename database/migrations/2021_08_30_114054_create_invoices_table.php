@@ -27,6 +27,7 @@ class CreateInvoicesTable extends Migration
             $table->integer('enrollment_of');
             $table->string('status');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

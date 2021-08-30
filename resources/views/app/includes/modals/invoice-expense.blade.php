@@ -38,9 +38,9 @@
                             <label class="display-flex">
                                 <i class="fas fa-list"></i> Categoria
                                 <select class="browser-default custom-select mt-2" name="category">
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    @foreach(categories('expense') as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
                                 </select>
                             </label>
                         </div>

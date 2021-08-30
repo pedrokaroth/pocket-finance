@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\App\Category;
 use App\Models\App\Wallet;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
@@ -60,3 +61,16 @@ if (! function_exists('wallets')) {
         return Wallet::where('user_id', auth()->id())->get();
     }
 }
+
+if (! function_exists('categories')) {
+
+    /**
+     * @param string $type
+     * @return Collection
+     */
+    function categories(string $type): Collection
+    {
+        return Category::where('type', $type)->get();
+    }
+}
+
