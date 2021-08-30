@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\App\AppController;
+use App\Http\Controllers\App\InvoiceController;
 use App\Http\Controllers\App\WalletController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -33,4 +34,6 @@ Route::group(['middleware' => ['auth', 'verified', 'wallet'], 'prefix' => 'app',
     Route::get('/carteiras', [
         AppController::class, 'wallets'
     ])->name('wallets');
+
+    Route::resource('invoices', InvoiceController::class);
 });
