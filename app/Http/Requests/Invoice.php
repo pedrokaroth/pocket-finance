@@ -29,8 +29,9 @@ class Invoice extends FormRequest
             'due_at' => 'required',
             'value' => 'required',
             'wallet' => 'required',
-            'categorie' => 'required',
+            'category' => 'required',
             'repeat_when' => 'required',
+            'invoice' => 'required|in:income,expense'
         ];
     }
 }

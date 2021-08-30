@@ -5,27 +5,31 @@
                 <section class="income">
                     <p><i class="fas fa-donate"></i>Nova Receita</p>
 
-                    <form action="">
+                    <form action="{{ route('app.invoices.store') }}" method="post">
+                        @method('POST')
+
+                        <input type="hidden" value="income" name="invoice">
+
                         <div class="label-group">
                             <label class="display-full">
                                 <i class="fas fa-envelope-open-text"></i> Descrição
-                                <input type="text" placeholder="Ex: Salário" class="">
+                                <input type="text" placeholder="Ex: Salário" name="description">
                             </label>
                         </div>
                         <div class="label-group">
                             <label class="display-flex">
                                 <i class="fas fa-money-bill"></i> Valor
-                                <input type="text" placeholder="0,00" class="mask-money">
+                                <input type="text" placeholder="0,00" class="mask-money" name="value">
                             </label>
                             <label class="display-flex">
                                 <i class="fas fa-calendar-day"></i> Data
-                                <input type="date">
+                                <input type="date" name="due_at">
                             </label>
                         </div>
                         <div class="label-group">
                             <label class="display-flex">
                                 <i class="fas fa-wallet"></i> Carteira
-                                <select class="browser-default custom-select mt-2">
+                                <select class="browser-default custom-select mt-2" name="wallet">
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
                                     <option value="3">Three</option>
@@ -33,7 +37,7 @@
                             </label>
                             <label class="display-flex">
                                 <i class="fas fa-list"></i> Categoria
-                                <select class="browser-default custom-select mt-2">
+                                <select class="browser-default custom-select mt-2" name="category">
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
                                     <option value="3">Three</option>
@@ -44,7 +48,7 @@
                         <div class="label-group">
                             <label class="display-full">
                                 <i class="fas fa-envelope-open-text mb-1"></i> Obervações
-                                <textarea rows="5"></textarea>
+                                <textarea rows="5" name="comments"></textarea>
                             </label>
                         </div>
                         <div class="label-group">
@@ -53,15 +57,15 @@
                             </div>
                             <div class="app-checkbox green-checkbox">
                                 <label>
-                                    <input type="radio" name="radio" checked>
+                                    <input type="radio" name="repeat_when" value="single" checked>
                                     <span>Única</span>
                                 </label>
                                 <label>
-                                    <input type="radio" name="radio">
+                                    <input type="radio" name="repeat_when" value="fixed">
                                     <span>Fixa</span>
                                 </label>
                                 <label>
-                                    <input type="radio" name="radio">
+                                    <input type="radio" name="repeat_when" value="enrollment">
                                     <span>Parcelada</span>
                                 </label>
                             </div>
@@ -72,7 +76,7 @@
                             </div>
                             <div class="app-checkbox green-checkbox">
                                 <label>
-                                    <input type="checkbox" name="radio">
+                                    <input type="checkbox" name="status">
                                     <span>Pendente</span>
                                 </label>
                             </div>

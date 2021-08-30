@@ -189,7 +189,8 @@ return [
         'wallet' => 'cateira',
         'due_at' => 'data',
         'value' => 'valor',
-        'repeat_when' => 'repetição'
+        'repeat_when' => 'repetição',
+        'category' => 'categoria'
     ],
 
 ];

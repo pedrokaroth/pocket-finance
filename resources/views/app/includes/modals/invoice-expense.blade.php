@@ -8,6 +8,8 @@
                     <form action="{{ route('app.invoices.store') }}" method="post">
                         @method('POST')
 
+                        <input type="hidden" value="expense" name="invoice">
+
                         <div class="label-group">
                             <label class="display-full">
                                 <i class="fas fa-envelope-open-text"></i> Descrição
@@ -35,7 +37,7 @@
                             </label>
                             <label class="display-flex">
                                 <i class="fas fa-list"></i> Categoria
-                                <select class="browser-default custom-select mt-2" name="categorie">
+                                <select class="browser-default custom-select mt-2" name="category">
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
                                     <option value="3">Three</option>
@@ -55,7 +57,7 @@
                             </div>
                             <div class="app-checkbox red-checkbox">
                                 <label>
-                                    <input type="radio" name="repeat_when" value="single">
+                                    <input type="radio" name="repeat_when" value="single" checked>
                                     <span>Única</span>
                                 </label>
                                 <label>
@@ -74,7 +76,7 @@
                             </div>
                             <div class="app-checkbox red-checkbox">
                                 <label>
-                                    <input type="checkbox" name="radio">
+                                    <input type="checkbox" name="status">
                                     <span>Pendente</span>
                                 </label>
                             </div>
