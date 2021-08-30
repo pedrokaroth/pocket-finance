@@ -32,9 +32,10 @@ Route::group(['middleware' => ['auth', 'verified', 'wallet'], 'prefix' => 'app',
 
     Route::resource('wallets', WalletController::class);
     Route::post('/wallets/filter/{id}', [WalletController::class, 'walletFilter'])->name('wallets.filter');
-    Route::get('/carteiras', [
-        AppController::class, 'wallets'
-    ])->name('wallets');
+    Route::get('/carteiras', [AppController::class, 'wallets'])->name('wallets');
+    Route::group(['prefix' => 'faturas'], function() {
+       Route::get('despesas', [AppController::class, 'expenses'])->name('expenses');
+    });
 
     Route::resource('invoices', InvoiceController::class);
 });

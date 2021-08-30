@@ -5,6 +5,10 @@ namespace App\Models\App;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Invoice
+ * @package App\Models\App
+ */
 class Invoice extends Model
 {
     use HasFactory;
@@ -19,6 +23,9 @@ class Invoice extends Model
         'repeat_when', 'status', 'type'
     ];
 
+    /**
+     * @param $value
+     */
     public function setValueAttribute($value)
     {
         $this->attributes['value'] = (float)str_replace(['.', ','],['', '.'] ,$value);

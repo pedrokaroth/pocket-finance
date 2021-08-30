@@ -3,6 +3,7 @@
 namespace App\Models\App;
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -87,6 +88,11 @@ class Wallet extends Model
     public function expense()
     {
         return $this->invoices()->where('type', 'expense')->sum('value');
+    }
+
+    public function expenses(): Collection
+    {
+        return $this->invoices()->where('type', 'expense')->get();
     }
 
     /**
