@@ -74,3 +74,15 @@ if (! function_exists('categories')) {
     }
 }
 
+if (! function_exists('str_price')) {
+
+    /**
+     * @param string|null $price
+     * @return string
+     */
+    function str_price(?string $price): string
+    {
+        return number_format((!empty($price) ? $price : 0), 2, ",", ".");
+    }
+}
+

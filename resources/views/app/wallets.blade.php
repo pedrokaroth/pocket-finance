@@ -51,9 +51,9 @@
                     <input type="text" name="wallet" value="{{ $wallet->wallet }}" class="wallet-name">
                 </form>
 
-                <p class="wallet-balance">R$ {{ $wallet->balance }}</p>
-                <p class="wallet-income">Receitas: R$ {{ $wallet->income }}</p>
-                <p class="wallet-expense">Despesa: R$ {{ $wallet->expense }}</p>
+                <p class="wallet-balance">R$ {{ str_price($wallet->balance()) }}</p>
+                <p class="wallet-income">Receitas: R$ {{ str_price($wallet->income()) }}</p>
+                <p class="wallet-expense">Despesa: R$ {{ str_price($wallet->expense()) }}</p>
             </article>
         @endforeach
     </section>

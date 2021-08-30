@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -40,11 +41,43 @@ class Wallet extends Model
     }
 
     /**
+     * @return HasMany
+     */
+    public function invoices(): HasMany
+    {
+        return $this->hasMany(Invoice::class);
+    }
+
+    /**
      * @return int
      */
     public function userWallets(): int
     {
-        return Wallet::all()->where('user_id', user()->id)->count();
+        return Wallet::where('user_id', user()->id)->count();
+    }
+
+    /**
+     * @return int|mixed
+     */
+    public function income()
+    {
+        return $this->invoices()->where('type', 'income')->sum('value');
+    }
+
+    /**
+     * @return int|mixed
+     */
+    public function expense()
+    {
+        return $this->invoices()->where('type', 'expense')->sum('value');
+    }
+
+    /**
+     * @return int|mixed
+     */
+    public function balance()
+    {
+        return $this->income() - $this->expense();
     }
 
     /**
