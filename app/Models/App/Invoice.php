@@ -15,12 +15,12 @@ class Invoice extends Model
      * @var array
      */
     protected $fillable = [
-        'description',
-        'value',
-        'due_data',
-        'wallet_id',
-        'category',
-        'comments',
+        'description', 'value', 'due_at', 'wallet_id', 'category', 'comments', 'user_id', 'category_id', 'comments',
+        'repeat_when', 'status'
     ];
 
+    public function setValueAttribute($value)
+    {
+        $this->attributes['value'] = (float)str_replace(['.', ','],['', '.'] ,$value);
+    }
 }

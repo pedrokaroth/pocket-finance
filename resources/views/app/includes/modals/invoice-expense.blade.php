@@ -37,7 +37,7 @@
                             </label>
                             <label class="display-flex">
                                 <i class="fas fa-list"></i> Categoria
-                                <select class="browser-default custom-select mt-2" name="category">
+                                <select class="browser-default custom-select mt-2" name="category_id">
                                     @foreach(categories('expense') as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach
@@ -76,7 +76,7 @@
                             </div>
                             <div class="app-checkbox red-checkbox">
                                 <label>
-                                    <input type="checkbox" name="status">
+                                    <input type="checkbox" name="status" value="unpaid">
                                     <span>Pendente</span>
                                 </label>
                             </div>

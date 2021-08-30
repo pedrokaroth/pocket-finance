@@ -29,9 +29,11 @@ class Invoice extends FormRequest
             'due_at' => 'required',
             'value' => 'required',
             'wallet_id' => 'required|exists:wallets,id',
-            'category' => 'required',
-            'repeat_when' => 'required',
-            'invoice' => 'required|in:income,expense'
+            'category_id' => 'required|exists:categories,id',
+            'repeat_when' => 'required|in:single,enrollment',
+            'invoice' => 'required|in:income,expense',
+            'comments' => 'max:191',
+            'status' => 'in:unpaid'
         ];
     }
 }

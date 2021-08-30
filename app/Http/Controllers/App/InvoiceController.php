@@ -5,7 +5,9 @@ namespace App\Http\Controllers\App;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Invoice as InvoiceRequest;
 use App\Models\App\Invoice;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class InvoiceController extends Controller
 {
@@ -13,11 +15,24 @@ class InvoiceController extends Controller
      * Store a newly created resource in storage.
      *
      * @param InvoiceRequest $request
-     * @return void
+     * @return JsonResponse
      */
-    public function store(InvoiceRequest $request)
+    public function store(InvoiceRequest $request): JsonResponse
     {
-        //Invoice::create($request->validated());
+        $invoice = new Invoice();
+        $invoice->fill($request->validated());
+        $invoice->user_id = user()->id;
+
+        //When status is not on the request, it calculates with the current date and the due date
+        if(!$invoice->status) {
+            $invoice->status = (date($invoice->due_at) <= date('Y-m-d') ? 'paid' : 'unpaid');
+        }
+
+        $invoice->save();
+
+        $this->message('success', 'fatura adicionada com sucesso!');
+
+        return response()->json(['reload' => true]);
     }
 
     /**
