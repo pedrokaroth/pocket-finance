@@ -442,6 +442,11 @@ body {
             table {
                 text-align: center;
                 width: 100%;
+                color: $color-default;
+
+                th {
+                    color: $color-body!important;
+                }
             }
         }
     }

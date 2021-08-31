@@ -46,7 +46,7 @@
         </div>
 
         <article class="box">
-            <table>
+            <table class="table table-striped table-hover">
                 <thead>
                     <tr>
                         <th>Descrição</th>

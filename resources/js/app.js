@@ -91,7 +91,7 @@ $(function() {
     *   SELECT2
     */
     $('.select2').select2({
-        width: '120px',
+        width: '150',
         height: '100%'
     });
 })
