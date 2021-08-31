@@ -34,7 +34,7 @@
         </article>
 
         @foreach($wallets as $wallet)
-            <article class="wallet radius gradient-green">
+            <article class="wallet radius {{ $wallet->balance() >= 0 ? 'gradient-green' : 'gradient-red' }}">
                 <span class="wallet-remove transition" data-id="{{ $wallet->id }}">
                     <i class="fas fa-trash-alt"></i>
                 </span>
@@ -51,9 +51,9 @@
                     <input type="text" name="wallet" value="{{ $wallet->wallet }}" class="wallet-name">
                 </form>
 
-                <p class="wallet-balance">R$ {{ $wallet->balance }}</p>
-                <p class="wallet-income">Receitas: R$ {{ $wallet->income }}</p>
-                <p class="wallet-expense">Despesa: R$ {{ $wallet->expense }}</p>
+                <p class="wallet-balance">R$ {{ str_price($wallet->balance()) }}</p>
+                <p class="wallet-income">Receitas: R$ {{ str_price($wallet->income()) }}</p>
+                <p class="wallet-expense">Despesa: R$ {{ str_price($wallet->expense()) }}</p>
             </article>
         @endforeach
     </section>

@@ -73,4 +73,25 @@ $(function() {
             }
         })
     })
+
+    $('.open-modal').click(function() {
+        if ($(".app-modal").length) {
+            let modal = $(this).data('modal');
+            $('#' + modal).modal('show');
+        }
+    })
+    /*
+    *   MASK
+    */
+    $(".mask-money").mask('000.000.000.000.000,00', {
+        reverse: true,
+        placeholder: "0,00"
+    });
+    /*
+    *   SELECT2
+    */
+    $('.select2').select2({
+        width: '120px',
+        height: '100%'
+    });
 })

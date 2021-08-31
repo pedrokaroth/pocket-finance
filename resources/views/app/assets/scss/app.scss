@@ -1,15 +1,16 @@
-@import "variables";
+@import "../../../../scss/variables";
 
 @import "bootstrap";
 
 @import "components/radius";
 @import "components/gradient";
 @import "components/transition";
-
+@import "components/checkbox";
 
 body {
-    background-color: $body-bg;
+    background-color: $color-background;
     font-family: 'Open Sans',sans-serif;
+    color: $font-color;
 }
 
 .app {
@@ -20,7 +21,7 @@ body {
 
     .app-header {
         display: flex;
-        align-content: space-between;
+        justify-content: space-between;
         width: 100%;
         margin-bottom: $area-box;
 
@@ -33,6 +34,51 @@ body {
             a {
                 color: #888;
                 text-decoration: none;
+            }
+        }
+
+        .header-wallet {
+            display: flex;
+            font-size: $font-small;
+            text-align: center;
+
+            ul {
+                list-style: none;
+                box-shadow: rgb(0 0 0 / 35%) 0 5px 15px;
+            }
+
+            li {
+                position: relative;
+                width: 200px;
+                padding: $area-small $area-normal;
+                cursor: pointer;
+                color: $color-green;
+                font-weight: 700;
+                background: rgba(0,0,0,.03);
+                border-radius: 5px;
+                margin-bottom: 10px;
+
+                &:hover {
+                    color: #FFFFFF;
+                    background: linear-gradient(to right,#42E695 0%,#3BB2B8 50%,#42E695 100%);
+                }
+
+                ul {
+                    left: 0;
+                    top: 102.5%;
+                    width: 100%;
+                    position: absolute;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    z-index: 999;
+                    background: #F7FBFC;
+                    border-radius: 4px;
+
+                    li {
+                        margin-top: 10px;
+                        width: 180px;
+                    }
+                }
             }
         }
     }
@@ -81,7 +127,7 @@ body {
                     padding: $area-small $area-normal;
                     margin-bottom: $area-small;
                     font-size: $font-small;
-                    color: $body-color;
+                    color: $color-body;
                     font-weight: $weight-bold;
                     text-decoration: none;
                     cursor: pointer;
@@ -105,136 +151,299 @@ body {
             flex-basis: 80%;
             padding-left: $area-box;
         }
-    }
 
-    .app-wallets {
-        display: flex;
-        flex-wrap: wrap;
+        .app-wallets {
+            display: flex;
+            flex-wrap: wrap;
 
-        .wallet {
-            flex-basis: calc(50% - 10px);
-            margin: 0 10px 20px 0;
-            background-size: 200%;
-            text-align: center;
-            height: 270px;
-            padding: 30px;
-            color: #FFFFFF;
-            position: relative;
-            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-
-            h1 {
-                font-size: calc(1.4em * 2);
-            }
-            h5 {
-                font-weight: bold;
-            }
-
-            p {
-                margin: 10px 0 20px 0!important;
-                font-size: $font-small;
-            }
-
-            p.wallet-income,
-            p.wallet-expense,
-            p.wallet-balance {
-                margin: 0!important;
-            }
-
-            input {
-                margin: 0 0 20px 0;
+            .wallet {
+                flex-basis: calc(50% - 10px);
+                margin: 0 10px 20px 0;
+                background-size: 200%;
                 text-align: center;
-                font-size: $font-large;
-                padding-bottom: 10px;
-                border: none;
-                border-bottom: 1px dotted rgba(0,0,0,.4);;
-                background: none;
-                outline: none;
+                height: 270px;
+                padding: 30px;
                 color: #FFFFFF;
-                font-weight: 700;
-            }
-            input:focus::placeholder {
-                color: transparent;
-            }
+                position: relative;
+                box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+
+                h1 {
+                    font-size: calc(1.4em * 2);
+                }
+                h5 {
+                    font-weight: bold;
+                }
+
+                p {
+                    margin: 10px 0 20px 0!important;
+                    font-size: $font-small;
+                }
+
+                p.wallet-income,
+                p.wallet-expense,
+                p.wallet-balance {
+                    margin: 0!important;
+                }
+
+                input {
+                    margin: 0 0 20px 0;
+                    text-align: center;
+                    font-size: $font-large;
+                    padding-bottom: 10px;
+                    border: none;
+                    border-bottom: 1px dotted rgba(0,0,0,.4);;
+                    background: none;
+                    outline: none;
+                    color: #FFFFFF;
+                    font-weight: 700;
+                }
+                input:focus::placeholder {
+                    color: transparent;
+                }
 
 
-            .btn-overlay-open {
-                display: inline-block;
-                padding: 5px 10px;
-                background: rgba(0,0,0,.4);
-                cursor: pointer;
-                font-weight: 700;
-                transition-duration: 0.3s;
-            }
-            .btn-overlay-open:hover {
-                background: rgba(0,0,0,.7);
-            }
+                .btn-overlay-open {
+                    display: inline-block;
+                    padding: 5px 10px;
+                    background: rgba(0,0,0,.4);
+                    cursor: pointer;
+                    font-weight: 700;
+                    transition-duration: 0.3s;
+                }
+                .btn-overlay-open:hover {
+                    background: rgba(0,0,0,.7);
+                }
 
-            .btn-overlay-close {
-                display: block;
-                margin-top: 15px;
-                font-size: $font-small;
-                color: #FFFFFF;
-                font-weight: bold;
-                cursor: pointer;
-            }
-            .btn-overlay-close:hover {
-                color: #EEEEEE;
-            }
+                .btn-overlay-close {
+                    display: block;
+                    margin-top: 15px;
+                    font-size: $font-small;
+                    color: #FFFFFF;
+                    font-weight: bold;
+                    cursor: pointer;
+                }
+                .btn-overlay-close:hover {
+                    color: #EEEEEE;
+                }
 
-            .wallet-overlay {
-                display: none;
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: $color-green;
+                .wallet-overlay {
+                    display: none;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: $color-green;
 
-                div {
-                    margin: auto;
-                    padding: 30px;
+                    div {
+                        margin: auto;
+                        padding: 30px;
 
-                    p {
-                        font-size: $font-small;
-                        margin: 20px 0 20px 0!important;
+                        p {
+                            font-size: $font-small;
+                            margin: 20px 0 20px 0!important;
+                        }
+                    }
+
+                    .btn-save {
+                        display: inline-block;
+                        padding: 10px;
+                        background: #28A745;
+                        cursor: pointer;
+                        color: #FFFFFF;
+                        font-weight: 700;
+                        transition-duration: 0.3s;
+                        border: none;
+                        box-shadow: rgba(0, 0, 0, 0.15) 0 3px 3px 0;
+                    }
+                    .btn-save:hover {
+                        background: #1C7430;
                     }
                 }
 
-                .btn-save {
-                    display: inline-block;
-                    padding: 10px;
-                    background: #28A745;
+                .wallet-remove {
+                    position: absolute;
+                    top: 10px;
+                    right: 15px;
                     cursor: pointer;
-                    color: #FFFFFF;
+                    font-size: $font-small;
+                }
+                .wallet-remove:hover {
+                    color: #F4645F;
+                }
+
+                .wallet-balance {
+                    font-size: $font-large;
                     font-weight: 700;
-                    transition-duration: 0.3s;
-                    border: none;
-                    box-shadow: rgba(0, 0, 0, 0.15) 0 3px 3px 0;
+                    margin-bottom: 5px;
                 }
-                .btn-save:hover {
-                    background: #1C7430;
-                }
-            }
-
-            .wallet-remove {
-                position: absolute;
-                top: 10px;
-                right: 15px;
-                cursor: pointer;
-                font-size: $font-small;
-            }
-            .wallet-remove:hover {
-                color: #F4645F;
-            }
-
-            .wallet-balance {
-                font-size: $font-large;
-                font-weight: 700;
-                margin-bottom: 5px;
             }
         }
 
+        .app-home {
+            display: flex;
 
+            .left {
+                flex-basis: 65%;
+            }
+            .right {
+                flex-basis: 35%;
+                margin-left: $area-box;
+
+                .widget-launch {
+                    display: flex;
+                    align-items: stretch;
+                    justify-content: space-between;
+                    margin-bottom: $area-box;
+
+                    button {
+                        font-size: $font-small;
+                        font-weight: 700;
+                        padding: 10px;
+
+                        span {
+                            margin-left: 5px;
+                        }
+                    }
+
+                    .income {
+                        flex-basis: 49%;
+                    }
+
+                    .expense {
+                        flex-basis: 49%;
+                    }
+                }
+            }
+        }
+    }
+
+    .app-modal {
+        form {
+            .label-group {
+                display: flex;
+                justify-content: space-between;
+                padding-bottom: 10px;
+                flex-wrap: wrap;
+
+                .app-checkbox-label {
+                    flex-basis: 100%;
+                }
+
+                label.display-flex {
+                    flex-basis: 48%;
+                }
+
+                label.display-full {
+                    flex-basis: 100%;
+                }
+
+                i {
+                    margin-left: 8px;
+                }
+
+                textarea {
+                    width: 100%;
+                    resize: none;
+                    padding: 10px;
+                    border: 2px solid #CCCCCC;
+                    color: #888888;
+                    border-radius: $radius-normal;
+                }
+
+                select {
+                    height: 50px;
+                    border: 2px solid #CCCCCC;
+                    border-radius: $radius-normal!important;
+                }
+
+                input:not([type="checkbox"]) {
+                    margin-top: 5px;
+                    font-size: 1em;
+                    border: 2px solid #CCCCCC;
+                    color: #888888;
+                    border-radius: $radius-normal;
+                    display: block;
+                    background: none;
+                    padding: 10px;
+                    width: 100%;
+                }
+            }
+        }
+
+        p {
+            font-size: $font-large;
+            color: #575757;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #CCCCCC;
+
+            i {
+                margin-right: 20px;
+            }
+        }
+
+        .expense {
+            button {
+                display: block;
+                width: 100%;
+                padding: 15px;
+                border: none;
+                cursor: pointer;
+                margin-top: $area-normal;
+                color: #FFFFFF;
+                font-weight: 400;
+                background: $color-red;
+                transition: 0.3s;
+                border-radius: 5px;
+
+                &:hover {
+                    background: #F76C82;
+                }
+            }
+        }
+        .income {
+            button {
+                display: block;
+                width: 100%;
+                padding: 15px;
+                border: none;
+                cursor: pointer;
+                margin-top: $area-normal;
+                color: #FFFFFF;
+                font-weight: 400;
+                background: $color-green;
+                transition: 0.3s;
+                border-radius: 5px;
+
+                &:hover {
+                    background: #61DDBC;
+                }
+            }
+        }
+    }
+
+    .app-invoice {
+        .filter {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+
+            button.btn-filter {
+                background-color: $color-green;
+
+                &:hover {
+                    background-color: #41ee8c;
+                    color: #FFFFFF;
+                }
+            }
+        }
+
+        article {
+            table {
+                text-align: center;
+                width: 100%;
+            }
+        }
     }
 }
 

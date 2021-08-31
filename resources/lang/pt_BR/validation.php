@@ -186,7 +186,11 @@ return [
         'description' => 'descrição',
         'password_confirmation' => 'confirmação da senha',
         'current_password' => 'senha atual',
-        'wallet' => 'cateira'
+        'wallet' => 'cateira',
+        'wallet_id' => 'carteira',
+        'due_at' => 'data',
+        'value' => 'valor',
+        'repeat_when' => 'repetição',
+        'category' => 'categoria'
     ],
-
 ];

@@ -1,6 +1,9 @@
 <?php
 
+use App\Models\App\Category;
+use App\Models\App\Wallet;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -47,3 +50,55 @@ if (! function_exists('message')) {
         return '';
     }
 }
+
+if (! function_exists('wallets')) {
+
+    /**
+     * @return Collection
+     */
+    function wallets(): Collection
+    {
+        return Wallet::where('user_id', auth()->id())->get();
+    }
+}
+
+if (! function_exists('walletactive')) {
+
+    /**
+     * @return Wallet
+     */
+    function walletactive(): Wallet
+    {
+        if(session()->has('walletfilter')) {
+            return Wallet::findById(session()->get('walletfilter'));
+        } else {
+            return Wallet::free();
+        }
+    }
+}
+
+if (! function_exists('categories')) {
+
+    /**
+     * @param string $type
+     * @return Collection
+     */
+    function categories(string $type): Collection
+    {
+        return Category::where('type', $type)->get();
+    }
+}
+
+if (! function_exists('str_price')) {
+
+    /**
+     * @param string|null $price
+     * @return string
+     */
+    function str_price(?string $price): string
+    {
+        return number_format((!empty($price) ? $price : 0), 2, ",", ".");
+    }
+}
+
+

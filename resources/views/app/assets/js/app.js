@@ -14,4 +14,18 @@ $(function() {
     $('.wallet-name').change(function() {
         $(this).parent().submit();
     })
+    $(".wallet-dropdown").mouseenter(function () {
+        $(this).find("ul").slideDown(200);
+    }).mouseleave(function () {
+        $(this).find("ul").slideUp(200);
+    });
+    $('.wallet-change').click(function() {
+        const wallet = $(this).data('wallet');
+        const endpoint = $(this).data('endpoint');
+
+        $.post(endpoint, {wallet: wallet}, function() {
+            window.location.reload();
+        }, "json")
+
+    })
 })
