@@ -87,4 +87,11 @@ $(function() {
         reverse: true,
         placeholder: "0,00"
     });
+    /*
+    *   SELECT2
+    */
+    $('.select2').select2({
+        width: '120px',
+        height: '100%'
+    });
 })

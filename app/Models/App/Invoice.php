@@ -4,6 +4,8 @@ namespace App\Models\App;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\HigherOrderCollectionProxy;
 
 /**
  * Class Invoice
@@ -29,5 +31,21 @@ class Invoice extends Model
     public function setValueAttribute($value)
     {
         $this->attributes['value'] = (float)str_replace(['.', ','],['', '.'] ,$value);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * @return HigherOrderCollectionProxy|mixed
+     */
+    public function getCategoryAttribute()
+    {
+        return $this->category()->first()->name;
     }
 }

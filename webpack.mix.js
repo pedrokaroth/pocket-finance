@@ -19,7 +19,8 @@ mix
     .copyDirectory('resources/img', 'public/img')
 
     .styles([
-        'resources/css/vendor/toastr.css'
+        'resources/css/vendor/toastr.css',
+        'resources/css/vendor/select2.css'
     ], 'public/assets/css/vendor.css')
 
     .styles([
@@ -35,7 +36,8 @@ mix
         'resources/js/vendor/popper.js',
         'resources/js/vendor/bootstrap.js',
         'resources/js/vendor/toastr.js',
-        'resources/js/vendor/jquery.mask.js'
+        'resources/js/vendor/jquery.mask.js',
+        'resources/js/vendor/select2.js'
     ], 'public/assets/js/vendor.js')
 
     /*

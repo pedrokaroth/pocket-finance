@@ -15,6 +15,10 @@
             <i class="fas fa-funnel-dollar"></i>
             <span>Despesas</span>
         </a>
+        <a href="{{ route('app.incomes') }}" class="nav_link {{ isActive('app.incomes') }}">
+            <i class="fas fa-coins"></i>
+            <span>Receitas</span>
+        </a>
         <div class="logout">
             <a href="{{ route('logout') }}" class="nav_link" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                 <i class="fas fa-sign-out-alt"></i>

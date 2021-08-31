@@ -35,6 +35,7 @@ Route::group(['middleware' => ['auth', 'verified', 'wallet'], 'prefix' => 'app',
     Route::get('/carteiras', [AppController::class, 'wallets'])->name('wallets');
     Route::group(['prefix' => 'faturas'], function() {
        Route::get('despesas', [AppController::class, 'expenses'])->name('expenses');
+       Route::get('receitas', [AppController::class, 'incomes'])->name('incomes');
     });
 
     Route::resource('invoices', InvoiceController::class);

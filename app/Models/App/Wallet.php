@@ -90,9 +90,20 @@ class Wallet extends Model
         return $this->invoices()->where('type', 'expense')->sum('value');
     }
 
+    /**
+     * @return Collection
+     */
     public function expenses(): Collection
     {
         return $this->invoices()->where('type', 'expense')->get();
+    }
+
+    /**
+     * @return Collection
+     */
+    public function incomes(): Collection
+    {
+        return $this->invoices()->where('type', 'income')->get();
     }
 
     /**

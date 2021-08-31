@@ -421,6 +421,30 @@ body {
             }
         }
     }
+
+    .app-invoice {
+        .filter {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+
+            button.btn-filter {
+                background-color: $color-green;
+
+                &:hover {
+                    background-color: #41ee8c;
+                    color: #FFFFFF;
+                }
+            }
+        }
+
+        article {
+            table {
+                text-align: center;
+                width: 100%;
+            }
+        }
+    }
 }
 
 
