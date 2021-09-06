@@ -27,7 +27,8 @@ class FilterInvoiceRequest extends FormRequest
         return [
             'status' => 'required|in:all,paid,unpaid',
             'category' => 'required',
-            'date' => 'required'
+            'date' => 'required',
+            'invoice' => 'required|in:expense,income'
         ];
     }
 }

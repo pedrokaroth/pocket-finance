@@ -28,6 +28,8 @@
                             <option value="{{ date('m/Y', strtotime("{$range}month")) }}">{{ date('m/Y', strtotime("{$range}month")) }}</option>
                         @endfor
                     </select>
+
+                    <input type="hidden" name="invoice" value="{{ $type }}">
                     <button class="btn btn-filter btn-sm">
                         <i class="fas fa-filter"></i>
                     </button>

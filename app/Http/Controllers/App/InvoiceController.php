@@ -50,7 +50,7 @@ class InvoiceController extends Controller
 
 
         return response()->json([
-            'redirect' => route('app.incomes') . "/{$status}/{$category}/{$date}"
+            'redirect' => route("app.{$request->get('invoice')}s") . "/{$status}/{$category}/{$date}"
         ]);
     }
 
