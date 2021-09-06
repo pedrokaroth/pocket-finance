@@ -3,11 +3,7 @@
 namespace App\Http\Controllers\App;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Invoice;
-use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 /**
@@ -38,28 +34,33 @@ class AppController extends Controller
         ]);
     }
 
+
     /**
-     *  Show the invoices view with expenses
-     *
+     * @param mixed $status
+     * @param mixed $category
+     * @param mixed $date
      * @return View
      */
-    public function expenses(): View
+    public function expenses($status = 'all', $category = 'all', $date = 'all'): View
     {
         return view('app.invoices', [
-            'invoices' => walletactive()->expenses(),
+            'invoices' => walletactive()->expenses($status, $category, $date),
             'type' => 'expense'
         ]);
     }
 
+
     /**
-     * Shpw the invoices with incomes
-     *
+     * @param mixed $status
+     * @param mixed $category
+     * @param mixed $date
      * @return View
      */
-    public function incomes(): View
+    public function incomes($status = 'all', $category = 'all', $date = 'all'): View
     {
+
         return view('app.invoices', [
-           'invoices' => walletactive()->incomes(),
+           'invoices' => walletactive()->incomes($status, $category, $date),
            'type' => 'income'
         ]);
     }

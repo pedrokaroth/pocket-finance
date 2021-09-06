@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Invoices;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class Invoice extends FormRequest
+class CreateInvoiceRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

@@ -7,7 +7,9 @@
     <section class="app-invoice">
         <div class="filter box">
             <div class="inputs">
-                <form action="">
+                <form action="{{ route('app.invoices.filter') }}" method="post">
+                    @method('POST')
+
                     <select name="status" class="select2">
                         <option value="all">Todas</option>
                         <option value="paid">Pagas</option>
@@ -26,6 +28,8 @@
                             <option value="{{ date('m/Y', strtotime("{$range}month")) }}">{{ date('m/Y', strtotime("{$range}month")) }}</option>
                         @endfor
                     </select>
+
+                    <input type="hidden" name="invoice" value="{{ $type }}">
                     <button class="btn btn-filter btn-sm">
                         <i class="fas fa-filter"></i>
                     </button>
@@ -60,7 +64,7 @@
                 @foreach($invoices as $invoice)
                     <tr>
                         <td>{{ $invoice->description }}</td>
-                        <td>{{ "Dia " . date('d', strtotime($invoice->due_at)) }}</td>
+                        <td>{{ "Dia " . date('d/m', strtotime($invoice->due_at)) }}</td>
                         <td>{{ $invoice->category }}</td>
                         @if($invoice->enrollments > 0)
 

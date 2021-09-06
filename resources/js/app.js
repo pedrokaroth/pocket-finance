@@ -62,6 +62,9 @@ $(function() {
                 if(response.reload) {
                     window.location.reload();
                 }
+                if(response.redirect) {
+                    window.location.href = response.redirect;
+                }
             },
 
             error: function(response) {
