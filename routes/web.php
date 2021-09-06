@@ -3,8 +3,6 @@
 use App\Http\Controllers\App\AppController;
 use App\Http\Controllers\App\InvoiceController;
 use App\Http\Controllers\App\WalletController;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -34,9 +32,10 @@ Route::group(['middleware' => ['auth', 'verified', 'wallet'], 'prefix' => 'app',
     Route::post('/wallets/filter/{id}', [WalletController::class, 'walletFilter'])->name('wallets.filter');
     Route::get('/carteiras', [AppController::class, 'wallets'])->name('wallets');
     Route::group(['prefix' => 'faturas'], function() {
-       Route::get('despesas', [AppController::class, 'expenses'])->name('expenses');
-       Route::get('receitas', [AppController::class, 'incomes'])->name('incomes');
+       Route::get('despesas/{status?}/{category?}/{date?}', [AppController::class, 'expenses'])->name('expenses');
+       Route::get('receitas/{status?}/{category?}/{date?}', [AppController::class, 'incomes'])->name('incomes');
     });
 
+    Route::post('invoices/filter', [InvoiceController::class, 'filter'])->name('invoices.filter');
     Route::resource('invoices', InvoiceController::class);
 });
