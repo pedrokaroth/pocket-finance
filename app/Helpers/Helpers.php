@@ -47,8 +47,6 @@ if (! function_exists('filterValidate')) {
 
                     return (is_numeric($m) && 0 < $m && $m < 13) && (is_numeric($y));
                 }
-            default:
-                return false;
         }
         
         return false;
