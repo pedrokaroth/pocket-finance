@@ -23,6 +23,34 @@ if (! function_exists('isActive')) {
     }
 }
 
+if (! function_exists('filterValidate')) {
+
+    /**
+     * @param string $filter
+     * @param $value
+     * @return bool
+     */
+    function filterValidate(string $filter, $value): bool
+    {
+        switch ($filter) {
+            case 'status':
+                return $value == 'all' || $value == 'paid' || $value == 'unpaid';
+
+            case 'category':
+                return $value == 'all' || !empty(Category::findById($value));
+
+            case 'date':
+                if($value == 'all') {
+                    return true;
+                }   elseif(count(explode('-', $value)) == 2) {
+                    list($m, $y) = explode('-', $value);
+
+                    return (is_numeric($m) && 0 < $m && $m < 13) && (is_numeric($y));
+                }
+        }
+    }
+}
+
 if (! function_exists('user')) {
 
     /**
@@ -100,5 +128,8 @@ if (! function_exists('str_price')) {
         return number_format((!empty($price) ? $price : 0), 2, ",", ".");
     }
 }
+
+
+
 
 

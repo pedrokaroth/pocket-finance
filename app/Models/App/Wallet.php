@@ -91,19 +91,56 @@ class Wallet extends Model
     }
 
     /**
+     * @param $status
+     * @param $category
+     * @param $date
      * @return Collection
      */
-    public function expenses(): Collection
+    public function expenses($status, $category, $date): Collection
     {
-        return $this->invoices()->where('type', 'expense')->get();
+        return $this->applyFilters(
+            $this->invoices()->where('type', 'expense'), $status, $category, $date
+        )->get();
     }
 
     /**
+     * @param $status
+     * @param $category
+     * @param $date
      * @return Collection
      */
-    public function incomes(): Collection
+    public function incomes($status, $category, $date): Collection
     {
-        return $this->invoices()->where('type', 'income')->get();
+        return $this->applyFilters(
+            $this->invoices()->where('type', 'income'), $status, $category, $date
+        )->get();
+    }
+
+    /**
+     * @param $invoices
+     * @param $status
+     * @param $category
+     * @param $date
+     * @return mixed
+     */
+    private function applyFilters($invoices, $status, $category, $date) {
+        if($status !== 'all' && filterValidate('status', $status)) {
+            $invoices->where('status', $status);
+        }
+
+        if($category !== 'all' && filterValidate('category', $category)) {
+            $invoices->where('category_id', $category);
+        }
+
+        if($date !== 'all' && filterValidate('date', $date)) {
+            $invoices->whereMonth('due_at', explode('-', $date)[0]);
+            $invoices->whereYear('due_at', explode('-', $date)[1]);
+        } else {
+            $invoices->whereMonth('due_at', date('m'));
+            $invoices->whereYear('due_at', date('Y'));
+        }
+
+        return $invoices;
     }
 
     /**

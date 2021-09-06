@@ -3,22 +3,22 @@
 namespace App\Http\Controllers\App;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Invoice as InvoiceRequest;
-use App\Models\App\Category;
+use App\Http\Requests\Invoices\CreateInvoiceRequest as InvoiceCreate;
+use App\Http\Requests\Invoices\FilterInvoiceRequest as InvoiceFilter;
 use App\Models\App\Invoice;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Response;
 
 class InvoiceController extends Controller
 {
     /**
      * Store a newly created resource in storage.
      *
-     * @param InvoiceRequest $request
+     * @param InvoiceCreate $request
      * @return JsonResponse
      */
-    public function store(InvoiceRequest $request): JsonResponse
+    public function store(InvoiceCreate $request): JsonResponse
     {
         $invoice = new Invoice();
         $invoice->fill($request->validated());
@@ -34,6 +34,24 @@ class InvoiceController extends Controller
         $this->message('success', 'fatura adicionada com sucesso!');
 
         return response()->json(['reload' => true]);
+    }
+
+    public function filter(InvoiceFilter $request): JsonResponse
+    {
+        $status = $request->get('status');
+        $category = $request->get('category');
+
+        if($request->get('date') == 'all' || count(explode('/', $request->get('date'))) != 2) {
+            $date = 'all';
+        } else {
+            list($m, $y) = explode('/', $request->get('date'));
+            $date = "{$m}-{$y}";
+        }
+
+
+        return response()->json([
+            'redirect' => route('app.incomes') . "/{$status}/{$category}/{$date}"
+        ]);
     }
 
     /**
@@ -52,7 +70,7 @@ class InvoiceController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -63,7 +81,7 @@ class InvoiceController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {
