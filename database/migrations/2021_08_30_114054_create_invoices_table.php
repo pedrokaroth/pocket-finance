@@ -15,9 +15,9 @@ class CreateInvoicesTable extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('wallet_id')->constrained('wallets')->onDelete('cascade');
-            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
+            $table->integer('user_id');
+            $table->integer('wallet_id');
+            $table->integer('category_id');
             $table->integer('invoice_of')->nullable();
             $table->string('description');
             $table->text('comments')->nullable();
