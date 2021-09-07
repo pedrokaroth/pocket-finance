@@ -10,7 +10,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class InvoiceController extends Controller
+class InvoicesController extends Controller
 {
     /**
      * Store a newly created resource in storage.

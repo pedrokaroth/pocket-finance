@@ -12,7 +12,7 @@ use MongoDB\Driver\Session;
  * Class WalletController
  * @package App\Http\Controllers\App
  */
-class WalletController extends Controller
+class WalletsController extends Controller
 {
     /**
      * Store a newly created resource in storage.
