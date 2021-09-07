@@ -39,3 +39,8 @@ Route::group(['middleware' => ['auth', 'verified', 'wallet'], 'prefix' => 'app',
     Route::post('invoices/filter', [InvoiceController::class, 'filter'])->name('invoices.filter');
     Route::resource('invoices', InvoiceController::class);
 });
+
+Route::get('/migrate', function() {
+    \Illuminate\Support\Facades\Artisan::call('migrate');
+    \Illuminate\Support\Facades\Artisan::call('db:seed --class=CategorySeeder');
+});
