@@ -67,6 +67,12 @@ class AppController extends Controller
 
         return view('app.invoices', [
            'invoices' => walletactive()->incomes($status, $category, $date),
+            'filter' => [
+                'status' => $status ?? null,
+                'category' => $category ?? null,
+                'date' => !empty($date) && $date != 'all' ?
+                    explode('-', $date)[0] . '/' . explode('-', $date)[1] : 'all'
+            ],
            'type' => 'income'
         ]);
     }
