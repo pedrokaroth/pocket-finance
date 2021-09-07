@@ -11,21 +11,23 @@
                     @method('POST')
 
                     <select name="status" class="select2">
-                        <option value="all">Todas</option>
-                        <option value="paid">Pagas</option>
-                        <option value="unpaid">Não Pagas</option>
+                        <option value="all" {{ $filter['status'] == 'all' ? 'selected' : ''}}>Todas</option>
+                        <option value="paid" {{ $filter['status'] == 'paid' ? 'selected' : '' }}>Pagas</option>
+                        <option value="unpaid" {{ $filter['status'] == 'unpaid' ? 'selected' : '' }}>Não Pagas</option>
                     </select>
                     <select name="category" class="select2" style="height: 100%">
-                        <option value="all">Todas</option>
+                        <option value="all" {{ $filter['category'] == 'all' ? 'selected' : '' }}>Todas</option>
                         @foreach(categories($type) as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            <option value="{{ $category->id }}" {{ $filter['category'] == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                         @endforeach
                     </select>
 
                     <select name="date" class="radius select2">
-                        <option value="all">Todos</option>
+                        <option value="all" {{ $filter['date'] == 'all' }}>Todos</option>
                         @for($range = -10; $range <= 10; $range++)
-                            <option value="{{ date('m/Y', strtotime("{$range}month")) }}">{{ date('m/Y', strtotime("{$range}month")) }}</option>
+                            {{ $date = date('m/Y', strtotime("{$range}month")) }}
+
+                            <option value="{{ $date }}" {{ $filter['date'] == $date ? 'selected' : '' }}>{{ date('m/Y', strtotime("{$range}month")) }}</option>
                         @endfor
                     </select>
 
