@@ -38,7 +38,8 @@ mix
         'resources/js/vendor/toastr.js',
         'resources/js/vendor/jquery.mask.js',
         'resources/js/vendor/select2.js',
-        'resources/js/vendor/charts.js'
+        'resources/js/vendor/charts.js',
+        'resources/js/vendor/highcharts.js'
     ], 'public/assets/js/vendor.js')
 
     /*
