@@ -26,6 +26,18 @@ $(function() {
         $.post(endpoint, {wallet: wallet}, function() {
             window.location.reload();
         }, "json")
-
     })
+
+    $(".income-radio").click(function (e) {
+        $('.income-option').slideUp(200);
+
+        const down = $(this).data('slidedown')
+        $(down).slideDown({
+            start: function () {
+                $(this).css({
+                    display: "flex"
+                })
+            }
+        });
+    });
 })
