@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\App;
 
 use App\Http\Controllers\Controller;
+use App\Models\App\Invoice;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\View\View;
 
@@ -19,7 +20,9 @@ class AppController extends Controller
      */
     public function home(): Renderable
     {
-        return view('app.home');
+        return view('app.home', [
+            'chartData' => (new Invoice())->dashboardChartData()
+        ]);
     }
 
     /**
