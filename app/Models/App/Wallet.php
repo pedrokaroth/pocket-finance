@@ -36,7 +36,7 @@ class Wallet extends Model
      */
     public static function free()
     {
-        return Wallet::where('free', 1)->first();
+        return Auth::user()->wallets()->where('free', 1)->first();
     }
 
     /**
