@@ -61,7 +61,7 @@ class Invoice extends Model
             ->groupByRaw('YEAR(due_at) ASC, MONTH(due_at) ASC')
             ->get();
 
-        if($invoices) {
+        if($invoices->count()) {
             foreach ($invoices as $invoice) {
                 $chartCategories[] = $invoice->due_month . '/' . $invoice->due_year;
                 $chartExpense[] = $invoice->expense ?? 0;
@@ -72,6 +72,7 @@ class Invoice extends Model
                 $chartDate[] = date("m/Y", strtotime("{$month}month"));
             }
         }
+
 
         $chartData = new \stdClass();
         $chartData->categories = $chartCategories ?? $chartDate;
