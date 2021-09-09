@@ -2,7 +2,7 @@
     <div class="sidebar-title sidebar-user">
         <span class="user">
             <img class="rounded-full" src="{{ asset('img/avatar.jpg') }}" alt="">
-            <span>Pedro</span>
+            <span>{{ user()->first_name }}</span>
         </span>
     </div>
     <hr>
