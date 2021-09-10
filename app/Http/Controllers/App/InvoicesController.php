@@ -80,11 +80,17 @@ class InvoicesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return Response
+     * @param Invoice $invoice
+     * @return JsonResponse
      */
-    public function destroy($id)
+    public function destroy(Invoice $invoice): JsonResponse
     {
-        //
+        $invoice->delete();
+
+        $this->message('success', 'Fatura removida com sucesso');
+
+        return response()->json([
+            'reload' => true
+        ]);
     }
 }

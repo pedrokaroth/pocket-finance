@@ -60,6 +60,7 @@
                         <th>Categoria</th>
                         <th>Parcela</th>
                         <th>Valor</th>
+                        <th>Acões</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -74,6 +75,20 @@
                             <td>Única</td>
                         @endif
                         <td>{{ str_price($invoice->value) }}</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <form action="{{ route('app.invoices.destroy', ['invoice' => $invoice]) }}" method="post">
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger  btn-sm"><i class="fas fa-trash-alt"></i></button>
+                                </form>
+                                <button type="button" class="btn btn-info  btn-sm"><i class="far fa-eye"></i></button>
+                                @if($invoice->status === 'paid')
+                                    <button type="submit" class="btn btn-success  btn-sm"><i class="far fa-grin"></i></button>
+                                @elseif($invoice === 'unpaid')
+                                    <button type="button" class="btn btn-warning  btn-sm"><i class="far fa-frown"></i></button>
+                                @endif
+                            </div>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
