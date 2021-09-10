@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ url(asset('/auth/assets/css/boot.css')) }}">
     <link rel="stylesheet" href="{{ url(asset('/auth/assets/css/login.css')) }}">
     <link rel="stylesheet" href="{{ url(asset('/auth/assets/css/reset.css')) }}">
-    <title>Document</title>
+    <title>Pocket Finance</title>
 </head>
 <body>
 <div class="dash-login">
