@@ -58,7 +58,7 @@ class WalletsController extends Controller
      */
     public function destroy(Wallet $wallet): JsonResponse
     {
-        if($wallet->userWallets() == 1 || $wallet->free) {
+        if(user()->wallets()->count() == 1) {
             return \response()
                 ->json(['errors' => ['wallet' => ['Não é possível remover essa carteira']]])
                 ->setStatusCode(412);

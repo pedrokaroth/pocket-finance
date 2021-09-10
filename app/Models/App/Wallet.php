@@ -67,14 +67,6 @@ class Wallet extends Model
     }
 
     /**
-     * @return int
-     */
-    public function userWallets(): int
-    {
-        return Wallet::where('user_id', user()->id)->count();
-    }
-
-    /**
      * @return int|mixed
      */
     public function income()
