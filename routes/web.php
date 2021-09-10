@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth', 'verified', 'wallet'], 'prefix' => 'app',
        Route::get('receitas/{status?}/{category?}/{date?}', [AppController::class, 'incomes'])->name('incomes');
     });
 
+    Route::put('/invoices/status/{invoice}', [InvoicesController::class, 'setStatus'])->name('invoices.status');
     Route::post('invoices/filter', [InvoicesController::class, 'filter'])->name('invoices.filter');
     Route::resource('invoices', InvoicesController::class);
 });

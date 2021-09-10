@@ -5,6 +5,7 @@ namespace App\Http\Controllers\App;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Invoices\CreateInvoiceRequest as InvoiceCreate;
 use App\Http\Requests\Invoices\FilterInvoiceRequest as InvoiceFilter;
+use App\Http\Requests\Invoices\UpdateStatusInvoiceRequest as InvoiceStatus;
 use App\Models\App\Invoice;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -68,13 +69,21 @@ class InvoicesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return Response
+     * @param InvoiceStatus $request
+     * @param Invoice $invoice
+     * @return JsonResponse
      */
-    public function update(Request $request, $id)
+    public function setStatus(InvoiceStatus $request, Invoice $invoice): JsonResponse
     {
-        //
+        $invoice->update([
+            'status' => $request->get('status')
+        ]);
+
+        $this->message('success', 'Status alterado com sucesso!');
+
+        return response()->json([
+            'reload' => true
+        ]);
     }
 
     /**

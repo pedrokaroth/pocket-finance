@@ -46,6 +46,16 @@ class Invoice extends Model
     }
 
     /**
+     * @param int $id
+     * @param array $fields
+     * @return mixed
+     */
+    public static function findById(int $id, array $fields = ['*'])
+    {
+        return Invoice::where('id', $id)->first($fields);
+    }
+
+    /**
      * @return stdClass
      */
     public function dashboardChartData(): stdClass
