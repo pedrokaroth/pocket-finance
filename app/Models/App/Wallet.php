@@ -32,11 +32,28 @@ class Wallet extends Model
     ];
 
     /**
-     * @return mixed
+     * @return bool|null
+     */
+    public function delete(): ?bool
+    {
+        if(session()->has('walletfilter') && session()->get('walletfilter') == $this->id) {
+            session()->remove('walletfilter');
+        }
+
+        if(user()->wallets()->count() == 1 || $this->free) {
+            return false;
+        }
+
+        return parent::delete();
+    }
+
+
+    /**
+     * @return HasMany|Model|object|null
      */
     public static function free()
     {
-        return Auth::user()->wallets()->where('free', 1)->first();
+        return user()->wallets()->where('free', 1)->first();
     }
 
     /**
@@ -46,6 +63,19 @@ class Wallet extends Model
     public static function findById(int $id)
     {
         return Wallet::where('id', $id)->first();
+    }
+
+    /**
+     * @param string $wallet
+     * @return mixed
+     */
+    public static function bootstrap(string $wallet)
+    {
+        return Wallet::create([
+            'wallet' => $wallet,
+            'user_id' => user()->id,
+            'free' => !user()->hasWallet()
+        ]);
     }
 
     /**
@@ -149,29 +179,5 @@ class Wallet extends Model
     public function setFreeAttribute($value)
     {
         $this->attributes['free'] = ($value === true ? 1 : 0);
-    }
-
-    /**
-     * @return string
-     */
-    public function getBalanceAttribute()
-    {
-        return "14.56";
-    }
-
-    /**
-     * @return string
-     */
-    public function getIncomeAttribute()
-    {
-        return "14.56";
-    }
-
-    /**
-     * @return string
-     */
-    public function getExpenseAttribute()
-    {
-        return "14.56";
     }
 }
