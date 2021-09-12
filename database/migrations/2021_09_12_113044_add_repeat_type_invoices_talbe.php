@@ -14,7 +14,7 @@ class AddRepeatTypeInvoicesTalbe extends Migration
     public function up()
     {
         Schema::table('invoices', function (Blueprint $table) {
-            $table->string('repeat_when')->nullable();
+            $table->string('repeat_type')->nullable();
         });
     }
 
