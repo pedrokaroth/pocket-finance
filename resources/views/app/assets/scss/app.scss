@@ -454,6 +454,10 @@ body {
                     border-top: none;
                     color: $color-body!important;
                 }
+                .btn-form {
+                    border-top-left-radius: 0!important;
+                    border-bottom-left-radius: 0!important;
+                }
             }
         }
     }

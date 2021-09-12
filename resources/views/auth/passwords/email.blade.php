@@ -25,6 +25,6 @@
             @enderror
         </label>
 
-        <button class="gradient gradient-orange radius">Entrar</button>
+        <button class="gradient gradient-green radius">Enviar</button>
     </form>
 @endsection

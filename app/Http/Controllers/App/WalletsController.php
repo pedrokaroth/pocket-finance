@@ -22,11 +22,7 @@ class WalletsController extends Controller
      */
     public function store(WalletRequest $request): JsonResponse
     {
-        Wallet::create([
-            'wallet' => $request->get('wallet'),
-            'user_id' => user()->id,
-            'free' => !user()->hasWallet()
-        ]);
+        Wallet::create($request->validated());
 
         $this->message('success', 'Carteira criada com sucesso');
 
@@ -58,17 +54,11 @@ class WalletsController extends Controller
      */
     public function destroy(Wallet $wallet): JsonResponse
     {
-        if($wallet->userWallets() == 1 || $wallet->free) {
+        if(!$wallet->delete()) {
             return \response()
                 ->json(['errors' => ['wallet' => ['Não é possível remover essa carteira']]])
                 ->setStatusCode(412);
         }
-
-        if(\session()->has('walletfilter') && session()->get('walletfilter') == $wallet->id) {
-            \session()->remove('walletfilter');
-        }
-
-        $wallet->delete();
 
         $this->message('success', 'Carteira removida com sucesso');
 

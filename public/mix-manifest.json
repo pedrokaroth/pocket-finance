@@ -1,6 +1,7 @@
 {
     "/front/assets/css/reset.css": "/front/assets/css/reset.css?id=dbb5fd9c8f6fe7c18648",
     "/front/assets/css/app.css": "/front/assets/css/app.css?id=bf77c5628b4ad195792c",
+    "/front/assets/css/app.css": "/front/assets/css/app.css?id=907c6c1c79e4102fc669",
     "/auth/assets/css/reset.css": "/auth/assets/css/reset.css?id=dbb5fd9c8f6fe7c18648",
     "/auth/assets/css/login.css": "/auth/assets/css/login.css?id=acd6690d213eb9c0b283",
     "/auth/assets/css/boot.css": "/auth/assets/css/boot.css?id=eefd5f0cfd5afe284074",
@@ -10,6 +11,8 @@
     "/assets/js/app.js": "/assets/js/app.js?id=9e0385706dccf2ec8be3",
     "/assets/js/vendor.js": "/assets/js/vendor.js?id=fba711b3691f1eded74b",
     "/front/assets/js/app.js": "/front/assets/js/app.js?id=f6441b1dcefa901fd2af",
+    "/assets/js/vendor.js": "/assets/js/vendor.js?id=fba711b3691f1eded74b",
+    "/front/assets/js/app.js": "/front/assets/js/app.js?id=3e67bcd4666d6eab495b",
     "/auth/assets/images/auth-login-grey.svg": "/auth/assets/images/auth-login-grey.svg?id=a600415dcabc99a7e9e5",
     "/auth/assets/images/auth-login-image.jpg": "/auth/assets/images/auth-login-image.jpg?id=c143539d978350612655",
     "/auth/assets/images/auth-login-orange.svg": "/auth/assets/images/auth-login-orange.svg?id=491dccc03f649c46f37d",

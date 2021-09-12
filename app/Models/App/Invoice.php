@@ -29,12 +29,15 @@ class Invoice extends Model
         'repeat_when', 'status', 'type'
     ];
 
-    /**
-     * @param $value
-     */
-    public function setValueAttribute($value)
+    protected static function boot()
     {
-        $this->attributes['value'] = (float)str_replace(['.', ','],['', '.'] ,$value);
+        parent::boot();
+
+        if(auth()->check()) {
+            self::creating(function($model) {
+                $model->user_id = user()->id;
+            });
+        }
     }
 
     /**
@@ -43,6 +46,16 @@ class Invoice extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * @param int $id
+     * @param array $fields
+     * @return mixed
+     */
+    public static function findById(int $id, array $fields = ['*'])
+    {
+        return Invoice::where('id', $id)->first($fields);
     }
 
     /**
@@ -61,7 +74,7 @@ class Invoice extends Model
             ->groupByRaw('YEAR(due_at) ASC, MONTH(due_at) ASC')
             ->get();
 
-        if($invoices) {
+        if($invoices->count()) {
             foreach ($invoices as $invoice) {
                 $chartCategories[] = $invoice->due_month . '/' . $invoice->due_year;
                 $chartExpense[] = $invoice->expense ?? 0;
@@ -72,6 +85,7 @@ class Invoice extends Model
                 $chartDate[] = date("m/Y", strtotime("{$month}month"));
             }
         }
+
 
         $chartData = new \stdClass();
         $chartData->categories = $chartCategories ?? $chartDate;
@@ -87,5 +101,13 @@ class Invoice extends Model
     public function getCategoryAttribute()
     {
         return $this->category()->first()->name;
+    }
+
+    /**
+     * @param $value
+     */
+    public function setValueAttribute($value)
+    {
+        $this->attributes['value'] = (float)str_replace(['.', ','],['', '.'] ,$value);
     }
 }

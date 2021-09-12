@@ -11,12 +11,11 @@
         <link rel="stylesheet" href="{{ url(mix('/front/assets/css/app.css')) }}">
         <link rel="stylesheet" href="{{ url(mix('/assets/css/app.css')) }}">
         <link rel="stylesheet" href="{{ url(mix('/assets/css/vendor.css')) }}">
-
         <link rel="shortcut icon" href="{{ asset('/img/favicon/pocketfinance.png') }}" />
 
         <script src="https://kit.fontawesome.com/e3c510ddaa.js" crossorigin="anonymous"></script>
 
-        <title>Pocket Finance</title>
+        <title> Pocket Finance</title>
     </head>
     <body>
         <div class="app" {!! message() !!}>

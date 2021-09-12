@@ -5,6 +5,7 @@ namespace App\Http\Controllers\App;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Invoices\CreateInvoiceRequest as InvoiceCreate;
 use App\Http\Requests\Invoices\FilterInvoiceRequest as InvoiceFilter;
+use App\Http\Requests\Invoices\UpdateStatusInvoiceRequest as InvoiceStatus;
 use App\Models\App\Invoice;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -20,16 +21,7 @@ class InvoicesController extends Controller
      */
     public function store(InvoiceCreate $request): JsonResponse
     {
-        $invoice = new Invoice();
-        $invoice->fill($request->validated());
-        $invoice->user_id = user()->id;
-
-        //When status is not on the request, it calculates with the current date and the due date
-        if(!$invoice->status) {
-            $invoice->status = (date($invoice->due_at) <= date('Y-m-d') ? 'paid' : 'unpaid');
-        }
-
-        $invoice->save();
+        Invoice::create($request->validated());
 
         $this->message('success', 'fatura adicionada com sucesso!');
 
@@ -68,23 +60,37 @@ class InvoicesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return Response
+     * @param InvoiceStatus $request
+     * @param Invoice $invoice
+     * @return JsonResponse
      */
-    public function update(Request $request, $id)
+    public function setStatus(InvoiceStatus $request, Invoice $invoice): JsonResponse
     {
-        //
+        $invoice->update([
+            'status' => $request->get('status')
+        ]);
+
+        $this->message('success', 'Status alterado com sucesso!');
+
+        return response()->json([
+            'reload' => true
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return Response
+     * @param Invoice $invoice
+     * @return JsonResponse
      */
-    public function destroy($id)
+    public function destroy(Invoice $invoice): JsonResponse
     {
-        //
+        $invoice->delete();
+
+        $this->message('success', 'Fatura removida com sucesso');
+
+        return response()->json([
+            'reload' => true
+        ]);
     }
 }
