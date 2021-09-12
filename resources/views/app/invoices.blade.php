@@ -57,9 +57,9 @@
                 <thead>
                     <tr>
                         <th>Descrição</th>
-                        <th>Vencimento</th>
+                        <th>{{ $type !== 'fixed' ? 'Vencimento' : 'Repete'  }}</th>
                         <th>Categoria</th>
-                        <th>Parcela</th>
+                        <th>{{ $type !== 'fixed' ? 'Parcela' : 'Repetição' }}</th>
                         <th>Valor</th>
                         <th>Acões</th>
                     </tr>
@@ -68,7 +68,7 @@
                 @foreach($invoices as $invoice)
                     <tr>
                         <td>{{ $invoice->description }}</td>
-                        <td>{{ "Dia " . date('d/m', strtotime($invoice->due_at)) }}</td>
+                        <td>{{ $type == 'fixed' ? $invoice->repeat_date : "Dia " . date('d/m', strtotime($invoice->due_at)) }}</td>
                         <td>{{ $invoice->category }}</td>
                         @if($invoice->enrollments > 0)
 
@@ -79,7 +79,7 @@
                                         Única
                                     @break
                                     @case('fixed')
-                                        Fixa
+                                        {{ ucfirst(__('messages.' . $invoice->repeat_type)) }}
                                     @break
                                 @endswitch
                             </td>

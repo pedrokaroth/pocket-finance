@@ -2,10 +2,10 @@
 
 namespace App\Models\App;
 
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\HigherOrderCollectionProxy;
@@ -18,6 +18,7 @@ use stdClass;
 class Invoice extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -26,7 +27,7 @@ class Invoice extends Model
      */
     protected $fillable = [
         'description', 'value', 'due_at', 'wallet_id', 'category', 'comments', 'user_id', 'category_id', 'comments',
-        'repeat_when', 'status', 'type'
+        'repeat_when', 'status', 'type', 'repeat_type', 'invoice_of'
     ];
 
     protected static function boot()
@@ -67,8 +68,8 @@ class Invoice extends Model
             ->select(
                 (DB::raw('YEAR(due_at) AS due_year')),
                 (DB::raw('MONTH(due_at) AS due_month')),
-                (DB::raw("(SELECT SUM(value) FROM invoices WHERE status = 'paid' AND user_id = " . Auth::id() . " AND wallet_id = " . walletactive()->id ." AND  type = 'expense' AND YEAR(due_at) = due_year AND MONTH(due_at) = due_month) AS expense")),
-                (DB::raw("(SELECT SUM(value) FROM invoices WHERE status = 'paid' AND user_id = " . Auth::id() . " AND wallet_id = " . walletactive()->id ." AND  type = 'income' AND YEAR(due_at) = due_year AND MONTH(due_at) = due_month) AS income"))
+                (DB::raw("(SELECT SUM(value) FROM invoices WHERE repeat_when = 'single' AND status = 'paid' AND user_id = " . Auth::id() . " AND wallet_id = " . walletactive()->id ." AND  type = 'expense' AND YEAR(due_at) = due_year AND MONTH(due_at) = due_month) AS expense")),
+                (DB::raw("(SELECT SUM(value) FROM invoices WHERE repeat_when = 'single' AND status = 'paid' AND user_id = " . Auth::id() . " AND wallet_id = " . walletactive()->id ." AND  type = 'income' AND YEAR(due_at) = due_year AND MONTH(due_at) = due_month) AS income"))
             )
             ->where('user_id', Auth::id())
             ->groupByRaw('YEAR(due_at) ASC, MONTH(due_at) ASC')
@@ -101,6 +102,26 @@ class Invoice extends Model
     public function getCategoryAttribute()
     {
         return $this->category()->first()->name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRepeatDateAttribute()
+    {
+        switch ($this->repeat_type) {
+            case 'weekly':
+                return 'Toda ' . __('messages.' . date('D', strtotime($this->due_at)));
+
+            case 'monthly':
+                return 'Todo dia ' . date('d', strtotime($this->due_at)) ;
+
+            case 'annually':
+                return 'Todo ano em ' . date('d/m', strtotime($this->due_at));
+
+            default:
+                return '';
+        }
     }
 
     /**
