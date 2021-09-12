@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddRepeatTypeUsersTable extends Migration
+class AddRepeatTypeInvoicesTalbe extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddRepeatTypeUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('repeat_type')->nullable();
+        Schema::table('invoices', function (Blueprint $table) {
+            $table->string('repeat_when')->nullable();
         });
     }
 
@@ -25,7 +25,7 @@ class AddRepeatTypeUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('invoices', function (Blueprint $table) {
             //
         });
     }
