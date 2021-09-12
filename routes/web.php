@@ -35,7 +35,7 @@ Route::group(['middleware' => ['auth', 'verified', 'wallet'], 'prefix' => 'app',
     /*
      *  INVOICES
      */
-    Route::group(['prefix' => 'faturas'], function() {
+    Route::group(['prefix' => 'faturas', 'middleware' => 'fixed'], function() {
        Route::get('fixas', [AppController::class, 'fixed'])->name('fixed');
        Route::get('despesas/{status?}/{category?}/{date?}', [AppController::class, 'expenses'])->name('expenses');
        Route::get('receitas/{status?}/{category?}/{date?}', [AppController::class, 'incomes'])->name('incomes');
