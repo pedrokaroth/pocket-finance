@@ -75,10 +75,10 @@
                                 <i class="fas fa-undo"></i> Repetir
                             </div>
                             <label class="display-full">
-                                <select name="repeat" class="browser-default custom-select mt-2">
+                                <select name="repeat_type" class="browser-default custom-select mt-2">
                                     <option value="weekly">Semanalmente</option>
-                                    <option value="monthly">Semanalmente</option>
-                                    <option value="annually">Semanalmente</option>
+                                    <option value="monthly">Mensalmente</option>
+                                    <option value="annually">Anualmente</option>
                                 </select>
                             </label>
                         </div>
