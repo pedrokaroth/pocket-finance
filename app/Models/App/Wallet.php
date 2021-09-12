@@ -32,16 +32,31 @@ class Wallet extends Model
     ];
 
     /**
+     *
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        if(auth()->check()) {
+            self::creating(function($model) {
+                $model->free = !user()->hasWallet();
+                $model->user_id = user()->id;
+            });
+        }
+    }
+
+    /**
      * @return bool|null
      */
     public function delete(): ?bool
     {
-        if(session()->has('walletfilter') && session()->get('walletfilter') == $this->id) {
-            session()->remove('walletfilter');
-        }
-
         if(user()->wallets()->count() == 1 || $this->free) {
             return false;
+        }
+
+        if(session()->has('walletfilter') && session()->get('walletfilter') == $this->id) {
+            session()->remove('walletfilter');
         }
 
         return parent::delete();
@@ -63,19 +78,6 @@ class Wallet extends Model
     public static function findById(int $id)
     {
         return Wallet::where('id', $id)->first();
-    }
-
-    /**
-     * @param string $wallet
-     * @return mixed
-     */
-    public static function bootstrap(string $wallet)
-    {
-        return Wallet::create([
-            'wallet' => $wallet,
-            'user_id' => user()->id,
-            'free' => !user()->hasWallet()
-        ]);
     }
 
     /**

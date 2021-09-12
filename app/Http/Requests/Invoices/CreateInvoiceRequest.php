@@ -2,9 +2,14 @@
 
 namespace App\Http\Requests\Invoices;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Class CreateInvoiceRequest
+ * @package App\Http\Requests\Invoices
+ */
 class CreateInvoiceRequest extends FormRequest
 {
     /**
@@ -33,7 +38,25 @@ class CreateInvoiceRequest extends FormRequest
             'repeat_when' => 'required|in:single,enrollment',
             'type' => 'required|in:income,expense',
             'comments' => 'max:191',
-            'status' => 'in:unpaid'
+            'status' => 'in:unpaid,paid'
         ];
+    }
+
+    /**
+     *  Set the correct value for validate function
+     *
+     */
+    protected function prepareForValidation()
+    {
+        if(!$this->has('status')) {
+            /*
+             * Default status value
+             */
+            $this->merge([
+                'status' => $this->get('due_at') <= Carbon::now()
+                    ? 'paid'
+                    : 'unpaid'
+            ]);
+        }
     }
 }

@@ -21,16 +21,7 @@ class InvoicesController extends Controller
      */
     public function store(InvoiceCreate $request): JsonResponse
     {
-        $invoice = new Invoice();
-        $invoice->fill($request->validated());
-        $invoice->user_id = user()->id;
-
-        //When status is not on the request, it calculates with the current date and the due date
-        if(!$invoice->status) {
-            $invoice->status = (date($invoice->due_at) <= date('Y-m-d') ? 'paid' : 'unpaid');
-        }
-
-        $invoice->save();
+        Invoice::create($request->validated());
 
         $this->message('success', 'fatura adicionada com sucesso!');
 

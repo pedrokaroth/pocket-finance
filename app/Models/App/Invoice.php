@@ -29,12 +29,15 @@ class Invoice extends Model
         'repeat_when', 'status', 'type'
     ];
 
-    /**
-     * @param $value
-     */
-    public function setValueAttribute($value)
+    protected static function boot()
     {
-        $this->attributes['value'] = (float)str_replace(['.', ','],['', '.'] ,$value);
+        parent::boot();
+
+        if(auth()->check()) {
+            self::creating(function($model) {
+                $model->user_id = user()->id;
+            });
+        }
     }
 
     /**
@@ -98,5 +101,13 @@ class Invoice extends Model
     public function getCategoryAttribute()
     {
         return $this->category()->first()->name;
+    }
+
+    /**
+     * @param $value
+     */
+    public function setValueAttribute($value)
+    {
+        $this->attributes['value'] = (float)str_replace(['.', ','],['', '.'] ,$value);
     }
 }

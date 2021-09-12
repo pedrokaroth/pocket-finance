@@ -22,7 +22,7 @@ class WalletsController extends Controller
      */
     public function store(WalletRequest $request): JsonResponse
     {
-        Wallet::bootstrap($request->get('wallet'));
+        Wallet::create($request->validated());
 
         $this->message('success', 'Carteira criada com sucesso');
 
