@@ -5,7 +5,8 @@
     @include('app.includes.modals.invoice-expense')
 
     <section class="app-invoice">
-        <div class="filter box">
+        @if(!empty($filter))
+            <div class="filter box">
             <div class="inputs">
                 <form action="{{ route('app.invoices.filter') }}" method="post">
                     @method('POST')
@@ -50,7 +51,7 @@
                 </button>
             @endif
         </div>
-
+        @endif
         <article class="box">
             <table class="table table-striped table-hover">
                 <thead>
@@ -72,7 +73,16 @@
                         @if($invoice->enrollments > 0)
 
                         @else
-                            <td>Única</td>
+                            <td>
+                                @switch($invoice->repeat_when)
+                                    @case('single')
+                                        Única
+                                    @break
+                                    @case('fixed')
+                                        Fixa
+                                    @break
+                                @endswitch
+                            </td>
                         @endif
                         <td>{{ str_price($invoice->value) }}</td>
                         <td>
@@ -87,13 +97,21 @@
                                     <form action="{{ route('app.invoices.status', ['invoice' => $invoice]) }}" method="post">
                                         @method('PUT')
                                         <input type="hidden" name="status" value="unpaid">
-                                        <button type="submit" class="btn btn-success  btn-sm btn-form" title="Marcar como não Paga"><i class="far fa-grin"></i></button>
+                                        @if($invoice->repeat_when == 'single')
+                                            <button type="submit" class="btn btn-success  btn-sm btn-form" title="Marcar como não Paga"><i class="far fa-grin"></i></button>
+                                        @else
+                                            <button type="submit" class="btn btn-success  btn-sm btn-form" title="Marcar como não Ativa"><i class="fas fa-check"></i></button>
+                                        @endif
                                     </form>
                                 @else
                                     <form action="{{ route('app.invoices.status', ['invoice' => $invoice]) }}">
                                         @method('PUT')
                                         <input type="hidden" name="status" value="paid">
-                                        <button type="submit" class="btn btn-warning  btn-sm btn-form" title="Marcar como Paga"><i class="far fa-frown"></i></button>
+                                        @if($invoice->repeat_when == 'single')
+                                            <button type="submit" class="btn btn-warning  btn-sm btn-form" title="Marcar como Paga"><i class="far fa-frown"></i></button>
+                                        @else
+                                            <button type="submit" class="btn btn-warning  btn-sm btn-form" title="Marcar como Ativa"><i class="fas fa-check"></i></button>
+                                        @endif
                                     </form>
                                 @endif
                             </div>

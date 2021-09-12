@@ -103,7 +103,11 @@ class Wallet extends Model
      */
     public function income()
     {
-        return $this->invoices()->where('type', 'income')->sum('value');
+        return $this->invoices()
+            ->where('type', 'income')
+            ->where('repeat_when', 'single')
+            ->where('status', 'paid')
+            ->sum('value');
     }
 
     /**
@@ -111,7 +115,11 @@ class Wallet extends Model
      */
     public function expense()
     {
-        return $this->invoices()->where('type', 'expense')->sum('value');
+        return $this->invoices()
+            ->where('type', 'expense')
+            ->where('repeat_when', 'single')
+            ->where('status', 'paid')
+            ->sum('value');
     }
 
     /**
@@ -123,7 +131,10 @@ class Wallet extends Model
     public function expenses($status, $category, $date): Collection
     {
         return $this->applyFilters(
-            $this->invoices()->where('type', 'expense'), $status, $category, $date
+            $this->invoices()
+                ->where('type', 'expense')
+                ->where('repeat_when', 'single'),
+                $status, $category, $date
         )->get();
     }
 
@@ -136,8 +147,16 @@ class Wallet extends Model
     public function incomes($status, $category, $date): Collection
     {
         return $this->applyFilters(
-            $this->invoices()->where('type', 'income'), $status, $category, $date
+            $this->invoices()
+                ->where('type', 'income')
+                ->where('repeat_when', 'single'),
+                $status, $category, $date
         )->get();
+    }
+
+    public function fixed(): Collection
+    {
+        return $this->invoices()->where('repeat_when', 'fixed')->get();
     }
 
     /**
