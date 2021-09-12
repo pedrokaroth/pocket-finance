@@ -19,6 +19,10 @@
             <i class="fas fa-coins"></i>
             <span>Receitas</span>
         </a>
+        <a href="{{ route('app.fixed') }}" class="nav_link {{ isActive('app.fixed') }}">
+            <i class="fas fa-history"></i>
+            <span>Fixas</span>
+        </a>
         <div class="logout">
             <a href="{{ route('logout') }}" class="nav_link" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                 <i class="fas fa-sign-out-alt"></i>

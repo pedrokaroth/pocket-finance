@@ -35,10 +35,11 @@ class CreateInvoiceRequest extends FormRequest
             'value' => 'required',
             'wallet_id' => 'required|exists:wallets,id',
             'category_id' => 'required|exists:categories,id',
-            'repeat_when' => 'required|in:single,enrollment',
+            'repeat_when' => 'required|in:single,fixed,enrollment',
             'type' => 'required|in:income,expense',
             'comments' => 'max:191',
-            'status' => 'in:unpaid,paid'
+            'status' => 'in:unpaid,paid',
+            'repeat_type' => 'required_if:repeat_when,fixed|in:weekly,monthly,annually'
         ];
     }
 

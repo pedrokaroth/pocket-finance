@@ -79,4 +79,12 @@ class AppController extends Controller
            'type' => 'income'
         ]);
     }
+
+    public function fixed()
+    {
+        return view('app.invoices', [
+           'invoices' => walletactive()->fixed(),
+           'type' => 'fixed'
+        ]);
+    }
 }

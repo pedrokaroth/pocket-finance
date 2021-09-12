@@ -330,6 +330,7 @@ body {
                     flex-basis: 100%;
                 }
 
+
                 label.display-flex {
                     flex-basis: 48%;
                 }
@@ -368,6 +369,10 @@ body {
                     padding: 10px;
                     width: 100%;
                 }
+            }
+
+            .income-option {
+                display: none;
             }
         }
 

@@ -58,17 +58,37 @@
                             <div class="app-checkbox red-checkbox">
                                 <label>
                                     <input type="radio" name="repeat_when" value="single" checked>
-                                    <span>Única</span>
+                                    <span class="income-radio">Única</span>
                                 </label>
                                 <label>
                                     <input type="radio" name="repeat_when" value="fixed">
-                                    <span>Fixa</span>
+                                    <span class="income-radio" data-slidedown=".fixed-option">Fixa</span>
                                 </label>
                                 <label>
                                     <input type="radio" name="repeat_when" value="enrollment">
-                                    <span>Parcelada</span>
+                                    <span class="income-radio" data-slidedown=".enrollments-option">Parcelada</span>
                                 </label>
                             </div>
+                        </div>
+                        <div class="label-group fixed-option income-option">
+                            <div class="mb-2 ml-2">
+                                <i class="fas fa-undo"></i> Repetir
+                            </div>
+                            <label class="display-full">
+                                <select name="repeat_type" class="browser-default custom-select mt-2">
+                                    <option value="weekly">Semanalmente</option>
+                                    <option value="monthly">Mensalmente</option>
+                                    <option value="annually">Anualmente</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="label-group enrollments-option income-option">
+                            <div class="mb-2 ml-2">
+                                <i class="fas fa-undo"></i> Parcelas
+                            </div>
+                            <label class="display-full">
+                                <input type="number" name="enrollments">
+                            </label>
                         </div>
                         <div class="label-group">
                             <div class="app-checkbox-label mb-2 ml-2">
