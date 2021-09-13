@@ -46,6 +46,11 @@ class ValidateNonSingleInvoices
 
                 case 'monthly':
                     $currentMonth = (new Carbon($invoice->due_at))->setMonth(now()->month);
+                    $invoiceDue = (new Carbon($invoice->due_at));
+
+                    if($invoiceDue->month > $currentMonth->month) {
+                        $currentMonth->setMonth($invoiceDue->month);
+                    }
 
                     if(!$this->existInvoiceOnDate($invoice->id, $currentMonth)) {
                         $this->createInvoiceOf($invoice, $currentMonth->format('Y-m-d'));
@@ -55,6 +60,11 @@ class ValidateNonSingleInvoices
 
                 case 'annually':
                     $currentYear = (new Carbon($invoice->due_at))->setYear(now()->year);
+                    $invoiceDue = (new Carbon($invoice->due_at));
+
+                    if($invoiceDue->year > $currentYear->year) {
+                        $currentYear->setYear($invoiceDue->year);
+                    }
 
                     if(!$this->existInvoiceOnDate($invoice->id, $currentYear)) {
                         $this->createInvoiceOf($invoice, $currentYear->format('Y-m-d'));
