@@ -28,20 +28,22 @@ Route::group(['middleware' => ['auth', 'verified', 'wallet'], 'prefix' => 'app',
     /*
      *  WALLETS
      */
-    Route::resource('wallets', WalletsController::class);
-    Route::post('/wallets/filter/{id}', [WalletsController::class, 'walletFilter'])->name('wallets.filter');
-    Route::get('/carteiras', [AppController::class, 'wallets'])->name('wallets');
+    Route::group(['prefix' => 'carteiras', 'as' => 'wallets.'], function() {
+        Route::post('filtrar/{id}', [WalletsController::class, 'walletFilter'])->name('filter');
+        Route::get('/', [WalletsController::class, 'index'])->name('index');
+    });
 
     /*
      *  INVOICES
      */
-    Route::group(['prefix' => 'faturas', 'middleware' => 'fixed'], function() {
-       Route::get('fixas', [AppController::class, 'fixed'])->name('fixed');
-       Route::get('despesas/{status?}/{category?}/{date?}', [AppController::class, 'expenses'])->name('expenses');
-       Route::get('receitas/{status?}/{category?}/{date?}', [AppController::class, 'incomes'])->name('incomes');
+    Route::group(['prefix' => 'faturas', 'middleware' => 'fixed', 'as' => 'invoices.'], function() {
+        Route::post('filtrar', [InvoicesController::class, 'filter'])->name('filter');
+        Route::get('fixas', [InvoicesController::class, 'fixed'])->name('fixed');
+        Route::put('status/{invoice}', [InvoicesController::class, 'setStatus'])->name('status')->withoutMiddleware('fixed');
+        Route::get('despesas/{status?}/{category?}/{date?}', [InvoicesController::class, 'expenses'])->name('expenses');
+        Route::get('receitas/{status?}/{category?}/{date?}', [InvoicesController::class, 'incomes'])->name('incomes');
     });
 
-    Route::put('/invoices/status/{invoice}', [InvoicesController::class, 'setStatus'])->name('invoices.status');
-    Route::post('invoices/filter', [InvoicesController::class, 'filter'])->name('invoices.filter');
     Route::resource('invoices', InvoicesController::class);
+    Route::resource('wallets', WalletsController::class);
 });

@@ -462,6 +462,73 @@ body {
         }
     }
 
+    .app-invoice-edit {
+        form {
+            padding: 25px;
+
+            .label-group {
+                display: flex;
+                justify-content: space-between;
+                padding-bottom: 10px;
+                flex-wrap: wrap;
+
+                .app-checkbox-label {
+                    flex-basis: 100%;
+                }
+
+
+                label.display-flex {
+                    flex-basis: 48%;
+                }
+
+                label.display-full {
+                    flex-basis: 100%;
+                }
+
+                i {
+                    margin-left: 8px;
+                }
+
+                textarea {
+                    width: 100%;
+                    resize: none;
+                    padding: 10px;
+                    border: 2px solid #CCCCCC;
+                    color: #888888;
+                    border-radius: $radius-normal;
+                }
+
+                select {
+                    height: 50px;
+                    border: 2px solid #CCCCCC;
+                    border-radius: $radius-normal!important;
+                }
+
+                input:not([type="checkbox"]) {
+                    margin-top: 5px;
+                    font-size: 1em;
+                    border: 2px solid #CCCCCC;
+                    color: #888888;
+                    border-radius: $radius-normal;
+                    display: block;
+                    background: none;
+                    padding: 10px;
+                    width: 100%;
+                }
+            }
+
+            .btn-edit {
+                display: flex;
+                justify-content: center;
+
+                a, button {
+                    flex-basis: 40%;
+                    margin: 10px
+                }
+            }
+        }
+    }
+
     .box {
         background-color: #FFFFFF;
         box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;

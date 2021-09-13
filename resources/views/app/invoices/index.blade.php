@@ -93,7 +93,7 @@
 
                                     <button type="submit" class="btn btn-danger  btn-sm"><i class="fas fa-trash-alt"></i></button>
                                 </form>
-                                <button type="submit" class="btn btn-info  btn-sm"><i class="far fa-eye"></i></button>
+                                <a href="{{ route('app.invoices.edit', ['invoice' => $invoice]) }}" class="btn btn-info  btn-sm"><i class="far fa-eye"></i></a>
                                 @if($invoice->status == 'paid')
                                     <form action="{{ route('app.invoices.status', ['invoice' => $invoice]) }}" method="post">
                                         @method('PUT')

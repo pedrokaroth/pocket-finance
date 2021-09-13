@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Wallet as WalletRequest;
 use App\Models\App\Wallet;
 use Illuminate\Http\JsonResponse;
+use Illuminate\View\View;
 use MongoDB\Driver\Session;
 
 /**
@@ -14,6 +15,19 @@ use MongoDB\Driver\Session;
  */
 class WalletsController extends Controller
 {
+
+    /**
+     *  Show the application wallets.
+     *
+     * @return View
+     */
+    public function index(): View
+    {
+        return view('app.wallets', [
+            'wallets' => user()->wallets()->get()
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

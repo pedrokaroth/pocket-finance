@@ -7,19 +7,19 @@
     </div>
     <hr>
     <div class="sidebar-nav">
-        <a href="{{ route('app.wallets') }}" class="nav_link {{ isActive('app.wallets') }}">
+        <a href="{{ route('app.wallets.index') }}" class="nav_link {{ isActive('app.wallets.index') }}">
             <i class="fas fa-wallet"></i>
             <span>Carteiras</span>
         </a>
-        <a href="{{ route('app.expenses') }}" class="nav_link {{ isActive('app.expenses') }}">
+        <a href="{{ route('app.invoices.expenses') }}" class="nav_link {{ isActive('app.expenses') }}">
             <i class="fas fa-funnel-dollar"></i>
             <span>Despesas</span>
         </a>
-        <a href="{{ route('app.incomes') }}" class="nav_link {{ isActive('app.incomes') }}">
+        <a href="{{ route('app.invoices.incomes') }}" class="nav_link {{ isActive('app.incomes') }}">
             <i class="fas fa-coins"></i>
             <span>Receitas</span>
         </a>
-        <a href="{{ route('app.fixed') }}" class="nav_link {{ isActive('app.fixed') }}">
+        <a href="{{ route('app.invoices.fixed') }}" class="nav_link {{ isActive('app.fixed') }}">
             <i class="fas fa-history"></i>
             <span>Fixas</span>
         </a>

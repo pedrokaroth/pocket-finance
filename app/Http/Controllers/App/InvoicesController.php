@@ -5,14 +5,71 @@ namespace App\Http\Controllers\App;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Invoices\CreateInvoiceRequest as InvoiceCreate;
 use App\Http\Requests\Invoices\FilterInvoiceRequest as InvoiceFilter;
+use App\Http\Requests\Invoices\UpdateInvoiceRequest as InvoiceUpdate;
 use App\Http\Requests\Invoices\UpdateStatusInvoiceRequest as InvoiceStatus;
 use App\Models\App\Invoice;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\View\View;
 
+/**
+ * Class InvoicesController
+ * @package App\Http\Controllers\App
+ */
 class InvoicesController extends Controller
 {
+
+    /**
+     * @param mixed $status
+     * @param mixed $category
+     * @param mixed $date
+     * @return View
+     */
+    public function incomes($status = 'all', $category = 'all', $date = 'all'): View
+    {
+
+        return view('app.invoices.index', [
+            'invoices' => walletactive()->incomes($status, $category, $date)->sortByDesc('due_at'),
+            'filter' => [
+                'status' => $status ?? null,
+                'category' => $category ?? null,
+                'date' => !empty($date) && $date != 'all' ?
+                    explode('-', $date)[0] . '/' . explode('-', $date)[1] : 'all'
+            ],
+            'type' => 'income'
+        ]);
+    }
+
+    /**
+     * @param mixed $status
+     * @param mixed $category
+     * @param mixed $date
+     * @return View
+     */
+    public function expenses($status = 'all', $category = 'all', $date = 'all'): View
+    {
+        return view('app.invoices.index', [
+            'invoices' => walletactive()->expenses($status, $category, $date)->sortByDesc('due_at'),
+            'filter' => [
+                'status' => $status ?? null,
+                'category' => $category ?? null,
+                'date' => !empty($date) && $date != 'all' ?
+                    explode('-', $date)[0] . '/' . explode('-', $date)[1] : 'all'
+            ],
+            'type' => 'expense'
+        ]);
+    }
+
+    /**
+     * @return View
+     */
+    public function fixed(): View
+    {
+        return view('app.invoices.index', [
+            'invoices' => walletactive()->fixed(),
+            'type' => 'fixed'
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -28,6 +85,10 @@ class InvoicesController extends Controller
         return response()->json(['reload' => true]);
     }
 
+    /**
+     * @param InvoiceFilter $request
+     * @return JsonResponse
+     */
     public function filter(InvoiceFilter $request): JsonResponse
     {
         $status = $request->get('status');
@@ -42,19 +103,35 @@ class InvoicesController extends Controller
 
 
         return response()->json([
-            'redirect' => route("app.{$request->get('invoice')}s") . "/{$status}/{$category}/{$date}"
+            'redirect' => route("app.invoices.{$request->get('invoice')}s") . "/{$status}/{$category}/{$date}"
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Invoice $invoice
+     * @return View
      */
-    public function edit($id)
+    public function edit(Invoice $invoice): View
     {
-        //
+        return view('app.invoices.edit', [
+            'invoice' => $invoice
+        ]);
+    }
+
+    /**
+     * @param InvoiceUpdate $request
+     * @param Invoice $invoice
+     * @return JsonResponse
+     */
+    public function update(InvoiceUpdate $request, Invoice $invoice): JsonResponse
+    {
+        $invoice->update($request->validated());
+
+        return response()->json([
+            'success' => 'Fatura Atualizada com sucesso!'
+        ]);
     }
 
     /**
