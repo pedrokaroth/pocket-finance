@@ -5,6 +5,7 @@ namespace App\Http\Controllers\App;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Invoices\CreateInvoiceRequest as InvoiceCreate;
 use App\Http\Requests\Invoices\FilterInvoiceRequest as InvoiceFilter;
+use App\Http\Requests\Invoices\UpdateInvoiceRequest as InvoiceUpdate;
 use App\Http\Requests\Invoices\UpdateStatusInvoiceRequest as InvoiceStatus;
 use App\Models\App\Invoice;
 use Illuminate\Http\JsonResponse;
@@ -116,6 +117,20 @@ class InvoicesController extends Controller
     {
         return view('app.invoices.edit', [
             'invoice' => $invoice
+        ]);
+    }
+
+    /**
+     * @param InvoiceUpdate $request
+     * @param Invoice $invoice
+     * @return JsonResponse
+     */
+    public function update(InvoiceUpdate $request, Invoice $invoice): JsonResponse
+    {
+        $invoice->update($request->validated());
+
+        return response()->json([
+            'success' => 'Fatura Atualizada com sucesso!'
         ]);
     }
 

@@ -65,6 +65,9 @@ $(function() {
                 if(response.redirect) {
                     window.location.href = response.redirect;
                 }
+                if(response.success) {
+                    toastr.success(response.success)
+                }
             },
 
             error: function(response) {
