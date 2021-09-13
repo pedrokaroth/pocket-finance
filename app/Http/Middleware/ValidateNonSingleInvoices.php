@@ -83,13 +83,15 @@ class ValidateNonSingleInvoices
      * @param $due_at
      */
     private function createInvoiceOf($invoice, $due_at) {
+
+
         Invoice::create([
             'wallet_id' => $invoice->wallet_id,
             'category_id' => $invoice->category_id,
             'invoice_of' => $invoice->id,
             'description' => $invoice->description,
             'comments' => $invoice->comments,
-            'value' => $invoice->value,
+            'value' => str_price($invoice->value),
             'type' => $invoice->type,
             'due_at' => $due_at,
             'repeat_when' => 'single',
