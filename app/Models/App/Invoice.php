@@ -68,8 +68,8 @@ class Invoice extends Model
             ->select(
                 (DB::raw('YEAR(due_at) AS due_year')),
                 (DB::raw('MONTH(due_at) AS due_month')),
-                (DB::raw("(SELECT SUM(value) FROM invoices WHERE repeat_when = 'single' AND status = 'paid' AND user_id = " . Auth::id() . " AND wallet_id = " . walletactive()->id ." AND  type = 'expense' AND YEAR(due_at) = due_year AND MONTH(due_at) = due_month) AS expense")),
-                (DB::raw("(SELECT SUM(value) FROM invoices WHERE repeat_when = 'single' AND status = 'paid' AND user_id = " . Auth::id() . " AND wallet_id = " . walletactive()->id ." AND  type = 'income' AND YEAR(due_at) = due_year AND MONTH(due_at) = due_month) AS income"))
+                (DB::raw("(SELECT SUM(value) FROM invoices WHERE repeat_when = 'single' AND status = 'paid' AND user_id = " . Auth::id() . " AND wallet_id = " . walletactive()->id ." AND  type = 'expense' AND YEAR(due_at) = due_year AND MONTH(due_at) = due_month AND deleted_at IS NULL) AS expense")),
+                (DB::raw("(SELECT SUM(value) FROM invoices WHERE repeat_when = 'single' AND status = 'paid' AND user_id = " . Auth::id() . " AND wallet_id = " . walletactive()->id ." AND  type = 'income' AND YEAR(due_at) = due_year AND MONTH(due_at) = due_month AND deleted_at IS NULL) AS income"))
             )
             ->where('user_id', Auth::id())
             ->whereRaw('MONTH(due_at) <= MONTH(NOW())')
