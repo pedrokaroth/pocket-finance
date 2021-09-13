@@ -47,7 +47,7 @@ class AppController extends Controller
     public function expenses($status = 'all', $category = 'all', $date = 'all'): View
     {
         return view('app.invoices', [
-            'invoices' => walletactive()->expenses($status, $category, $date),
+            'invoices' => walletactive()->expenses($status, $category, $date)->sortByDesc('due_at'),
             'filter' => [
                 'status' => $status ?? null,
                 'category' => $category ?? null,
@@ -69,7 +69,7 @@ class AppController extends Controller
     {
 
         return view('app.invoices', [
-           'invoices' => walletactive()->incomes($status, $category, $date),
+           'invoices' => walletactive()->incomes($status, $category, $date)->sortByDesc('due_at'),
             'filter' => [
                 'status' => $status ?? null,
                 'category' => $category ?? null,
