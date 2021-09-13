@@ -72,6 +72,8 @@ class Invoice extends Model
                 (DB::raw("(SELECT SUM(value) FROM invoices WHERE repeat_when = 'single' AND status = 'paid' AND user_id = " . Auth::id() . " AND wallet_id = " . walletactive()->id ." AND  type = 'income' AND YEAR(due_at) = due_year AND MONTH(due_at) = due_month) AS income"))
             )
             ->where('user_id', Auth::id())
+            ->whereRaw('MONTH(due_at) <= MONTH(NOW())')
+            ->whereRaw('YEAR(due_at) <= YEAR(NOW())')
             ->groupByRaw('YEAR(due_at) ASC, MONTH(due_at) ASC')
             ->get();
 
