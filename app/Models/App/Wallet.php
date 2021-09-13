@@ -66,7 +66,7 @@ class Wallet extends Model
     /**
      * @return HasMany|Model|object|null
      */
-    public static function free()
+    public static function free(): Wallet
     {
         return user()->wallets()->where('free', 1)->first();
     }
