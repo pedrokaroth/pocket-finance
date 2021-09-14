@@ -47,14 +47,15 @@
             @else
                 <button class="income btn btn-outline-success open-modal btn-sm" data-modal="invoice-income">
                     <i class="fas fa-plus-circle" aria-hidden="true"></i>
-                    <span>Nova Despesa</span>
+                    <span>Nova Receita</span>
                 </button>
             @endif
         </div>
         @endif
         <article class="box">
-            <table class="table table-striped table-hover">
-                <thead>
+            @if($invoices->count())
+                <table class="table table-striped table-hover">
+                    <thead>
                     <tr>
                         <th>Descrição</th>
                         <th>{{ $type !== 'fixed' ? 'Vencimento' : 'Repete'  }}</th>
@@ -63,64 +64,74 @@
                         <th>Valor</th>
                         <th>Acões</th>
                     </tr>
-                </thead>
+                    </thead>
 
-                <tbody>
-                @foreach($invoices as $invoice)
-                    <tr>
-                        <td>{{ $invoice->description }}</td>
-                        <td>{{ $type == 'fixed' ? $invoice->repeat_date : "Dia " . date('d/m', strtotime($invoice->due_at)) }}</td>
-                        <td>{{ $invoice->category }}</td>
-                        @if($invoice->enrollments > 0)
+                    <tbody>
+                    @foreach($invoices as $invoice)
+                        <tr>
+                            <td>{{ $invoice->description }}</td>
+                            <td>{{ $type == 'fixed' ? $invoice->repeat_date : "Dia " . date('d/m', strtotime($invoice->due_at)) }}</td>
+                            <td>{{ $invoice->category }}</td>
+                            @if($invoice->enrollments > 0)
 
-                        @else
-                            <td>
-                                @switch($invoice->repeat_when)
-                                    @case('single')
+                            @else
+                                <td>
+                                    @switch($invoice->repeat_when)
+                                        @case('single')
                                         Única
-                                    @break
-                                    @case('fixed')
+                                        @break
+                                        @case('fixed')
                                         {{ ucfirst(__('messages.' . $invoice->repeat_type)) }}
-                                    @break
-                                @endswitch
-                            </td>
-                        @endif
-                        <td>{{ str_price($invoice->value) }}</td>
-                        <td>
-                            <div class="btn-group">
-                                <form action="{{ route('app.invoices.destroy', ['invoice' => $invoice]) }}" method="post">
-                                    @method('DELETE')
+                                        @break
+                                    @endswitch
+                                </td>
+                            @endif
+                            <td>{{ str_price($invoice->value) }}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <form action="{{ route('app.invoices.destroy', ['invoice' => $invoice]) }}" method="post">
+                                        @method('DELETE')
 
-                                    <button type="submit" class="btn btn-danger  btn-sm" style="border-bottom-right-radius: 0;border-top-right-radius: 0"><i class="fas fa-trash-alt"></i></button>
-                                </form>
-                                <a href="{{ route('app.invoices.edit', ['invoice' => $invoice]) }}" class="btn btn-info  btn-sm"><i class="far fa-eye"></i></a>
-                                @if($invoice->status == 'paid')
-                                    <form action="{{ route('app.invoices.status', ['invoice' => $invoice]) }}" method="post">
-                                        @method('PUT')
-                                        <input type="hidden" name="status" value="unpaid">
-                                        @if($invoice->repeat_when == 'single')
-                                            <button type="submit" class="btn btn-success  btn-sm btn-form" title="Marcar como não Paga"><i class="far fa-grin"></i></button>
-                                        @else
-                                            <button type="submit" class="btn btn-success  btn-sm btn-form" title="Marcar como não Ativa"><i class="fas fa-check"></i></button>
-                                        @endif
+                                        <button type="submit" class="btn btn-danger  btn-sm" style="border-bottom-right-radius: 0;border-top-right-radius: 0"><i class="fas fa-trash-alt"></i></button>
                                     </form>
-                                @else
-                                    <form action="{{ route('app.invoices.status', ['invoice' => $invoice]) }}">
-                                        @method('PUT')
-                                        <input type="hidden" name="status" value="paid">
-                                        @if($invoice->repeat_when == 'single')
-                                            <button type="submit" class="btn btn-warning  btn-sm btn-form" title="Marcar como Paga"><i class="far fa-frown"></i></button>
-                                        @else
-                                            <button type="submit" class="btn btn-warning  btn-sm btn-form" title="Marcar como Ativa"><i class="fas fa-check"></i></button>
-                                        @endif
-                                    </form>
-                                @endif
-                            </div>
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
+                                    <a href="{{ route('app.invoices.edit', ['invoice' => $invoice]) }}" class="btn btn-info  btn-sm"><i class="far fa-eye"></i></a>
+                                    @if($invoice->status == 'paid')
+                                        <form action="{{ route('app.invoices.status', ['invoice' => $invoice]) }}" method="post">
+                                            @method('PUT')
+                                            <input type="hidden" name="status" value="unpaid">
+                                            @if($invoice->repeat_when == 'single')
+                                                <button type="submit" class="btn btn-success  btn-sm btn-form" title="Marcar como não Paga"><i class="far fa-grin"></i></button>
+                                            @else
+                                                <button type="submit" class="btn btn-success  btn-sm btn-form" title="Marcar como não Ativa"><i class="fas fa-check"></i></button>
+                                            @endif
+                                        </form>
+                                    @else
+                                        <form action="{{ route('app.invoices.status', ['invoice' => $invoice]) }}">
+                                            @method('PUT')
+                                            <input type="hidden" name="status" value="paid">
+                                            @if($invoice->repeat_when == 'single')
+                                                <button type="submit" class="btn btn-warning  btn-sm btn-form" title="Marcar como Paga"><i class="far fa-frown"></i></button>
+                                            @else
+                                                <button type="submit" class="btn btn-warning  btn-sm btn-form" title="Marcar como Ativa"><i class="fas fa-check"></i></button>
+                                            @endif
+                                        </form>
+                                    @endif
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            @elseif($type != 'fixed')
+                <div class="alert alert-primary mt-3" role="alert">
+                    Ainda não existem faturas cadastradas, <a href="#" class="alert-link open-modal" data-modal="invoice-{{ $type }}">clique aqui para adicionar</a>.
+                </div>
+            @else
+                <div class="alert alert-primary mt-3" role="alert">
+                    Primeiro realize o cadastro de uma fatura fixa através da tela principal ou da tela de faturas.
+                </div>
+            @endif
         </article>
     </section>
 @endsection
+
