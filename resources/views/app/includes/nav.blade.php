@@ -11,15 +11,15 @@
             <i class="fas fa-wallet"></i>
             <span>Carteiras</span>
         </a>
-        <a href="{{ route('app.invoices.expenses') }}" class="nav_link {{ isActive('app.expenses') }}">
+        <a href="{{ route('app.invoices.expenses') }}" class="nav_link {{ isActive('app.invoices.expenses') }}">
             <i class="fas fa-funnel-dollar"></i>
             <span>Despesas</span>
         </a>
-        <a href="{{ route('app.invoices.incomes') }}" class="nav_link {{ isActive('app.incomes') }}">
+        <a href="{{ route('app.invoices.incomes') }}" class="nav_link {{ isActive('app.invoices.incomes') }}">
             <i class="fas fa-coins"></i>
             <span>Receitas</span>
         </a>
-        <a href="{{ route('app.invoices.fixed') }}" class="nav_link {{ isActive('app.fixed') }}">
+        <a href="{{ route('app.invoices.fixed') }}" class="nav_link {{ isActive('app.invoices.fixed') }}">
             <i class="fas fa-history"></i>
             <span>Fixas</span>
         </a>
