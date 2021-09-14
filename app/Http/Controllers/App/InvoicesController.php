@@ -24,8 +24,11 @@ class InvoicesController extends Controller
      * @param mixed $date
      * @return View
      */
-    public function incomes($status = 'all', $category = 'all', $date = 'all'): View
+    public function incomes($status = 'all', $category = 'all', $date = null): View
     {
+        if(!$date) {
+            $date = date('m-Y');
+        }
 
         return view('app.invoices.index', [
             'invoices' => walletactive()->incomes($status, $category, $date)->sortByDesc('due_at'),
@@ -45,8 +48,12 @@ class InvoicesController extends Controller
      * @param mixed $date
      * @return View
      */
-    public function expenses($status = 'all', $category = 'all', $date = 'all'): View
+    public function expenses($status = 'all', $category = 'all', $date = null): View
     {
+        if(!$date) {
+            $date = date('m-Y');
+        }
+
         return view('app.invoices.index', [
             'invoices' => walletactive()->expenses($status, $category, $date)->sortByDesc('due_at'),
             'filter' => [
