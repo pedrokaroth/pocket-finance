@@ -91,7 +91,7 @@
                                 <form action="{{ route('app.invoices.destroy', ['invoice' => $invoice]) }}" method="post">
                                     @method('DELETE')
 
-                                    <button type="submit" class="btn btn-danger  btn-sm"><i class="fas fa-trash-alt"></i></button>
+                                    <button type="submit" class="btn btn-danger  btn-sm" style="border-bottom-right-radius: 0;border-top-right-radius: 0"><i class="fas fa-trash-alt"></i></button>
                                 </form>
                                 <a href="{{ route('app.invoices.edit', ['invoice' => $invoice]) }}" class="btn btn-info  btn-sm"><i class="far fa-eye"></i></a>
                                 @if($invoice->status == 'paid')
