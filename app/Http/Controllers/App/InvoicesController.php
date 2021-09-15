@@ -67,6 +67,29 @@ class InvoicesController extends Controller
     }
 
     /**
+     * @param Invoice $invoice
+     * @return JsonResponse|object
+     */
+    public function clone(Invoice $invoice)
+    {
+        if ($invoice->type === 'fixed') {
+            return $this->jsonError('Não é possível clonar faturas fixas');
+        }
+
+        $invoice->setAsCloned();
+
+        $invoice->invoice_of = $invoice->id;
+        $invoice->type = $invoice->type == 'expense' ? 'income' : 'expense';
+        $invoice->status = 'unpaid';
+        $invoice->cloned = null;
+
+        Invoice::create($invoice->toArray());
+
+
+        return $this->jsonReload('Fatura clonada com sucesso');
+    }
+
+    /**
      * @return View
      */
     public function fixed(): View
@@ -87,9 +110,7 @@ class InvoicesController extends Controller
     {
         Invoice::create($request->validated());
 
-        $this->message('success', 'fatura adicionada com sucesso!');
-
-        return response()->json(['reload' => true]);
+        return $this->jsonReload('Fatura adicionada com sucesso!');
     }
 
     /**
@@ -136,9 +157,7 @@ class InvoicesController extends Controller
     {
         $invoice->update($request->validated());
 
-        return response()->json([
-            'success' => 'Fatura Atualizada com sucesso!'
-        ]);
+        return $this->jsonSuccess('Fatura atualizada com sucesso');
     }
 
     /**
@@ -154,11 +173,7 @@ class InvoicesController extends Controller
             'status' => $request->get('status')
         ]);
 
-        $this->message('success', 'Status alterado com sucesso!');
-
-        return response()->json([
-            'reload' => true
-        ]);
+        return $this->jsonReload('Status alterado com sucesso');
     }
 
     /**
@@ -171,10 +186,6 @@ class InvoicesController extends Controller
     {
         $invoice->delete();
 
-        $this->message('success', 'Fatura removida com sucesso');
-
-        return response()->json([
-            'reload' => true
-        ]);
+        return $this->jsonReload('Fatura removida com sucesso');
     }
 }

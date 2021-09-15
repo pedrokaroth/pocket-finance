@@ -38,9 +38,7 @@ class WalletsController extends Controller
     {
         Wallet::create($request->validated());
 
-        $this->message('success', 'Carteira criada com sucesso');
-
-        return response()->json(['reload' => true]);
+        return $this->jsonReload('Carteira criada com sucesso');
     }
 
 
@@ -57,7 +55,7 @@ class WalletsController extends Controller
             'wallet' => $request->get('wallet')
         ]);
 
-        return response()->json(['success' => true]);
+        return $this->jsonSuccess('Cateira renomeada');
     }
 
     /**
@@ -69,14 +67,10 @@ class WalletsController extends Controller
     public function destroy(Wallet $wallet): JsonResponse
     {
         if(!$wallet->delete()) {
-            return \response()
-                ->json(['errors' => ['wallet' => ['Não é possível remover essa carteira']]])
-                ->setStatusCode(412);
+            $this->jsonError('Não foi possível remover a carteira');
         }
 
-        $this->message('success', 'Carteira removida com sucesso');
-
-        return response()->json(['reload' => true]);
+        return $this->jsonReload('Carteira removida com sucesso');
     }
 
     /**
@@ -87,6 +81,6 @@ class WalletsController extends Controller
     {
         session()->put('walletfilter', $id);
 
-        return response()->json(['reload' => true]);
+        return $this->jsonReload();
     }
 }

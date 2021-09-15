@@ -27,9 +27,12 @@ class Invoice extends Model
      */
     protected $fillable = [
         'description', 'value', 'due_at', 'wallet_id', 'category', 'comments', 'user_id', 'category_id', 'comments',
-        'repeat_when', 'status', 'type', 'repeat_type', 'invoice_of'
+        'repeat_when', 'status', 'type', 'repeat_type', 'invoice_of', 'cloned'
     ];
 
+    /**
+     *
+     */
     protected static function boot()
     {
         parent::boot();
@@ -96,6 +99,14 @@ class Invoice extends Model
         $chartData->income = $chartIncome ?? [0,0,0,0,0];
 
         return $chartData;
+    }
+
+    /**
+     * Define the invoice was cloned
+     */
+    public function setAsCloned()
+    {
+        $this->update(['cloned' => true]);
     }
 
     /**

@@ -39,6 +39,7 @@ Route::group(['middleware' => ['auth', 'verified', 'wallet'], 'prefix' => 'app',
     Route::group(['prefix' => 'faturas', 'middleware' => 'fixed', 'as' => 'invoices.'], function() {
         Route::post('filtrar', [InvoicesController::class, 'filter'])->name('filter');
         Route::get('fixas', [InvoicesController::class, 'fixed'])->name('fixed');
+        Route::post('clone/{invoice}', [InvoicesController::class, 'clone'])->name('clone')->withoutMiddleware('fixed');
         Route::put('status/{invoice}', [InvoicesController::class, 'setStatus'])->name('status')->withoutMiddleware('fixed');
         Route::get('despesas/{status?}/{category?}/{date?}', [InvoicesController::class, 'expenses'])->name('expenses');
         Route::get('receitas/{status?}/{category?}/{date?}', [InvoicesController::class, 'incomes'])->name('incomes');
