@@ -23,7 +23,7 @@
                             </label>
                             <label class="display-flex">
                                 <i class="fas fa-calendar-day"></i> Data
-                                <input type="date" name="due_at">
+                                <input type="date" name="due_at" value="{{ today()->format('Y-m-d') }}">
                             </label>
                         </div>
                         <div class="label-group">
