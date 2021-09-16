@@ -92,15 +92,15 @@
                                     <form action="{{ route('app.invoices.destroy', ['invoice' => $invoice]) }}" method="post">
                                         @method('DELETE')
 
-                                        <button type="submit" class="btn btn-danger  btn-sm" style="border-bottom-right-radius: 0;border-top-right-radius: 0"><i class="fas fa-trash-alt"></i></button>
+                                        <button type="submit" class="btn btn-danger  btn-sm" style="border-bottom-right-radius: 0;border-top-right-radius: 0" title="Remover Fatura"><i class="fas fa-trash-alt"></i></button>
                                     </form>
-                                    <a href="{{ route('app.invoices.edit', ['invoice' => $invoice]) }}" class="btn btn-info  btn-sm"><i class="far fa-eye"></i></a>
+                                    <a href="{{ route('app.invoices.edit', ['invoice' => $invoice]) }}" class="btn btn-info  btn-sm" title="Acessar Fatura"><i class="far fa-eye"></i></a>
 
                                     @if(!$invoice->cloned && !$invoice->invoice_of)
                                         <form action="{{ route('app.invoices.clone', ['invoice' => $invoice]) }}" method="post">
                                             @method('POST')
 
-                                            <button type="submit" class="btn btn-warning  btn-sm" style="color: #FFFFFF;border-radius: 0"><i class="far fa-clone"></i></button>
+                                            <button type="submit" class="btn btn-warning  btn-sm" title="Criar uma {{ $invoice->type == 'expense' ? 'receita' : 'despesa' }} clone" style="color: #FFFFFF;border-radius: 0"><i class="far fa-clone"></i></button>
                                         </form>
                                     @endif
 
