@@ -86,7 +86,7 @@
                                     @endswitch
                                 </td>
                             @endif
-                            <td>{{ str_price($invoice->value) }}</td>
+                            <td>{{ $invoice->value }}</td>
                             <td>
                                 <div class="btn-group">
                                     <form action="{{ route('app.invoices.destroy', ['invoice' => $invoice]) }}" method="post">

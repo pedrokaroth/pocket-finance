@@ -144,4 +144,12 @@ class Invoice extends Model
     {
         $this->attributes['value'] = (float)str_replace(['.', ','],['', '.'] ,$value);
     }
+
+    /**
+     * @return string
+     */
+    public function getValueAttribute(): string
+    {
+        return str_price($this->attributes['value']);
+    }
 }

@@ -21,7 +21,7 @@
             <div class="label-group">
                 <label class="display-flex">
                     <i class="fas fa-money-bill"></i> Valor
-                    <input type="text" value="{{ str_price($invoice->value) }}" class="mask-money" name="value">
+                    <input type="text" value="{{ $invoice->value }}" class="mask-money" name="value">
                 </label>
                 <label class="display-flex">
                     <i class="fas fa-calendar-day"></i> Data

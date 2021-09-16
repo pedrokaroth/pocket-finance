@@ -82,7 +82,6 @@ class InvoicesController extends Controller
         $invoice->type = $invoice->type == 'expense' ? 'income' : 'expense';
         $invoice->status = 'unpaid';
         $invoice->cloned = null;
-        $invoice->value = str_price($invoice->value);
 
         Invoice::create($invoice->toArray());
 

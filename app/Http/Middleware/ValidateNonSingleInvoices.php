@@ -101,7 +101,7 @@ class ValidateNonSingleInvoices
             'invoice_of' => $invoice->id,
             'description' => $invoice->description,
             'comments' => $invoice->comments,
-            'value' => str_price($invoice->value),
+            'value' => $invoice->value,
             'type' => $invoice->type,
             'due_at' => $due_at,
             'repeat_when' => 'single',
