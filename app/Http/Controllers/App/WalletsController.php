@@ -67,7 +67,7 @@ class WalletsController extends Controller
     public function destroy(Wallet $wallet): JsonResponse
     {
         if(!$wallet->delete()) {
-            $this->jsonError('Não foi possível remover a carteira');
+            return $this->jsonError('Não foi possível remover a carteira');
         }
 
         return $this->jsonReload('Carteira removida com sucesso');

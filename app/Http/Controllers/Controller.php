@@ -61,7 +61,7 @@ class Controller extends BaseController
     public function jsonError(string $message)
     {
         return response()
-            ->json([['error' => [ $message ]]])
+            ->json(['errors' => [ 'error' => $message ]])
             ->setStatusCode(412);
     }
 }
