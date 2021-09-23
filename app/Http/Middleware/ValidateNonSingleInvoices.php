@@ -22,6 +22,13 @@ class ValidateNonSingleInvoices
      */
     public function handle(Request $request, Closure $next)
     {
+        /*
+        * Non single invoices must be validate only once by session
+        */
+        if (session()->has('nonSingleInvoicesValidated')){
+            return $next($request);
+        }
+
         $invoices = Invoice::where([
             'user_id' => auth()->id(),
             'repeat_when' => 'fixed',
@@ -71,6 +78,8 @@ class ValidateNonSingleInvoices
                     }
             }
         }
+
+        setNonSingleAsValidated();
 
         return $next($request);
     }
