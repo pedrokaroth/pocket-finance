@@ -25,9 +25,11 @@ class ValidateNonSingleInvoices
         /*
         * Non single invoices must be validate only once by session
         */
-        if (session()->has('nonSingleInvoicesValidated')){
+        if (session()->has('nonSingleInvoicesValidated') && session()->get('nonSingleInvoicesValidated') === true){
             return $next($request);
         }
+
+
 
         $invoices = Invoice::where([
             'user_id' => auth()->id(),

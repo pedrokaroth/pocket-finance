@@ -110,7 +110,7 @@ class InvoicesController extends Controller
     {
         Invoice::create($request->validated());
 
-        if($request->get('repeat_when' !== 'single')) {
+        if($request->get('repeat_when')  == 'fixed') {
             setNonSingleAsUnvalidated();
         }
 

@@ -148,7 +148,7 @@ if(! function_exists('setNonSingleAsUnvalidated')) {
      * Unset the validated non single invoices in the session
      */
     function setNonSingleAsUnvalidated() {
-        session()->remove('nonSingleInvoicesValidated');
+        session()->put('nonSingleInvoicesValidated', false);
     }
 }
 
