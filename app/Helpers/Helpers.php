@@ -131,13 +131,24 @@ if (! function_exists('str_price')) {
     }
 }
 
-if(! function_exists('setNonSingleValidate')) {
+if(! function_exists('setNonSingleAsValidated')) {
 
     /**
      * Sets the non single invoices as validated in the session
      */
     function setNonSingleAsValidated() {
         session()->put('nonSingleInvoicesValidated', true);
+    }
+}
+
+
+if(! function_exists('setNonSingleAsUnvalidated')) {
+
+    /**
+     * Unset the validated non single invoices in the session
+     */
+    function setNonSingleAsUnvalidated() {
+        session()->remove('nonSingleInvoicesValidated');
     }
 }
 

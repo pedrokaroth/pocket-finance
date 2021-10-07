@@ -110,6 +110,10 @@ class InvoicesController extends Controller
     {
         Invoice::create($request->validated());
 
+        if($request->get('repeat_when' !== 'single')) {
+            setNonSingleAsUnvalidated();
+        }
+
         return $this->jsonReload('Fatura adicionada com sucesso!');
     }
 
