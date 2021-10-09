@@ -159,6 +159,11 @@ class Wallet extends Model
         return $this->invoices()->where('repeat_when', 'fixed')->get();
     }
 
+    public function installments(): Collection
+    {
+        return $this->invoices()->where('repeat_type', 'enrollment')->get();
+    }
+
     /**
      * @param $invoices
      * @param $status

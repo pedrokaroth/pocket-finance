@@ -19,6 +19,10 @@
             <i class="fas fa-coins"></i>
             <span>Receitas</span>
         </a>
+        <a href="{{ route('app.invoices.installments') }}" class="nav_link {{ isActive('app.invoices.installments') }}">
+            <i class="fas fa-funnel-dollar"></i>
+            <span>Parceladas</span>
+        </a>
         <a href="{{ route('app.invoices.fixed') }}" class="nav_link {{ isActive('app.invoices.fixed') }}">
             <i class="fas fa-history"></i>
             <span>Fixas</span>

@@ -73,15 +73,21 @@
                             <td>{{ $type == 'fixed' ? $invoice->repeat_date : "Dia " . date('d/m', strtotime($invoice->due_at)) }}</td>
                             <td>{{ $invoice->category }}</td>
                             @if($invoice->enrollments > 0)
-
+                                <td>
+                                    @if($invoice->enrollment_of)
+                                        <a class="nav-link" href="{{ route('app.invoices.edit', ['invoice' => $invoice->enrollment_of]) }}">{{ $invoice->installments }}</a>
+                                    @else
+                                        {{ $invoice->installments }}
+                                    @endif
+                                </td>
                             @else
                                 <td>
                                     @switch($invoice->repeat_when)
                                         @case('single')
-                                        Única
+                                            Única
                                         @break
                                         @case('fixed')
-                                        {{ ucfirst(__('messages.' . $invoice->repeat_type)) }}
+                                            {{ ucfirst(__('messages.' . $invoice->repeat_type)) }}
                                         @break
                                     @endswitch
                                 </td>
@@ -96,7 +102,7 @@
                                     </form>
                                     <a href="{{ route('app.invoices.edit', ['invoice' => $invoice]) }}" class="btn btn-info  btn-sm" title="Acessar Fatura"><i class="far fa-eye"></i></a>
 
-                                    @if(!$invoice->cloned && !$invoice->invoice_of)
+                                    @if(!$invoice->cloned && !$invoice->invoice_of && !$invoice->enrollments)
                                         <form action="{{ route('app.invoices.clone', ['invoice' => $invoice]) }}" method="post">
                                             @method('POST')
 
@@ -110,7 +116,7 @@
                                             <input type="hidden" name="status" value="unpaid">
                                             @if($invoice->repeat_when == 'single')
                                                 <button type="submit" class="btn btn-success  btn-sm btn-form" title="Marcar como não Paga"><i class="far fa-grin"></i></button>
-                                            @else
+                                            @elseif($invoice->repeat_when != 'enrollment')
                                                 <button type="submit" class="btn btn-success  btn-sm btn-form" title="Marcar como não Ativa"><i class="fas fa-check"></i></button>
                                             @endif
                                         </form>
@@ -120,7 +126,7 @@
                                             <input type="hidden" name="status" value="paid">
                                             @if($invoice->repeat_when == 'single')
                                                 <button type="submit" class="btn btn-warning  btn-sm btn-form" title="Marcar como Paga"><i class="far fa-frown"></i></button>
-                                            @else
+                                            @elseif($invoice->repeat_when != 'enrollment')
                                                 <button type="submit" class="btn btn-warning  btn-sm btn-form" title="Marcar como Ativa"><i class="fas fa-check"></i></button>
                                             @endif
                                         </form>

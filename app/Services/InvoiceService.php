@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Models\App\Invoice;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 
 /**
  * Class InvoiceService
@@ -15,10 +16,14 @@ class InvoiceService
 {
     /**
      * @param array $invoice
-     * @return false
+     * @return bool|Invoice
      */
-    public function create(array $invoice): bool
+    public function create(array $invoice)
     {
+        if($invoice['repeat_when'] == 'enrollment') {
+            $invoice['status'] = 'unpaid';
+        }
+
         $invoice = Invoice::create($invoice);
 
         if (!$invoice) {
@@ -54,6 +59,70 @@ class InvoiceService
 
     /**
      * @param Invoice $invoice
+     * @return mixed
+     */
+    private function getTotalEnrollments(Invoice $invoice) {
+        $invoice = Invoice::findById($invoice->enrollment_of);
+
+        return $invoice->enrollments;
+    }
+
+
+    /**
+     * @param $status
+     * @param $category
+     * @param $date
+     * @return Collection
+     */
+    public function getExpensesInvoices($status, $category, $date): Collection
+    {
+        $invoices = walletactive()->expenses($status, $category, $date)->sortByDesc('due_at');
+
+        foreach ($invoices as $invoice) {
+            if ($invoice->enrollments > 0) {
+                $invoice->installments = $invoice->enrollments . ' de ' . $this->getTotalEnrollments($invoice);
+            }
+        }
+
+        return $invoices;
+    }
+
+    /**
+     * @param $status
+     * @param $category
+     * @param $date
+     * @return Collection
+     */
+    public function getIncomesInvoices($status, $category, $date): Collection
+    {
+        $invoices = walletactive()->incomes($status, $category, $date)->sortByDesc('due_at');
+
+        foreach ($invoices as $invoice) {
+            if($invoice->enrollments > 0) {
+                $invoice->installments = $this->getInstallmentsKey($invoice, $invoice->enrollments);
+            }
+        }
+
+        return $invoices;
+
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getInstallmentsInvoices(): Collection
+    {
+        $invoices = walletactive()->installments()->where('status', '!=', 'paid');
+
+        foreach ($invoices as $invoice) {
+            $invoice->installments = $this->getInstallmentsKey($invoice);
+        }
+
+        return $invoices;
+    }
+
+    /**
+     * @param Invoice $invoice
      * @return bool
      */
     public function createEnrollmentsInvoices (Invoice $invoice): bool
@@ -70,6 +139,7 @@ class InvoiceService
 
         for ($x = 1; $x <= $enrollments; $x++) {
             $invoice->enrollments = $x;
+            $invoice->status = $due_at > Carbon::now() ? 'unpaid' : 'paid';
 
             $this->create($invoice->toArray());
 
@@ -93,5 +163,45 @@ class InvoiceService
     public function setNonSingleAsValidated()
     {
         session()->put('nonSingleInvoicesValidated', true);
+    }
+
+    public function setInvoiceStatus(Invoice $invoice, string $status): bool
+    {
+        if($invoice->enrollments > 0 && $status == 'paid') {
+            $paids = Invoice::where([
+                'status' => 'unpaid',
+                'enrollment_of' => $invoice->enrollment_of,
+            ])->where('id', '!=', $invoice->id)->count();
+
+            if(!$paids) {
+                $mainInvoice = Invoice::findById($invoice->enrollment_of);
+                $mainInvoice->update([
+                    'status' => $status
+                ]);
+            }
+        }
+
+        return $invoice->update([
+            'status' => $status
+        ]);
+    }
+
+    /**
+     * @param Invoice $invoice
+     * @param null $enrollment
+     * @return string
+     */
+    private function getInstallmentsKey(Invoice $invoice, $enrollment = null): string
+    {
+        if(!$enrollment) {
+            $paids = Invoice::where([
+                'status' => 'paid',
+                'enrollment_of' => $invoice->id
+            ])->count();
+
+            return $paids . ' de ' . $invoice->enrollments;
+        }
+
+        return $invoice->enrollments . ' de ' . $this->getTotalEnrollments($invoice);
     }
 }

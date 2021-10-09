@@ -31,7 +31,7 @@ class InvoicesController extends Controller
         }
 
         return view('app.invoices.index', [
-            'invoices' => walletactive()->incomes($status, $category, $date)->sortByDesc('due_at'),
+            'invoices' => InvoiceService()->getIncomesInvoices($status, $category, $date),
             'filter' => [
                 'status' => $status ?? null,
                 'category' => $category ?? null,
@@ -55,7 +55,7 @@ class InvoicesController extends Controller
         }
 
         return view('app.invoices.index', [
-            'invoices' => walletactive()->expenses($status, $category, $date)->sortByDesc('due_at'),
+            'invoices' => InvoiceService()->getExpensesInvoices($status, $category, $date),
             'filter' => [
                 'status' => $status ?? null,
                 'category' => $category ?? null,
@@ -63,6 +63,41 @@ class InvoicesController extends Controller
                     explode('-', $date)[0] . '/' . explode('-', $date)[1] : 'all'
             ],
             'type' => 'expense'
+        ]);
+    }
+
+    /**
+     * @return View
+     */
+    public function fixed(): View
+    {
+        return view('app.invoices.index', [
+            'invoices' => walletactive()->fixed(),
+            'type' => 'fixed'
+        ]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param Invoice $invoice
+     * @return View
+     */
+    public function edit(Invoice $invoice): View
+    {
+        return view('app.invoices.edit', [
+            'invoice' => $invoice
+        ]);
+    }
+
+    /**
+     *
+     */
+    public function installments()
+    {
+        return view('app.invoices.index', [
+            'invoices' => InvoiceService()->getInstallmentsInvoices(),
+            'type' => 'installments'
         ]);
     }
 
@@ -81,17 +116,6 @@ class InvoicesController extends Controller
         }
 
         return $this->jsonReload('Fatura clonada com sucesso');
-    }
-
-    /**
-     * @return View
-     */
-    public function fixed(): View
-    {
-        return view('app.invoices.index', [
-            'invoices' => walletactive()->fixed(),
-            'type' => 'fixed'
-        ]);
     }
 
     /**
@@ -132,19 +156,6 @@ class InvoicesController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param Invoice $invoice
-     * @return View
-     */
-    public function edit(Invoice $invoice): View
-    {
-        return view('app.invoices.edit', [
-            'invoice' => $invoice
-        ]);
-    }
-
-    /**
      * @param InvoiceUpdate $request
      * @param Invoice $invoice
      * @return JsonResponse
@@ -165,9 +176,9 @@ class InvoicesController extends Controller
      */
     public function setStatus(InvoiceStatus $request, Invoice $invoice): JsonResponse
     {
-        $invoice->update([
-            'status' => $request->get('status')
-        ]);
+        if(!InvoiceService()->setInvoiceStatus($invoice, $request->get('status'))) {
+            return $this->jsonError('Houve um problema ao alterar o status da fatura');
+        }
 
         return $this->jsonReload('Status alterado com sucesso');
     }
