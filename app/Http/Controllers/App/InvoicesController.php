@@ -68,23 +68,17 @@ class InvoicesController extends Controller
 
     /**
      * @param Invoice $invoice
-     * @return JsonResponse|object
+     * @return JsonResponse
      */
-    public function clone(Invoice $invoice)
+    public function clone(Invoice $invoice): JsonResponse
     {
         if ($invoice->type === 'fixed') {
             return $this->jsonError('Não é possível clonar faturas fixas');
         }
 
-        $invoice->setAsCloned();
-
-        $invoice->invoice_of = $invoice->id;
-        $invoice->type = $invoice->type == 'expense' ? 'income' : 'expense';
-        $invoice->status = 'unpaid';
-        $invoice->cloned = null;
-
-        Invoice::create($invoice->toArray());
-
+        if(!InvoiceService()->createCloneInvoice($invoice)) {
+            return $this->jsonError('Houve um problema ao cadastrar sua fatura, tente novamente!');
+        }
 
         return $this->jsonReload('Fatura clonada com sucesso');
     }
@@ -108,11 +102,9 @@ class InvoicesController extends Controller
      */
     public function store(InvoiceCreate $request): JsonResponse
     {
-        Invoice::create($request->validated());
-
-        if($request->get('repeat_when')  == 'fixed') {
-            setNonSingleAsUnvalidated();
-        }
+       if(!InvoiceService()->create($request->validated())){
+           return $this->jsonError('Houve um problema ao cadastrar sua fatura, tente novamente');
+       };
 
         return $this->jsonReload('Fatura adicionada com sucesso!');
     }

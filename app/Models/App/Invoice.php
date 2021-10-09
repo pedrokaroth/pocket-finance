@@ -27,7 +27,7 @@ class Invoice extends Model
      */
     protected $fillable = [
         'description', 'value', 'due_at', 'wallet_id', 'category', 'comments', 'user_id', 'category_id', 'comments',
-        'repeat_when', 'status', 'type', 'repeat_type', 'invoice_of', 'cloned'
+        'repeat_when', 'status', 'type', 'repeat_type', 'invoice_of', 'cloned', 'enrollments', 'enrollment_of'
     ];
 
     /**

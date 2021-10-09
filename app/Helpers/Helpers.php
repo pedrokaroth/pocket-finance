@@ -3,6 +3,7 @@
 use App\Models\App\Category;
 use App\Models\App\Wallet;
 use App\Models\User;
+use App\Services\InvoiceService;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -131,24 +132,13 @@ if (! function_exists('str_price')) {
     }
 }
 
-if(! function_exists('setNonSingleAsValidated')) {
-
+if (! function_exists('InvoiceService')) {
     /**
-     * Sets the non single invoices as validated in the session
+     * @return InvoiceService
      */
-    function setNonSingleAsValidated() {
-        session()->put('nonSingleInvoicesValidated', true);
-    }
-}
-
-
-if(! function_exists('setNonSingleAsUnvalidated')) {
-
-    /**
-     * Unset the validated non single invoices in the session
-     */
-    function setNonSingleAsUnvalidated() {
-        session()->put('nonSingleInvoicesValidated', false);
+    function InvoiceService(): InvoiceService
+    {
+        return new InvoiceService();
     }
 }
 

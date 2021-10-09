@@ -81,7 +81,7 @@ class ValidateNonSingleInvoices
             }
         }
 
-        setNonSingleAsValidated();
+        InvoiceService()->setNonSingleAsValidated();
 
         return $next($request);
     }

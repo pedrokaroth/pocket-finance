@@ -39,7 +39,8 @@ class CreateInvoiceRequest extends FormRequest
             'type' => 'required|in:income,expense',
             'comments' => 'max:191',
             'status' => 'in:unpaid,paid',
-            'repeat_type' => 'required_if:repeat_when,fixed|in:weekly,monthly,annually'
+            'repeat_type' => 'required_if:repeat_when,fixed|in:weekly,monthly,annually,enrollment',
+            'enrollments' => 'required_if:repeat_when,enrollment'
         ];
     }
 
@@ -56,7 +57,15 @@ class CreateInvoiceRequest extends FormRequest
             $this->merge([
                 'status' => $this->get('due_at') <= Carbon::now()
                     ? 'paid'
-                    : 'unpaid'
+                    : 'unpaid',
+
+                'enrollments' => $this->get('repeat_when') != 'enrollment'
+                    ? null
+                    : $this->get('enrollments'),
+
+                'repeat_type' => $this->get('repeat_when') == 'enrollment'
+                    ? 'enrollment'
+                    : $this->get('repeat_type')
             ]);
         }
     }
