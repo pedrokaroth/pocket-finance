@@ -191,7 +191,9 @@ class InvoicesController extends Controller
      */
     public function destroy(Invoice $invoice): JsonResponse
     {
-        $invoice->delete();
+        if(!InvoiceService()->destory($invoice)) {
+            $this->jsonError('Houve um problema ao remover a fatura');
+        }
 
         return $this->jsonReload('Fatura removida com sucesso');
     }

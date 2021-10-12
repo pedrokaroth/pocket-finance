@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\HigherOrderCollectionProxy;
@@ -55,11 +56,11 @@ class Invoice extends Model
     /**
      * @param int $id
      * @param array $fields
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Builder|Builder|Invoice|Model|object|null
      */
     public static function findById(int $id, array $fields = ['*'])
     {
-        return Invoice::where('id', $id)->first($fields);
+        return Invoice::withTrashed()->where('id', $id)->first($fields);
     }
 
     /**
@@ -142,7 +143,7 @@ class Invoice extends Model
      */
     public function setValueAttribute($value)
     {
-        $this->attributes['value'] = (float)str_replace(['.', ','],['', '.'] ,$value);
+        $this->attributes['value'] = str_to_number($value);
     }
 
     /**

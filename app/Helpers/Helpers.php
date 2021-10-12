@@ -132,6 +132,17 @@ if (! function_exists('str_price')) {
     }
 }
 
+if (! function_exists('str_to_number')) {
+    /**
+     * @param $price
+     * @return float
+     */
+    function str_to_number($price): float
+    {
+        return (float)str_replace(['.', ','],['', '.'] ,$price);
+    }
+}
+
 if (! function_exists('InvoiceService')) {
     /**
      * @return InvoiceService

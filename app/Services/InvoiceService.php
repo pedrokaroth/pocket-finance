@@ -116,6 +116,7 @@ class InvoiceService
 
         foreach ($invoices as $invoice) {
             $invoice->installments = $this->getInstallmentsKey($invoice);
+            $invoice->value = str_to_number($invoice->value) * $invoice->enrollments;
         }
 
         return $invoices;
@@ -133,6 +134,7 @@ class InvoiceService
 
         $due_at = new Carbon($invoice->due_at);
         $enrollments = $invoice->enrollments;
+
         $invoice->enrollment_of = $invoice->id;
         $invoice->repeat_when = 'single';
         $invoice->repeat_type = null;
@@ -147,6 +149,13 @@ class InvoiceService
         }
 
         return true;
+    }
+
+    public function destory(Invoice $invoice)
+    {
+        Invoice::where(['enrollment_of' => $invoice->id, 'status' => 'unpaid'])->delete();
+
+        return $invoice->delete();
     }
 
     /**
