@@ -40,7 +40,7 @@
                 <label class="display-flex">
                     <i class="fas fa-list"></i> Categoria
                     <select class="browser-default custom-select mt-2" name="category_id">
-                        @foreach(categories('income') as $category)
+                        @foreach(categories($invoice->type) as $category)
                             <option value="{{ $category->id }}" {{ $invoice->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                         @endforeach
                     </select>
