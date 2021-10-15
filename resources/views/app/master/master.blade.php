@@ -34,9 +34,9 @@
             </div>
         </div>
 
-        <script src="{{ url(mix('/assets/js/vendor.js')) }}" async></script>
-        <script src="{{ url(mix('/assets/js/app.js')) }}" async></script>
-        <script src="{{ url(mix('/front/assets/js/app.js')) }}" async></script>
+        <script src="{{ url(mix('/assets/js/vendor.js')) }}"></script>
+        <script src="{{ url(mix('/assets/js/app.js')) }}"></script>
+        <script src="{{ url(mix('/front/assets/js/app.js')) }}"></script>
 
         @hasSection('script')
             @yield('script')
