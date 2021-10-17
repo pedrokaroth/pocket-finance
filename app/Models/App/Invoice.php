@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\HigherOrderCollectionProxy;
-use stdClass;
 
 /**
  * Class Invoice
@@ -63,12 +63,13 @@ class Invoice extends Model
         return Invoice::withTrashed()->where('id', $id)->first($fields);
     }
 
+
     /**
-     * @return stdClass
+     * @return Collection
      */
-    public function dashboardChartData(): stdClass
+    public function dashboardChartData(): Collection
     {
-        $invoices = DB::table('invoices')
+        return DB::table('invoices')
             ->select(
                 (DB::raw('YEAR(due_at) AS due_year')),
                 (DB::raw('MONTH(due_at) AS due_month')),
@@ -80,26 +81,6 @@ class Invoice extends Model
             ->whereRaw('YEAR(due_at) <= YEAR(NOW())')
             ->groupByRaw('YEAR(due_at) ASC, MONTH(due_at) ASC')
             ->get();
-
-        if($invoices->count()) {
-            foreach ($invoices as $invoice) {
-                $chartCategories[] = $invoice->due_month . '/' . $invoice->due_year;
-                $chartExpense[] = $invoice->expense ?? 0;
-                $chartIncome[] = $invoice->income ?? 0;
-            }
-        } else {
-            for ($month = -4; $month <= 0; $month++) {
-                $chartDate[] = date("m/Y", strtotime("{$month}month"));
-            }
-        }
-
-
-        $chartData = new \stdClass();
-        $chartData->categories = $chartCategories ?? $chartDate;
-        $chartData->expense = $chartExpense ?? [0,0,0,0,0];
-        $chartData->income = $chartIncome ?? [0,0,0,0,0];
-
-        return $chartData;
     }
 
     /**

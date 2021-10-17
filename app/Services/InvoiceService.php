@@ -151,11 +151,40 @@ class InvoiceService
         return true;
     }
 
-    public function destory(Invoice $invoice)
+    /**
+     * @param Invoice $invoice
+     * @return bool|null
+     */
+    public function destory(Invoice $invoice): ?bool
     {
         Invoice::where(['enrollment_of' => $invoice->id, 'status' => 'unpaid'])->delete();
 
         return $invoice->delete();
+    }
+
+    public function getDashboardChart(): \stdClass
+    {
+        $invoices = Invoice()->dashboardChartData();
+
+        if($invoices->count()) {
+            foreach ($invoices as $invoice) {
+                $chartCategories[] = $invoice->due_month . '/' . $invoice->due_year;
+                $chartExpense[] = $invoice->expense ?? 0;
+                $chartIncome[] = $invoice->income ?? 0;
+            }
+        } else {
+            for ($month = -4; $month <= 0; $month++) {
+                $chartDate[] = date("m/Y", strtotime("{$month}month"));
+            }
+        }
+
+
+        $chartData = new \stdClass();
+        $chartData->categories = $chartCategories ?? $chartDate;
+        $chartData->expense = $chartExpense ?? [0,0,0,0,0];
+        $chartData->income = $chartIncome ?? [0,0,0,0,0];
+
+        return $chartData;
     }
 
     /**
@@ -174,6 +203,11 @@ class InvoiceService
         session()->put('nonSingleInvoicesValidated', true);
     }
 
+    /**
+     * @param Invoice $invoice
+     * @param string $status
+     * @return bool
+     */
     public function setInvoiceStatus(Invoice $invoice, string $status): bool
     {
         if($invoice->enrollments > 0 && $status == 'paid') {

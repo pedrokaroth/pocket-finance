@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\App\Category;
+use App\Models\App\Invoice;
 use App\Models\App\Wallet;
 use App\Models\User;
 use App\Services\InvoiceService;
@@ -140,6 +141,16 @@ if (! function_exists('str_to_number')) {
     function str_to_number($price): float
     {
         return (float)str_replace(['.', ','],['', '.'] ,$price);
+    }
+}
+
+if (! function_exists('Invoice')) {
+    /**
+     * @return Invoice
+     */
+    function Invoice(): Invoice
+    {
+        return new Invoice();
     }
 }
 
