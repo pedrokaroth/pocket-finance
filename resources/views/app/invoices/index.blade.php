@@ -92,7 +92,7 @@
                                     @endswitch
                                 </td>
                             @endif
-                            <td>{{ $invoice->value }}</td>
+                            <td>{{ $invoice->totalValue ?? $invoice->value }}</td>
                             <td>
                                 <div class="btn-group">
                                     <form action="{{ route('app.invoices.destroy', ['invoice' => $invoice]) }}" method="post">

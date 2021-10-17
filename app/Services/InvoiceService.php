@@ -116,7 +116,9 @@ class InvoiceService
 
         foreach ($invoices as $invoice) {
             $invoice->installments = $this->getInstallmentsKey($invoice);
-            $invoice->value = str_to_number($invoice->value) * $invoice->enrollments;
+            $invoice->totalValue = str_price(
+                str_to_number($invoice->value) * $invoice->enrollments
+            );
         }
 
         return $invoices;
