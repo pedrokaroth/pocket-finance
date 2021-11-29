@@ -100,9 +100,9 @@
 
                                         <button type="submit" class="btn btn-danger  btn-sm" style="border-bottom-right-radius: 0;border-top-right-radius: 0" title="Remover Fatura"><i class="fas fa-trash-alt"></i></button>
                                     </form>
-                                    <a href="{{ route('app.invoices.edit', ['invoice' => $invoice]) }}" class="btn btn-info  btn-sm" title="Acessar Fatura"><i class="far fa-eye"></i></a>
+                                    <a href="{{ route('app.invoices.edit', ['invoice' => $invoice]) }}" class="btn btn-info btn-sm" @if($type == 'installments') style="border-bottom-right-radius: 0.2rem;border-top-right-radius: 0.2rem" @endif title="Acessar Fatura"><i class="far fa-eye"></i></a>
 
-                                    @if(!$invoice->cloned && !$invoice->invoice_of && !$invoice->enrollments)
+                                    @if(!$invoice->cloned && !$invoice->invoice_of && !$invoice->enrollments && $invoice->repeat_when != 'fixed')
                                         <form action="{{ route('app.invoices.clone', ['invoice' => $invoice]) }}" method="post">
                                             @method('POST')
 
