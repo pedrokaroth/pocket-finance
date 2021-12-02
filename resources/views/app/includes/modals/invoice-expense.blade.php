@@ -31,7 +31,7 @@
                                 <i class="fas fa-wallet"></i> Carteira
                                 <select class="browser-default custom-select mt-2" name="wallet_id">
                                     @foreach(wallets() as $wallet)
-                                        <option value="{{ $wallet->id }}">{{ $wallet->wallet }}</option>
+                                        <option @if(walletactive()->id == $wallet->id) selected @endif value="{{ $wallet->id }}">{{ $wallet->wallet }}</option>
                                     @endforeach
                                 </select>
                             </label>
