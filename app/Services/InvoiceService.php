@@ -43,9 +43,9 @@ class InvoiceService
 
     /**
      * @param Invoice $invoice
-     * @return bool
+     * @return bool|Invoice
      */
-    public function createCloneInvoice(Invoice $invoice): bool
+    public function createCloneInvoice(Invoice $invoice)
     {
         $invoice->setAsCloned();
 
